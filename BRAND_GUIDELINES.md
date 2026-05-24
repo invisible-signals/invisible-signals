@@ -4,6 +4,28 @@
 
 The repository contents are available under the Apache License 2.0. That license does not grant unrestricted rights to use the Invisible Signals name, logos, visual identity, or related brand assets.
 
+## Brand Identity
+
+Invisible Signals uses a dark, diagnostic identity built around the idea of **career signal intelligence**. The visual language should feel precise, technical, and evidence-oriented: closer to an observability dashboard, mission control terminal, or high-end debugger than a conventional career coaching brand.
+
+The identity system is documented in [assets/branding/IDENTITY.md](assets/branding/IDENTITY.md).
+
+Core voice:
+
+- Technical skill is not the issue.
+- Detect, refine, and transmit professional impact.
+- Not hacking. Resolution.
+- Initialize your signal.
+
+Core visual principles:
+
+- Dark-mode first.
+- Coral, sage, and gold are signal colors, not decoration.
+- JetBrains Mono carries headlines, labels, data, and telemetry.
+- Inter carries explanatory body copy.
+- Use sharp geometry, 1px borders, sparse grids, and diagnostic panels.
+- Avoid generic AI sparkle language, soft SaaS styling, stock workplace imagery, and people/briefcase career metaphors.
+
 ## You May
 
 - Fork and extend the repository.
@@ -38,7 +60,14 @@ Avoid names that imply official status:
 
 ## Brand Assets
 
-Brand assets, when published, should live in [assets/branding](assets/branding).
+Brand assets live in [assets/branding](assets/branding).
+
+Current identity tokens and references include:
+
+- [assets/branding/IDENTITY.md](assets/branding/IDENTITY.md)
+- [assets/branding/tokens/invisible-signals-tokens.json](assets/branding/tokens/invisible-signals-tokens.json)
+- [assets/branding/tokens/invisible-signals-tokens.css](assets/branding/tokens/invisible-signals-tokens.css)
+- [assets/branding/references/signal-logic-identity-screen.png](assets/branding/references/signal-logic-identity-screen.png)
 
 Unless a brand asset file includes separate usage terms, these guidelines apply to use of the asset.
 

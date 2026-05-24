@@ -1,0 +1,37 @@
+:root {
+  --is-background-deep: #050505;
+  --is-background: #131313;
+  --is-surface-charcoal: #121212;
+  --is-surface-container-lowest: #0e0e0e;
+  --is-surface-container-low: #1c1b1b;
+  --is-surface-container: #201f1f;
+  --is-surface-container-high: #2a2a2a;
+  --is-surface-container-highest: #353534;
+  --is-surface-bright: #3a3939;
+  --is-border-muted: #262626;
+  --is-outline: #a68a88;
+  --is-outline-variant: #57423f;
+  --is-on-surface: #e5e2e1;
+  --is-on-surface-variant: #dec0bc;
+  --is-text-dim: #737373;
+  --is-primary: #ffb3ad;
+  --is-primary-container: #e86961;
+  --is-signal-alert: #e86961;
+  --is-on-primary: #66070c;
+  --is-secondary: #b1cccc;
+  --is-telemetry-healthy: #99b3b3;
+  --is-secondary-container: #354d4e;
+  --is-tertiary: #edc14d;
+  --is-warning-pulse: #ebbf4b;
+  --is-tertiary-container: #b28b17;
+
+  --is-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --is-font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --is-space-unit: 4px;
+  --is-space-gutter: 16px;
+  --is-space-margin-sm: 16px;
+  --is-space-margin-md: 32px;
+  --is-space-margin-lg: 48px;
+  --is-radius-sharp: 0;
+  --is-border-width: 1px;
+}

@@ -1,0 +1,75 @@
+{
+  "name": "Invisible Signals Diagnostic Identity",
+  "source": "Signal Logic Identity prototype",
+  "colors": {
+    "backgroundDeep": "#050505",
+    "background": "#131313",
+    "surfaceCharcoal": "#121212",
+    "surfaceContainerLowest": "#0e0e0e",
+    "surfaceContainerLow": "#1c1b1b",
+    "surfaceContainer": "#201f1f",
+    "surfaceContainerHigh": "#2a2a2a",
+    "surfaceContainerHighest": "#353534",
+    "surfaceBright": "#3a3939",
+    "borderMuted": "#262626",
+    "outline": "#a68a88",
+    "outlineVariant": "#57423f",
+    "onSurface": "#e5e2e1",
+    "onSurfaceVariant": "#dec0bc",
+    "textDim": "#737373",
+    "primary": "#ffb3ad",
+    "primaryContainer": "#e86961",
+    "signalAlert": "#e86961",
+    "onPrimary": "#66070c",
+    "secondary": "#b1cccc",
+    "telemetryHealthy": "#99b3b3",
+    "secondaryContainer": "#354d4e",
+    "tertiary": "#edc14d",
+    "warningPulse": "#ebbf4b",
+    "tertiaryContainer": "#b28b17"
+  },
+  "typography": {
+    "display": {
+      "fontFamily": "JetBrains Mono",
+      "fontWeight": 600,
+      "lineHeight": 1.0,
+      "textTransform": "uppercase"
+    },
+    "heading": {
+      "fontFamily": "JetBrains Mono",
+      "fontWeight": 500,
+      "lineHeight": 1.2,
+      "textTransform": "uppercase"
+    },
+    "label": {
+      "fontFamily": "JetBrains Mono",
+      "fontWeight": 500,
+      "lineHeight": 1,
+      "letterSpacing": "0.05em",
+      "textTransform": "uppercase"
+    },
+    "body": {
+      "fontFamily": "Inter",
+      "fontWeight": 400,
+      "lineHeight": 1.6
+    },
+    "data": {
+      "fontFamily": "JetBrains Mono",
+      "fontWeight": 400,
+      "lineHeight": 1.5
+    }
+  },
+  "spacing": {
+    "unit": "4px",
+    "gutter": "16px",
+    "marginSmall": "16px",
+    "marginMedium": "32px",
+    "marginLarge": "48px",
+    "desktopGridColumns": 12,
+    "mobileGridColumns": 4
+  },
+  "shape": {
+    "cornerRadius": "0px",
+    "borderWidth": "1px"
+  }
+}
