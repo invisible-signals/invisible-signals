@@ -1,6 +1,6 @@
 :root {
-  --is-background-deep: #050505;
-  --is-background: #131313;
+  --is-background-deep: #05070a;
+  --is-background: #0b0e14;
   --is-surface-charcoal: #121212;
   --is-surface-container-lowest: #0e0e0e;
   --is-surface-container-low: #1c1b1b;
@@ -9,17 +9,17 @@
   --is-surface-container-highest: #353534;
   --is-surface-bright: #3a3939;
   --is-border-muted: #262626;
-  --is-outline: #a68a88;
-  --is-outline-variant: #57423f;
+  --is-outline: #576574;
+  --is-outline-variant: #353534;
   --is-on-surface: #e5e2e1;
   --is-on-surface-variant: #dec0bc;
   --is-text-dim: #737373;
-  --is-primary: #ffb3ad;
-  --is-primary-container: #e86961;
+  --is-primary: #70a1ff;
+  --is-primary-container: #70a1ff;
   --is-signal-alert: #e86961;
-  --is-on-primary: #66070c;
+  --is-on-primary: #05070a;
   --is-secondary: #b1cccc;
-  --is-telemetry-healthy: #99b3b3;
+  --is-telemetry-healthy: #70a1ff;
   --is-secondary-container: #354d4e;
   --is-tertiary: #edc14d;
   --is-warning-pulse: #ebbf4b;

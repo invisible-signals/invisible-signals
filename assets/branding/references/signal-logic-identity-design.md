@@ -13,14 +13,14 @@ colors:
   on-surface-variant: '#dec0bc'
   inverse-surface: '#e5e2e1'
   inverse-on-surface: '#313030'
-  outline: '#a68a88'
-  outline-variant: '#57423f'
-  surface-tint: '#ffb3ad'
-  primary: '#ffb3ad'
-  on-primary: '#66070c'
-  primary-container: '#e86961'
-  on-primary-container: '#5c0006'
-  inverse-primary: '#a63834'
+  outline: '#576574'
+  outline-variant: '#353534'
+  surface-tint: '#70a1ff'
+  primary: '#70a1ff'
+  on-primary: '#05070a'
+  primary-container: '#70a1ff'
+  on-primary-container: '#051f20'
+  inverse-primary: '#4a69bd'
   secondary: '#b1cccc'
   on-secondary: '#1c3435'
   secondary-container: '#354d4e'
@@ -33,10 +33,10 @@ colors:
   on-error: '#690005'
   error-container: '#93000a'
   on-error-container: '#ffdad6'
-  primary-fixed: '#ffdad6'
-  primary-fixed-dim: '#ffb3ad'
-  on-primary-fixed: '#410003'
-  on-primary-fixed-variant: '#86211f'
+  primary-fixed: '#d1d8ff'
+  primary-fixed-dim: '#70a1ff'
+  on-primary-fixed: '#051f20'
+  on-primary-fixed-variant: '#334b4b'
   secondary-fixed: '#cde8e8'
   secondary-fixed-dim: '#b1cccc'
   on-secondary-fixed: '#051f20'
@@ -45,13 +45,13 @@ colors:
   tertiary-fixed-dim: '#edc14d'
   on-tertiary-fixed: '#251a00'
   on-tertiary-fixed-variant: '#594400'
-  background: '#131313'
+  background: '#0b0e14'
   on-background: '#e5e2e1'
   surface-variant: '#353534'
-  background-deep: '#050505'
+  background-deep: '#05070a'
   surface-charcoal: '#121212'
   signal-alert: '#e86961'
-  telemetry-healthy: '#99b3b3'
+  telemetry-healthy: '#70a1ff'
   warning-pulse: '#ebbf4b'
   border-muted: '#262626'
   text-dim: '#737373'
@@ -112,8 +112,8 @@ The design style is **Minimalist-Diagnostic**. It utilizes heavy whitespace—or
 
 The palette is anchored in a "Dark Mode First" philosophy. The primary surface is a nearly-black deep charcoal, providing a high-contrast foundation for technical accents.
 
-- **Primary (Coral):** Used strictly for active signals, critical alerts, and primary diagnostic pulses. It represents the "energy" of the signal.
-- **Secondary (Sage):** Used for healthy telemetry, stable data streams, and background system status. It provides a calming, readable counterpoint to the coral.
+- **Primary (Signal Blue):** Used strictly for active signals, selected states, healthy telemetry, and primary diagnostic pulses. It represents signal clarity and system intelligence.
+- **Secondary (Sage):** Used for stable data streams and background system status. It provides a calming, readable counterpoint to the blue signal layer.
 - **Tertiary (Gold):** Reserved for warnings, transient states, or specific highlights in spectrum analysis.
 - **Neutral:** A range of deep grays and blacks used to define the UI structure without distracting from the data.
 
@@ -154,10 +154,10 @@ To maintain the diagnostic, high-intelligence aesthetic, all UI elements utilize
 
 ## Components
 
-- **Buttons:** Rectangular with 1px borders. Primary buttons use a ghost style with a Coral border that fills on hover. Text is always uppercase JetBrains Mono.
-- **Input Fields:** Minimalist under-lines or full 1px boxes with no fill. The cursor/caret should be the primary Coral color.
+- **Buttons:** Rectangular with 1px borders. Primary buttons use a blue fill, blue border, or restrained blue glow on hover. Text is always uppercase JetBrains Mono.
+- **Input Fields:** Minimalist under-lines or full 1px boxes with no fill. The cursor/caret should be the primary Signal Blue color.
 - **Cards/Panels:** Defined by 1px borders. Header areas are separated by a horizontal 1px line.
-- **Chips/Status Tags:** Small, rectangular labels. Use "Sage" for 'Active/Healthy' and "Coral" for 'Alert/Error'.
+- **Chips/Status Tags:** Small, rectangular labels. Use "Signal Blue" for 'Active/Healthy' and "Coral" for 'Alert/Error'.
 - **Lists:** Clean rows separated by 1px dividers. Monospaced data should be right-aligned for numerical comparison.
 - **Iconography:** Use "Technical/Abstract" icons only. Focus on:
     - **Waveforms:** For activity and signals.

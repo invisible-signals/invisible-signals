@@ -47,15 +47,15 @@ Primary roles:
 
 | Role | Hex | Usage |
 | --- | --- | --- |
-| Background deep | `#050505` | Page background, full-bleed dark fields |
-| Background | `#131313` | Main app/page surfaces |
+| Background deep | `#05070a` | Page background, full-bleed dark fields |
+| Background | `#0b0e14` | Main app/page surfaces |
 | Surface charcoal | `#121212` | Panels and technical containers |
 | Border muted | `#262626` | 1px panel lines and separators |
 | On surface | `#e5e2e1` | Primary text |
 | Text dim | `#737373` | Secondary metadata and quiet labels |
-| Primary | `#ffb3ad` | Active controls, highlights, selected states |
+| Primary | `#70a1ff` | Active controls, highlights, selected states, signal glow |
 | Signal alert | `#e86961` | Warnings, failures, diagnostic emphasis |
-| Telemetry healthy | `#99b3b3` | Stable status and healthy system indicators |
+| Telemetry healthy | `#70a1ff` | Stable status and healthy system indicators |
 | Warning pulse | `#ebbf4b` | Warnings, transient states, spectrum highlights |
 
 Reusable tokens live in [tokens/invisible-signals-tokens.json](tokens/invisible-signals-tokens.json) and [tokens/invisible-signals-tokens.css](tokens/invisible-signals-tokens.css).
@@ -99,7 +99,7 @@ The shape language is sharp and geometric.
 Buttons:
 
 - Rectangular, uppercase JetBrains Mono.
-- Primary actions may use coral fill or coral border.
+- Primary actions may use blue fill, blue border, or a restrained blue glow.
 - Secondary actions should be dark with a muted border.
 
 Panels:
@@ -110,8 +110,8 @@ Panels:
 
 Status tags:
 
-- Sage indicates healthy telemetry or stable state.
-- Coral indicates alert, active signal, or diagnostic emphasis.
+- Blue indicates healthy telemetry, active signal, or selected state.
+- Coral indicates alert, failure, or diagnostic emphasis.
 - Gold indicates warnings or temporary calibration states.
 
 Data visuals:

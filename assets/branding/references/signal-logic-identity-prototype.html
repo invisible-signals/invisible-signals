@@ -20,7 +20,7 @@
             width: 100%;
             height: 100px;
             z-index: 5;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(232, 105, 97, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(112, 161, 255, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
             opacity: 0.1;
             position: absolute;
             bottom: 100%;
@@ -38,16 +38,27 @@
             50% { opacity: 0.6; }
         }
         .terminal-glow {
-            box-shadow: 0 0 30px rgba(232, 105, 97, 0.05);
+            box-shadow: 0 0 30px rgba(112, 161, 255, 0.1);
         }
         .panel-border {
             border: 1px solid #262626;
         }
         .panel-accent {
-            border-left: 2px solid #ffb3ad;
+            border-left: 2px solid #70a1ff;
         }
         .data-stream {
             font-family: 'JetBrains Mono', monospace;
+        }
+        .radar-sweep {
+            background: conic-gradient(from 0deg at 50% 50%, rgba(112, 161, 255, 0.2) 0deg, transparent 90deg);
+            animation: sweep 4s linear infinite;
+        }
+        @keyframes sweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .signal-layer-bg {
+            background: radial-gradient(circle at center, rgba(112, 161, 255, 0.03) 0%, transparent 70%);
         }
     </style>
 <script id="tailwind-config">
@@ -57,42 +68,42 @@
                 extend: {
                     "colors": {
                         "on-surface": "#e5e2e1",
-                        "surface-tint": "#ffb3ad",
-                        "primary-container": "#e86961",
+                        "surface-tint": "#70a1ff",
+                        "primary-container": "#70a1ff",
                         "on-tertiary-container": "#362800",
                         "on-secondary": "#1c3435",
                         "on-surface-variant": "#dec0bc",
-                        "on-primary-fixed-variant": "#86211f",
+                        "on-primary-fixed-variant": "#334b4b",
                         "secondary-fixed": "#cde8e8",
                         "on-tertiary-fixed": "#251a00",
-                        "inverse-primary": "#a63834",
+                        "inverse-primary": "#4a69bd",
                         "tertiary-fixed-dim": "#edc14d",
-                        "primary-fixed": "#ffdad6",
-                        "background": "#131313",
-                        "on-primary-container": "#5c0006",
+                        "primary-fixed": "#d1d8ff",
+                        "background": "#0b0e14",
+                        "on-primary-container": "#051f20",
                         "secondary": "#b1cccc",
                         "surface-container-low": "#1c1b1b",
-                        "primary-fixed-dim": "#ffb3ad",
+                        "primary-fixed-dim": "#70a1ff",
                         "surface-variant": "#353534",
                         "surface-container-high": "#2a2a2a",
                         "secondary-fixed-dim": "#b1cccc",
                         "tertiary": "#edc14d",
                         "surface-container-lowest": "#0e0e0e",
-                        "telemetry-healthy": "#99b3b3",
-                        "primary": "#ffb3ad",
-                        "background-deep": "#050505",
+                        "telemetry-healthy": "#70a1ff",
+                        "primary": "#70a1ff",
+                        "background-deep": "#05070a",
                         "on-error-container": "#ffdad6",
                         "text-dim": "#737373",
                         "on-tertiary": "#3e2e00",
                         "inverse-surface": "#e5e2e1",
                         "signal-alert": "#e86961",
                         "warning-pulse": "#ebbf4b",
-                        "on-primary-fixed": "#410003",
-                        "outline": "#a68a88",
+                        "on-primary-fixed": "#051f20",
+                        "outline": "#576574",
                         "surface": "#131313",
                         "secondary-container": "#354d4e",
                         "on-tertiary-fixed-variant": "#594400",
-                        "outline-variant": "#57423f",
+                        "outline-variant": "#353534",
                         "error": "#ffb4ab",
                         "on-background": "#e5e2e1",
                         "on-error": "#690005",
@@ -106,7 +117,7 @@
                         "on-secondary-container": "#a3bdbd",
                         "on-secondary-fixed-variant": "#334b4b",
                         "surface-container-highest": "#353534",
-                        "on-primary": "#66070c",
+                        "on-primary": "#05070a",
                         "tertiary-container": "#b28b17",
                         "surface-dim": "#131313",
                         "tertiary-fixed": "#ffdf96"
@@ -158,9 +169,10 @@
 <nav class="bg-background-deep/80 backdrop-blur-md border-b border-border-muted fixed top-0 left-0 right-0 z-50">
 <div class="max-w-[1600px] mx-auto flex justify-between items-center h-16 px-margin-md">
 <div class="flex items-center gap-12">
+<div class="flex items-center">
 <div class="flex items-center gap-3">
-<span class="w-3 h-3 bg-primary signal-pulse rounded-full"></span>
-<span class="text-headline-md font-headline-md font-bold tracking-tighter text-on-surface uppercase">INVISIBLE_SIGNALS</span>
+<img alt="Invisible Signals Logo" class="h-8 w-auto object-contain brightness-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXZe_zEFdsYXYIUK3z8A4xiIJLP7cEAfe9FVh4ZbmkqhnMLRmQrkDLL8UmmT0POFw2P9JTgG_PBNo6Z9mr6y_fewFN_xIPe1XX7c4XsgT-tgPsWZy1qJV-e0AyPCVJK1LutrK0dJQ_YtgI9JbH9qjVxBSQlfjARSwFkm8Q_eM6B10Kr5hX4HaOqNLVMd1LhLbDCylRY3ZETG47AhQakpv1SjfPKZiPEXhtlAIJiJF2Ax_AbOvMJUZAS-56aJdcmcCbpOoema6FvHhN"/>
+</div>
 </div>
 <div class="hidden lg:flex items-center gap-8">
 <a class="text-primary font-data-mono text-[11px] uppercase tracking-widest border-b border-primary/50" href="#">[ 01_FRAMEWORKS ]</a>
@@ -186,21 +198,22 @@
 <!-- Hero Section / Mission Start -->
 <section class="relative min-h-screen flex items-center justify-center px-margin-md grid-pattern border-b border-border-muted overflow-hidden">
 <div class="absolute inset-0 bg-gradient-to-t from-background-deep via-transparent to-background-deep pointer-events-none"></div>
+<div class="absolute inset-0 signal-layer-bg pointer-events-none"></div>
 <!-- Dashboard Background Decorations -->
 <div class="absolute top-24 left-12 opacity-30 font-data-mono text-[10px] text-text-dim space-y-1 hidden xl:block">
 <p>LAT: 37.7749° N</p>
 <p>LONG: 122.4194° W</p>
 <p>ALT: 42.0m</p>
-<div class="w-32 h-1 bg-border-muted mt-2"><div class="h-full bg-primary w-[65%]"></div></div>
+<div class="w-32 h-1 bg-border-muted mt-2"><div class="h-full bg-primary w-[65%] shadow-[0_0_8px_rgba(112,161,255,0.5)]"></div></div>
 </div>
 <div class="relative z-10 max-w-5xl w-full">
 <div class="mb-12 flex flex-col items-center">
 <div class="inline-flex items-center gap-3 px-4 py-1.5 bg-surface-container-lowest border border-primary/20 mb-8 rounded-full">
-<span class="w-2 h-2 rounded-full bg-telemetry-healthy signal-pulse"></span>
+<span class="w-2 h-2 rounded-full bg-telemetry-healthy signal-pulse shadow-[0_0_8px_#70a1ff]"></span>
 <span class="font-data-mono text-[11px] text-telemetry-healthy uppercase tracking-[0.2em]">System Status: Uplink Established</span>
 </div>
 <h1 class="font-headline-lg text-6xl md:text-8xl mb-8 text-on-surface leading-[0.9] tracking-tighter text-center uppercase">
-                    Career Signal <br/><span class="text-primary italic">Intelligence.</span>
+                    Career Signal <br/><span class="text-primary italic drop-shadow-[0_0_15px_rgba(112,161,255,0.3)]">Intelligence.</span>
 </h1>
 <div class="flex items-center gap-4 text-text-dim font-data-mono text-xs mb-10">
 <span>[ INTEL_REF: IS-001 ]</span>
@@ -213,7 +226,7 @@
                     Open-source telemetry for engineers and leaders. Detect, refine, and transmit professional impact in the age of algorithmic hiring.
                 </p>
 <div class="flex flex-col md:flex-row gap-4 w-full max-w-md">
-<button class="flex-1 bg-primary text-on-primary px-8 py-4 font-label-md text-label-md uppercase tracking-widest hover:shadow-[0_0_20px_rgba(232,105,97,0.3)] transition-all flex items-center justify-center gap-3 group">
+<button class="flex-1 bg-primary text-on-primary px-8 py-4 font-label-md text-label-md uppercase tracking-widest hover:shadow-[0_0_30px_rgba(112,161,255,0.5)] transition-all flex items-center justify-center gap-3 group">
 <span class="material-symbols-outlined text-lg" data-icon="keyboard_double_arrow_right">keyboard_double_arrow_right</span>
                         Initialize System
                     </button>
@@ -223,20 +236,20 @@
 </div>
 </div>
 <!-- Hero Waveform Decoration -->
-<div class="mt-20 panel-border bg-surface-container-lowest/50 p-6 backdrop-blur-md relative">
+<div class="mt-20 panel-border bg-surface-container-lowest/50 p-6 backdrop-blur-md relative overflow-hidden">
 <div class="absolute -top-3 -left-1 px-2 bg-background-deep font-data-mono text-[10px] text-primary">SIG_TRACE_01</div>
 <div class="h-32 flex items-end gap-1 overflow-hidden opacity-40">
 <div class="flex-1 bg-primary/20 h-[20%] animate-[pulse_2s_infinite]"></div>
-<div class="flex-1 bg-primary/20 h-[45%] animate-[pulse_2.2s_infinite]"></div>
+<div class="flex-1 bg-primary/30 h-[45%] animate-[pulse_2.2s_infinite]"></div>
 <div class="flex-1 bg-primary/20 h-[70%] animate-[pulse_1.8s_infinite]"></div>
-<div class="flex-1 bg-primary/20 h-[30%] animate-[pulse_2.5s_infinite]"></div>
-<div class="flex-1 bg-primary/30 h-[90%] animate-[pulse_1.5s_infinite]"></div>
+<div class="flex-1 bg-primary/25 h-[30%] animate-[pulse_2.5s_infinite]"></div>
+<div class="flex-1 bg-primary/40 h-[90%] animate-[pulse_1.5s_infinite]"></div>
 <div class="flex-1 bg-primary/20 h-[50%] animate-[pulse_2.1s_infinite]"></div>
-<div class="flex-1 bg-primary/20 h-[65%] animate-[pulse_2.4s_infinite]"></div>
+<div class="flex-1 bg-primary/35 h-[65%] animate-[pulse_2.4s_infinite]"></div>
 <div class="flex-1 bg-primary/20 h-[25%] animate-[pulse_1.9s_infinite]"></div>
-<div class="flex-1 bg-primary/40 h-[100%] animate-[pulse_1.2s_infinite]"></div>
+<div class="flex-1 bg-primary/50 h-[100%] animate-[pulse_1.2s_infinite]"></div>
 <div class="flex-1 bg-primary/20 h-[40%] animate-[pulse_2.3s_infinite]"></div>
-<div class="flex-1 bg-primary/20 h-[80%] animate-[pulse_1.7s_infinite]"></div>
+<div class="flex-1 bg-primary/30 h-[80%] animate-[pulse_1.7s_infinite]"></div>
 </div>
 </div>
 </div>
@@ -275,30 +288,32 @@
 <div class="p-12 relative flex flex-col items-center justify-center min-h-[400px]">
 <div class="absolute inset-0 opacity-5 grid-pattern"></div>
 <div class="relative z-10 text-center">
-<div class="w-32 h-32 border-2 border-primary/20 rounded-full flex items-center justify-center mb-6 relative">
-<div class="absolute inset-0 border border-primary signal-pulse rounded-full"></div>
-<span class="material-symbols-outlined text-5xl text-primary" data-icon="radar">radar</span>
+<div class="w-40 h-40 border-2 border-primary/20 rounded-full flex items-center justify-center mb-6 relative overflow-hidden">
+<div class="absolute inset-0 radar-sweep"></div>
+<div class="absolute inset-4 border border-primary/30 rounded-full"></div>
+<div class="absolute inset-8 border border-primary/50 rounded-full animate-pulse"></div>
+<img alt="Signal Layer" class="w-24 h-24 object-contain relative z-20 brightness-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXZe_zEFdsYXYIUK3z8A4xiIJLP7cEAfe9FVh4ZbmkqhnMLRmQrkDLL8UmmT0POFw2P9JTgG_PBNo6Z9mr6y_fewFN_xIPe1XX7c4XsgT-tgPsWZy1qJV-e0AyPCVJK1LutrK0dJQ_YtgI9JbH9qjVxBSQlfjARSwFkm8Q_eM6B10Kr5hX4HaOqNLVMd1LhLbDCylRY3ZETG47AhQakpv1SjfPKZiPEXhtlAIJiJF2Ax_AbOvMJUZAS-56aJdcmcCbpOoema6FvHhN"/>
 </div>
-<div class="font-data-mono text-[10px] text-primary tracking-[0.4em] mb-8 animate-pulse">SEARCHING_FOR_SIGNALS...</div>
+<div class="font-data-mono text-[10px] text-primary tracking-[0.4em] mb-8 animate-pulse shadow-sm">SEARCHING_FOR_SIGNALS...</div>
 <div class="grid grid-cols-5 gap-4 w-64 mx-auto">
 <div class="space-y-2">
-<div class="h-20 bg-surface-container relative"><div class="absolute bottom-0 left-0 w-full bg-primary h-[40%]"></div></div>
+<div class="h-20 bg-surface-container relative"><div class="absolute bottom-0 left-0 w-full bg-primary h-[40%] shadow-[0_-4px_10px_rgba(112,161,255,0.3)]"></div></div>
 <div class="text-[8px] font-data-mono text-text-dim uppercase">OWN</div>
 </div>
 <div class="space-y-2">
-<div class="h-20 bg-surface-container relative"><div class="absolute bottom-0 left-0 w-full bg-secondary h-[75%]"></div></div>
+<div class="h-20 bg-surface-container relative"><div class="absolute bottom-0 left-0 w-full bg-secondary h-[75%] shadow-[0_-4px_10px_rgba(177,204,204,0.3)]"></div></div>
 <div class="text-[8px] font-data-mono text-text-dim uppercase">IMP</div>
 </div>
 <div class="space-y-2">
-<div class="h-20 bg-surface-container relative"><div class="absolute bottom-0 left-0 w-full bg-tertiary h-[20%]"></div></div>
+<div class="h-20 bg-surface-container relative"><div class="absolute bottom-0 left-0 w-full bg-tertiary h-[20%] shadow-[0_-4px_10px_rgba(237,193,77,0.3)]"></div></div>
 <div class="text-[8px] font-data-mono text-text-dim uppercase">COM</div>
 </div>
 <div class="space-y-2">
-<div class="h-20 bg-surface-container relative"><div class="absolute bottom-0 left-0 w-full bg-primary h-[90%]"></div></div>
+<div class="h-20 bg-surface-container relative"><div class="absolute bottom-0 left-0 w-full bg-primary h-[90%] shadow-[0_-4px_10px_rgba(112,161,255,0.3)]"></div></div>
 <div class="text-[8px] font-data-mono text-text-dim uppercase">ARC</div>
 </div>
 <div class="space-y-2">
-<div class="h-20 bg-surface-container relative"><div class="absolute bottom-0 left-0 w-full bg-secondary h-[55%]"></div></div>
+<div class="h-20 bg-surface-container relative"><div class="absolute bottom-0 left-0 w-full bg-secondary h-[55%] shadow-[0_-4px_10px_rgba(177,204,204,0.3)]"></div></div>
 <div class="text-[8px] font-data-mono text-text-dim uppercase">STR</div>
 </div>
 </div>
@@ -323,7 +338,10 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 <!-- Stack Layer 01 -->
-<div class="panel-border bg-surface-charcoal p-6 group cursor-pointer hover:border-primary transition-all">
+<div class="panel-border bg-surface-charcoal p-6 group cursor-pointer hover:border-primary transition-all relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none -mr-8 -mt-8">
+<div class="w-full h-full border border-primary rounded-full"></div>
+</div>
 <div class="flex justify-between items-start mb-12">
 <span class="font-data-mono text-text-dim text-xs">01_LAYER</span>
 <span class="font-data-mono text-[10px] px-2 py-0.5 bg-background text-telemetry-healthy border border-telemetry-healthy/20">FREQ: 440Hz</span>
@@ -331,12 +349,15 @@
 <h3 class="font-headline-md text-headline-md uppercase mb-4 group-hover:text-primary transition-colors">Technical Base</h3>
 <p class="text-text-dim text-sm mb-6 opacity-60 group-hover:opacity-100 transition-opacity">Architectural precision and system scalability fundamentals.</p>
 <div class="flex items-center gap-2">
-<div class="h-1 flex-1 bg-border-muted"><div class="h-full bg-telemetry-healthy w-full"></div></div>
+<div class="h-1.5 flex-1 bg-border-muted overflow-hidden"><div class="h-full bg-telemetry-healthy w-full shadow-[0_0_8px_#70a1ff]"></div></div>
 <span class="font-data-mono text-[9px] text-telemetry-healthy">100%</span>
 </div>
 </div>
 <!-- Stack Layer 02 -->
-<div class="panel-border bg-surface-charcoal p-6 group cursor-pointer hover:border-primary transition-all">
+<div class="panel-border bg-surface-charcoal p-6 group cursor-pointer hover:border-primary transition-all relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none -mr-8 -mt-8">
+<div class="w-full h-full border border-primary rounded-full"></div>
+</div>
 <div class="flex justify-between items-start mb-12">
 <span class="font-data-mono text-text-dim text-xs">02_LAYER</span>
 <span class="font-data-mono text-[10px] px-2 py-0.5 bg-background text-primary border border-primary/20">FREQ: 880Hz</span>
@@ -344,12 +365,15 @@
 <h3 class="font-headline-md text-headline-md uppercase mb-4 group-hover:text-primary transition-colors">Ownership</h3>
 <p class="text-text-dim text-sm mb-6 opacity-60 group-hover:opacity-100 transition-opacity">End-to-end accountability for mission-critical outcomes.</p>
 <div class="flex items-center gap-2">
-<div class="h-1 flex-1 bg-border-muted"><div class="h-full bg-primary w-[85%]"></div></div>
+<div class="h-1.5 flex-1 bg-border-muted overflow-hidden"><div class="h-full bg-primary w-[85%] shadow-[0_0_8px_#70a1ff]"></div></div>
 <span class="font-data-mono text-[9px] text-primary">85%</span>
 </div>
 </div>
 <!-- Stack Layer 03 -->
-<div class="panel-border bg-surface-charcoal p-6 group cursor-pointer hover:border-primary transition-all">
+<div class="panel-border bg-surface-charcoal p-6 group cursor-pointer hover:border-primary transition-all relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none -mr-8 -mt-8">
+<div class="w-full h-full border border-primary rounded-full"></div>
+</div>
 <div class="flex justify-between items-start mb-12">
 <span class="font-data-mono text-text-dim text-xs">03_LAYER</span>
 <span class="font-data-mono text-[10px] px-2 py-0.5 bg-background text-tertiary border border-tertiary/20">FREQ: 1.2GHz</span>
@@ -357,7 +381,7 @@
 <h3 class="font-headline-md text-headline-md uppercase mb-4 group-hover:text-primary transition-colors">Translation</h3>
 <p class="text-text-dim text-sm mb-6 opacity-60 group-hover:opacity-100 transition-opacity">Modulating technical complexity into business value.</p>
 <div class="flex items-center gap-2">
-<div class="h-1 flex-1 bg-border-muted"><div class="h-full bg-tertiary w-[60%]"></div></div>
+<div class="h-1.5 flex-1 bg-border-muted overflow-hidden"><div class="h-full bg-tertiary w-[60%] shadow-[0_0_8px_#edc14d]"></div></div>
 <span class="font-data-mono text-[9px] text-tertiary">60%</span>
 </div>
 </div>
@@ -377,8 +401,12 @@
 <!-- Node 01 -->
 <div class="panel-border bg-surface-charcoal p-8 flex flex-col relative group overflow-hidden">
 <div class="absolute top-0 right-0 p-3 font-data-mono text-[9px] text-text-dim opacity-30">[SYSTEM_01]</div>
-<div class="w-12 h-12 panel-border flex items-center justify-center mb-8 bg-surface-container-lowest group-hover:border-primary transition-colors">
-<span class="material-symbols-outlined text-primary" data-icon="architecture">architecture</span>
+<div class="w-16 h-16 panel-border flex items-center justify-center mb-8 bg-surface-container-lowest group-hover:border-primary transition-all relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+<div class="relative w-10 h-10 border border-primary/30 rounded-full flex items-center justify-center">
+<div class="w-6 h-6 border-2 border-primary rounded-full animate-[pulse_3s_infinite]"></div>
+<div class="absolute w-2 h-2 bg-primary rounded-full"></div>
+</div>
 </div>
 <h4 class="font-headline-md text-headline-md uppercase mb-4">Frameworks</h4>
 <p class="text-text-dim text-sm flex-grow leading-relaxed">Diagnostic mental models for evaluating architectural judgment beyond the git log.</p>
@@ -390,8 +418,12 @@
 <!-- Node 02 -->
 <div class="panel-border bg-surface-charcoal p-8 flex flex-col relative group overflow-hidden">
 <div class="absolute top-0 right-0 p-3 font-data-mono text-[9px] text-text-dim opacity-30">[NODE_REF_02]</div>
-<div class="w-12 h-12 panel-border flex items-center justify-center mb-8 bg-surface-container-lowest group-hover:border-secondary transition-colors">
-<span class="material-symbols-outlined text-secondary" data-icon="terminal">terminal</span>
+<div class="w-16 h-16 panel-border flex items-center justify-center mb-8 bg-surface-container-lowest group-hover:border-secondary transition-all relative overflow-hidden">
+<div class="absolute inset-0 bg-secondary/5 group-hover:bg-secondary/10 transition-colors"></div>
+<div class="relative w-10 h-10 border border-secondary/30 rounded-full flex items-center justify-center">
+<div class="w-8 h-2 bg-secondary/50 rounded-full absolute top-1/2 -translate-y-1/2"></div>
+<div class="w-2 h-2 bg-secondary rounded-full relative z-10"></div>
+</div>
 </div>
 <h4 class="font-headline-md text-headline-md uppercase mb-4">Prompts</h4>
 <p class="text-text-dim text-sm flex-grow leading-relaxed">System-level instructions to analyze career metadata and generate telemetry gaps.</p>
@@ -403,8 +435,15 @@
 <!-- Node 03 -->
 <div class="panel-border bg-surface-charcoal p-8 flex flex-col relative group overflow-hidden">
 <div class="absolute top-0 right-0 p-3 font-data-mono text-[9px] text-text-dim opacity-30">[AGENT_UPLINK]</div>
-<div class="w-12 h-12 panel-border flex items-center justify-center mb-8 bg-surface-container-lowest group-hover:border-tertiary transition-colors">
-<span class="material-symbols-outlined text-tertiary" data-icon="hub">hub</span>
+<div class="w-16 h-16 panel-border flex items-center justify-center mb-8 bg-surface-container-lowest group-hover:border-tertiary transition-all relative overflow-hidden">
+<div class="absolute inset-0 bg-tertiary/5 group-hover:bg-tertiary/10 transition-colors"></div>
+<div class="relative w-10 h-10 border border-tertiary/30 rounded-full flex items-center justify-center">
+<div class="flex gap-1">
+<div class="w-1.5 h-1.5 bg-tertiary rounded-full animate-bounce"></div>
+<div class="w-1.5 h-1.5 bg-tertiary rounded-full animate-bounce [animation-delay:0.2s]"></div>
+<div class="w-1.5 h-1.5 bg-tertiary rounded-full animate-bounce [animation-delay:0.4s]"></div>
+</div>
+</div>
 </div>
 <h4 class="font-headline-md text-headline-md uppercase mb-4">Agents</h4>
 <p class="text-text-dim text-sm flex-grow leading-relaxed">Autonomous workflows that scan project history and generate high-fidelity impact reports.</p>
@@ -416,8 +455,12 @@
 <!-- Node 04 -->
 <div class="panel-border bg-surface-charcoal p-8 flex flex-col relative group overflow-hidden">
 <div class="absolute top-0 right-0 p-3 font-data-mono text-[9px] text-text-dim opacity-30">[SIGNAL_FLOW]</div>
-<div class="w-12 h-12 panel-border flex items-center justify-center mb-8 bg-surface-container-lowest group-hover:border-telemetry-healthy transition-colors">
-<span class="material-symbols-outlined text-telemetry-healthy" data-icon="insights">insights</span>
+<div class="w-16 h-16 panel-border flex items-center justify-center mb-8 bg-surface-container-lowest group-hover:border-telemetry-healthy transition-all relative overflow-hidden">
+<div class="absolute inset-0 bg-telemetry-healthy/5 group-hover:bg-telemetry-healthy/10 transition-colors"></div>
+<div class="relative w-10 h-10 border border-telemetry-healthy/30 rounded-full flex items-center justify-center overflow-hidden">
+<div class="absolute w-20 h-1 bg-telemetry-healthy/20 rotate-45 animate-[pulse_1s_infinite]"></div>
+<div class="w-3 h-3 border border-telemetry-healthy rounded-sm rotate-45 bg-telemetry-healthy/10"></div>
+</div>
 </div>
 <h4 class="font-headline-md text-headline-md uppercase mb-4">Workflows</h4>
 <p class="text-text-dim text-sm flex-grow leading-relaxed">Repeatable pipelines for interview calibration, performance cycles, and promotion runs.</p>
@@ -453,7 +496,7 @@
 <div class="flex gap-4 font-data-mono text-[9px] text-text-dim">
 <span>LATENCY: 14ms</span>
 <span>BITRATE: 4.8kbps</span>
-<span>PARSING_BUFFER: [||||||||||]</span>
+<span>PARSING_BUFFER: [<span class="text-primary">||||||||||</span>]</span>
 </div>
 </div>
 <div class="grid md:grid-cols-2 divide-x divide-border-muted font-data-mono text-data-mono">
@@ -463,9 +506,10 @@
 <span class="text-signal-alert text-[11px] uppercase tracking-widest">RAW_INPUT [WEAK_SIGNAL]</span>
 <span class="material-symbols-outlined text-sm text-signal-alert" data-icon="trending_down">trending_down</span>
 </div>
-<div class="p-6 bg-background-deep panel-border border-signal-alert/30 text-signal-alert/70 italic text-sm leading-relaxed">
+<div class="p-6 bg-background-deep panel-border border-signal-alert/30 text-signal-alert/70 italic text-sm leading-relaxed relative">
                             "I helped migrate a legacy service to the cloud last quarter. It was a difficult project but we finished it on time."
-                        </div>
+                            <div class="absolute top-2 right-2 w-1 h-1 bg-signal-alert rounded-full animate-ping"></div>
+</div>
 <div class="space-y-3">
 <div class="flex justify-between items-center text-[11px]">
 <span>OWNERSHIP_CONFIDENCE:</span>
@@ -487,9 +531,10 @@
 <span class="text-telemetry-healthy text-[11px] uppercase tracking-widest">PROCESSED [HIGH_CLARITY]</span>
 <span class="material-symbols-outlined text-sm text-telemetry-healthy" data-icon="trending_up">trending_up</span>
 </div>
-<div class="p-6 bg-background-deep panel-border border-telemetry-healthy/30 text-on-surface text-sm leading-relaxed">
+<div class="p-6 bg-background-deep panel-border border-telemetry-healthy/30 text-on-surface text-sm leading-relaxed shadow-[0_0_15px_rgba(112,161,255,0.1)] relative">
                             "Led the end-to-end migration of the critical 'Core-Billing' service to AWS, eliminating $40k/mo in maintenance debt and achieving 99.99% availability."
-                        </div>
+                            <div class="absolute top-2 right-2 w-1 h-1 bg-telemetry-healthy rounded-full shadow-[0_0_4px_#70a1ff]"></div>
+</div>
 <div class="space-y-3">
 <div class="flex justify-between items-center text-[11px]">
 <span>OWNERSHIP_CONFIDENCE:</span>
@@ -563,14 +608,15 @@
 <!-- Terminal Final CTA -->
 <section class="py-40 px-margin-md bg-surface-container-lowest border-t border-border-muted relative overflow-hidden">
 <div class="absolute inset-0 grid-pattern opacity-10"></div>
+<div class="absolute inset-0 signal-layer-bg opacity-30"></div>
 <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none"></div>
 <div class="max-w-4xl mx-auto text-center relative z-10">
 <div class="mb-12 flex justify-center">
-<div class="w-16 h-1 bg-primary mb-2"></div>
+<div class="w-16 h-1 bg-primary mb-2 shadow-[0_0_8px_#70a1ff]"></div>
 </div>
-<h2 class="font-headline-lg text-5xl md:text-7xl mb-12 uppercase tracking-tighter leading-none">Initialize <br/>Your <span class="text-primary italic">Signal.</span></h2>
+<h2 class="font-headline-lg text-5xl md:text-7xl mb-12 uppercase tracking-tighter leading-none">Initialize <br/>Your <span class="text-primary italic drop-shadow-[0_0_10px_rgba(112,161,255,0.4)]">Signal.</span></h2>
 <div class="flex flex-col sm:flex-row gap-6 justify-center">
-<button class="bg-primary text-on-primary px-12 py-5 font-label-md text-label-md uppercase tracking-widest hover:shadow-[0_0_40px_rgba(232,105,97,0.4)] transition-all flex items-center justify-center gap-3">
+<button class="bg-primary text-on-primary px-12 py-5 font-label-md text-label-md uppercase tracking-widest hover:shadow-[0_0_40px_rgba(112,161,255,0.6)] transition-all flex items-center justify-center gap-3">
 <span class="material-symbols-outlined" data-icon="cloud_download">cloud_download</span>
                     Access Repository
                 </button>
@@ -590,8 +636,7 @@
 <div class="max-w-[1600px] mx-auto flex flex-col lg:flex-row justify-between items-center gap-12">
 <div class="flex flex-col lg:flex-row items-center gap-10">
 <div class="flex items-center gap-3">
-<span class="w-2 h-2 bg-primary rounded-full"></span>
-<span class="text-headline-md font-headline-md text-on-surface font-bold uppercase tracking-tighter">INVISIBLE_SIGNALS</span>
+<img alt="Invisible Signals Logo" class="h-6 w-auto object-contain brightness-90 grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXZe_zEFdsYXYIUK3z8A4xiIJLP7cEAfe9FVh4ZbmkqhnMLRmQrkDLL8UmmT0POFw2P9JTgG_PBNo6Z9mr6y_fewFN_xIPe1XX7c4XsgT-tgPsWZy1qJV-e0AyPCVJK1LutrK0dJQ_YtgI9JbH9qjVxBSQlfjARSwFkm8Q_eM6B10Kr5hX4HaOqNLVMd1LhLbDCylRY3ZETG47AhQakpv1SjfPKZiPEXhtlAIJiJF2Ax_AbOvMJUZAS-56aJdcmcCbpOoema6FvHhN"/>
 </div>
 <span class="text-data-mono font-data-mono uppercase text-text-dim text-[10px] tracking-widest">© 2024. INTELLIGENCE_SUITE. NO_RIGHTS_RESERVED.</span>
 </div>
@@ -606,9 +651,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Log telemetry to console for technical immersion
-        console.log("%c [SYSTEM] INVISIBLE_SIGNALS_CORE INITIALIZED ", "background: #131313; color: #ffb3ad; font-family: 'JetBrains Mono', monospace; font-weight: bold; padding: 4px;");
-        console.log("%c [STATUS] SCANNING_ENVIRONMENT: OK ", "color: #99b3b3; font-family: 'JetBrains Mono', monospace;");
-        console.log("%c [STATUS] UPLINK_LATENCY: 12ms ", "color: #99b3b3; font-family: 'JetBrains Mono', monospace;");
+        console.log("%c [SYSTEM] INVISIBLE_SIGNALS_CORE INITIALIZED ", "background: #0b0e14; color: #70a1ff; font-family: 'JetBrains Mono', monospace; font-weight: bold; padding: 4px;");
+        console.log("%c [STATUS] SCANNING_ENVIRONMENT: OK ", "color: #70a1ff; font-family: 'JetBrains Mono', monospace;");
+        console.log("%c [STATUS] UPLINK_LATENCY: 12ms ", "color: #70a1ff; font-family: 'JetBrains Mono', monospace;");
         
         // Subtle scroll effects for grid
         window.addEventListener('scroll', () => {

@@ -1,8 +1,16 @@
 # Invisible Signals™
 
-Invisible Signals is an open-source project by Annyce Davis for helping engineers and technical leaders communicate their value with more clarity, substance, and integrity.
+Invisible Signals™ is an open-source project by Annyce Davis focused on helping engineers and technical leaders communicate their value with more clarity, substance, and integrity.
 
-It is not designed to help candidates game interviews. It is designed to help people make real experience easier to understand.
+This project is not about gaming interviews or manufacturing expertise.
+
+It is about making real experience easier to understand.
+
+> [!IMPORTANT]
+> Invisible Signals is an evolving body of work.
+> The frameworks here are intended to support thoughtful career development — not shortcut experience, inflate credentials, or replace engineering judgment.
+
+---
 
 ## Philosophy
 
@@ -13,35 +21,78 @@ We believe:
 - AI should amplify clarity, not fabricate competence.
 - Strong career systems outperform reactive job searching.
 - Better preparation should make interviews more honest, not more performative.
+- Leadership visibility should be earned through consistent contribution, not self-promotion theater.
+
+Invisible Signals exists to help people better understand the implicit systems that shape technical careers — and navigate them without losing authenticity.
+
+---
+
+## What This Repository Contains
+
+This repository includes frameworks, prompts, templates, workflows, and reference material related to:
+
+- Engineering career growth
+- Technical leadership communication
+- Interview preparation
+- AI-assisted career tooling
+- Organizational signal interpretation
+- Career operating systems
+
+---
 
 ## License
 
 The repository contents are licensed under the Apache License 2.0. See [LICENSE](LICENSE).
 
-The Apache 2.0 license covers the code, documentation, examples, prompts, and other repository contents unless a file says otherwise.
+Unless otherwise noted, the Apache 2.0 license applies to:
 
-The project name, logos, visual identity, and related brand assets are not granted for unrestricted commercial use by the Apache 2.0 license. See [BRAND_GUIDELINES.md](BRAND_GUIDELINES.md).
+- Code
+- Documentation
+- Prompts
+- Templates
+- Examples
+- Frameworks
+
+### Brand & Identity
+
+The Apache 2.0 license does **not** grant unrestricted rights to the Invisible Signals name, logos, visual identity, or related brand assets.
+
+See [BRAND_GUIDELINES.md](BRAND_GUIDELINES.md) for permitted usage.
+
+---
 
 ## Usage
 
 You may:
 
-- Fork and adapt the repository.
-- Use the materials for personal learning, career development, and internal team education.
-- Reference the framework with attribution.
-- Build derivative tools that comply with the Apache 2.0 license and the brand guidelines.
+- Fork and adapt the repository
+- Use the materials for personal learning and career development
+- Reference the framework with attribution
+- Use the materials internally within teams or organizations
+- Build derivative tools that comply with the Apache 2.0 license and brand guidelines
 
 You may not:
 
-- Present derivative work as the official Invisible Signals project.
-- Imply endorsement, certification, partnership, or affiliation without permission.
-- Use the Invisible Signals name, logo, or visual identity commercially without permission.
-- Remove attribution or required license notices from redistributed materials.
+- Present derivative work as the official Invisible Signals project
+- Imply endorsement, certification, partnership, or affiliation without permission
+- Use the Invisible Signals name, logo, or visual identity commercially without permission
+- Remove attribution or required license notices from redistributed materials
+
+---
 
 ## Contributing
 
-Contributions are welcome when they strengthen the project without weakening its purpose. Start with [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+Contributions are welcome when they strengthen the project's clarity, usefulness, and integrity.
+
+Before opening a pull request, please review:
+
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+
+---
 
 ## Community
 
-This project expects thoughtful, respectful participation. See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+Invisible Signals is intended to be thoughtful, practical, and grounded in real engineering experience.
+
+Respectful participation is expected from everyone contributing to the project.
