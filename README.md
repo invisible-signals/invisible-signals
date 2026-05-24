@@ -1,4 +1,4 @@
-# Invisible Signals
+# Invisible Signals™
 
 Invisible Signals is an open-source project by Annyce Davis for helping engineers and technical leaders communicate their value with more clarity, substance, and integrity.
 
