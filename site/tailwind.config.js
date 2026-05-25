@@ -19,6 +19,7 @@ export default {
           'alert':    '#e86961',
           'warning':  '#ebbf4b',
           'secondary': '#b1cccc',
+          'telemetry': '#99b3b3',
         },
       },
       fontFamily: {

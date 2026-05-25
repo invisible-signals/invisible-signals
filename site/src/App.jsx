@@ -3,9 +3,10 @@ import NavBar from './components/NavBar.jsx'
 import HomePage from './pages/HomePage.jsx'
 import FrameworksPage from './pages/FrameworksPage.jsx'
 import PromptsPage from './pages/PromptsPage.jsx'
-import AgentsPage from './pages/AgentsPage.jsx'
-import WorkflowsPage from './pages/WorkflowsPage.jsx'
 import TemplatesPage from './pages/TemplatesPage.jsx'
+import SignalStackLayout from './pages/SignalStackLayout.jsx'
+import SignalStackOverviewPage from './pages/SignalStackOverviewPage.jsx'
+import SignalStackLayerPage from './pages/SignalStackLayerPage.jsx'
 
 export default function App() {
   return (
@@ -17,9 +18,11 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/frameworks" element={<FrameworksPage />} />
             <Route path="/prompts" element={<PromptsPage />} />
-            <Route path="/agents" element={<AgentsPage />} />
-            <Route path="/workflows" element={<WorkflowsPage />} />
             <Route path="/templates" element={<TemplatesPage />} />
+            <Route path="/signal-stack" element={<SignalStackLayout />}>
+              <Route index element={<SignalStackOverviewPage />} />
+              <Route path=":layer" element={<SignalStackLayerPage />} />
+            </Route>
           </Routes>
         </main>
         <footer className="border-t border-is-border px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">

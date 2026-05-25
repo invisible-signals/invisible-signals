@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import StatusPill from '../components/StatusPill.jsx'
+import { parseSignalStack } from '../lib/parseSignalStack.js'
+import rawSignalStack from '../../../docs/signal-stack.md?raw'
 
 // Signal strength bars — CSS pulse animation, each bar at its own rhythm
 function BarChart() {
@@ -39,11 +41,7 @@ function RadarRing() {
   )
 }
 
-const signalLayers = [
-  { id: '01_LAYER', name: 'TECHNICAL BASE',  tier: 'FREE +AE', desc: 'Demonstrate and articulate your system-level skills and complexity with transparency.' },
-  { id: '02_LAYER', name: 'OWNERSHIP',        tier: 'FREE +AE', desc: 'Source and accountability for project-critical decisions and outcomes.' },
-  { id: '03_LAYER', name: 'TRANSLATION',      tier: 'FREE +JRE', desc: 'Distilling technical complexity into business-centric language that lands with stakeholders.', accent: true },
-]
+const { layers: signalLayers } = parseSignalStack(rawSignalStack)
 
 const modules = [
   {
@@ -141,10 +139,9 @@ export default function HomePage() {
                 Open-source telemetry for engineers and leaders. Detect, refine, and transmit professional impact in the age of algorithmic hiring.
               </p>
               <div className="flex flex-wrap gap-3">
-                <a href="https://github.com/invisible-signals/invisible-signals" target="_blank" rel="noreferrer" className="is-btn-primary">
-                  INITIALIZE SIGNAL
-                </a>
-                <Link to="/frameworks" className="is-btn-ghost">DOCUMENTATION</Link>
+                <Link to="/signal-stack" className="is-btn-primary">
+                  START HERE →
+                </Link>
               </div>
             </div>
 
@@ -226,35 +223,30 @@ export default function HomePage() {
               <h2 className="font-mono text-3xl md:text-4xl font-semibold uppercase text-is-text">
                 SIGNAL_STACK
               </h2>
+              <div className="font-mono text-xs text-is-dim mt-2">L1–L8 ANALYSIS FRAMEWORK</div>
             </div>
-            <div className="text-right">
-              <div className="font-mono text-xs text-is-dim">PROGRESS_REFERENCE: CODE: 1</div>
-              <div className="font-mono text-xs text-is-dim">LATEST_EFFECTIVE: 17 / 22</div>
-            </div>
+            <Link
+              to="/signal-stack"
+              className="font-mono text-xs text-is-primary border border-is-primary/30 px-3 py-1.5 hover:bg-is-primary/10 transition-colors"
+            >
+              ENTER SIGNAL_STACK →
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-px bg-is-border">
-            {signalLayers.map(({ id, name, tier, desc, accent }) => (
-              <div key={id} className="bg-is-bg p-5 flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-is-dim">{id}</span>
-                  <StatusPill color={accent ? 'coral' : 'blue'}>{tier}</StatusPill>
-                </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-is-border">
+            {signalLayers.map(({ num, slug, name, tagline }) => (
+              <Link
+                key={slug}
+                to={`/signal-stack/${slug}`}
+                className="group bg-is-bg p-5 flex flex-col gap-3 hover:bg-is-surface transition-colors"
+              >
+                <span className="font-mono text-xs text-is-dim">L{num}</span>
                 <div className="font-mono text-sm font-semibold text-is-text uppercase tracking-wide">{name}</div>
-                <p className="font-body text-xs text-is-dim leading-relaxed flex-1">{desc}</p>
+                <p className="font-body text-xs text-is-dim leading-relaxed flex-1">{tagline}</p>
                 <div className="h-px bg-is-border" />
-                <div className="font-mono text-xs text-is-dim">LAYER_DETAIL →</div>
-              </div>
+                <div className="font-mono text-xs text-is-primary group-hover:underline">LAYER_DETAIL →</div>
+              </Link>
             ))}
-
-            {/* More layers indicator */}
-            <div className="bg-is-bg p-5 flex flex-col items-center justify-center gap-3 border border-is-border">
-              <div className="w-8 h-8 border border-is-border flex items-center justify-center">
-                <span className="font-mono text-lg text-is-dim">+</span>
-              </div>
-              <div className="font-mono text-xs text-is-dim text-center">5 MORE LAYERS</div>
-              <Link to="/frameworks" className="font-mono text-xs text-is-primary hover:underline">VIEW_ALL →</Link>
-            </div>
           </div>
         </div>
       </section>

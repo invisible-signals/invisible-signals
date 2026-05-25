@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom'
 
+const signalStackLink = { to: '/signal-stack', label: 'SIGNAL_STACK' }
+
 const links = [
   { to: '/frameworks', label: '_01_FRAMEWORKS' },
   { to: '/prompts',    label: '_02_PROMPTS'    },
-  { to: '/agents',     label: '_03_AGENTS'     },
-  { to: '/workflows',  label: '_04_WORKFLOWS'  },
-  { to: '/templates',  label: '_05_TEMPLATES'  },
+  { to: '/templates',  label: '_03_TEMPLATES'  },
 ]
 
 export default function NavBar() {
@@ -15,6 +15,24 @@ export default function NavBar() {
         {/* Logo */}
         <NavLink to="/" className="font-mono text-xs font-semibold tracking-widest text-is-text uppercase whitespace-nowrap shrink-0">
           Invisible Signals&#x2122;
+        </NavLink>
+
+        {/* Separator */}
+        <span className="w-px h-4 bg-is-border shrink-0" />
+
+        {/* Signal Stack — highlighted primary link */}
+        <NavLink
+          to={signalStackLink.to}
+          className={({ isActive }) =>
+            `flex items-center gap-2 px-3 py-1.5 font-mono text-xs uppercase tracking-widest whitespace-nowrap transition-all border ${
+              isActive
+                ? 'border-is-primary text-is-primary bg-is-primary/10'
+                : 'border-is-primary/40 text-is-primary hover:bg-is-primary/10 hover:border-is-primary'
+            }`
+          }
+        >
+          <span className="signal-pulse inline-block w-1.5 h-1.5 bg-is-primary shrink-0" />
+          {signalStackLink.label}
         </NavLink>
 
         {/* Separator */}

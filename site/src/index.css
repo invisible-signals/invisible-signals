@@ -34,6 +34,36 @@
   to   { transform: rotate(-360deg); }
 }
 
+@keyframes signal-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes scanline {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+.signal-pulse {
+  animation: signal-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.scanline {
+  width: 100%;
+  height: 2px;
+  background: rgba(112, 161, 255, 0.05);
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+.glow-border:hover {
+  border-color: rgba(112, 161, 255, 0.35);
+  box-shadow: 0 0 12px rgba(112, 161, 255, 0.07);
+}
+
 @layer components {
   .is-panel {
     @apply border border-is-border bg-is-surface;
