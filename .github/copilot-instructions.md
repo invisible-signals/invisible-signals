@@ -89,7 +89,12 @@ Two distinct artifacts live in this repo:
 
 ## Testing Expectations
 
-There is currently **no test framework configured**. Do not add tests without first adding Vitest or similar. See [testing.md](testing.md).
+**Vitest is configured.** Run `npm test` from `site/` to execute the test suite. See [testing.md](testing.md) for full guidance.
+
+- Test runner: Vitest with `jsdom` environment
+- Setup file: `site/src/test-setup.js` (mocks clipboard API)
+- High-value targets: `parseFrontmatter()`, `parsePromptFile()`, `StatusPill` variants
+- Scripts: `npm test`, `npm run test:ui`, `npm run test:coverage`
 
 ---
 
@@ -97,6 +102,7 @@ There is currently **no test framework configured**. Do not add tests without fi
 
 - React, React Router DOM, lucide-react → production deps
 - Vite, Tailwind, PostCSS, @vitejs/plugin-react → dev deps only
+- Vitest, @testing-library/react, @testing-library/user-event, jsdom → dev deps only
 - No UI component libraries (MUI, Chakra, shadcn) — hand-craft with Tailwind
 - No markdown parsing libraries — PromptsPage uses a hand-written regex parser
 

@@ -4,7 +4,7 @@ import StatusPill from '../components/StatusPill.jsx'
 
 const modules = import.meta.glob('../../../prompts/**/*.md', { eager: true, query: '?raw', import: 'default' })
 
-function parseFrontmatter(raw) {
+export function parseFrontmatter(raw) {
   const match = raw.match(/^---\n([\s\S]*?)\n---/)
   if (!match) return {}
   const block = match[1]
@@ -18,7 +18,7 @@ function parseFrontmatter(raw) {
   return result
 }
 
-function parsePromptFile(path, raw) {
+export function parsePromptFile(path, raw) {
   const fm = parseFrontmatter(raw)
   const purposeMatch = raw.match(/## Purpose\s*\n+([\s\S]*?)(?=\n## |\n---)/m)
   const purpose = purposeMatch ? purposeMatch[1].split('\n\n')[0].trim() : ''

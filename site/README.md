@@ -34,3 +34,13 @@ npm run preview
 ```
 
 Serves the production build locally for verification before deployment.
+
+## Testing
+
+```bash
+npm test              # run tests in watch mode
+npm run test:ui       # open Vitest UI
+npm run test:coverage # run with coverage report
+```
+
+See [../.github/testing.md](../.github/testing.md) for the testing philosophy and high-value test targets.

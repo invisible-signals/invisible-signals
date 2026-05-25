@@ -2,7 +2,13 @@
 
 ## Current Status
 
-> **Vitest is configured and ready.** Run `npm test` from `site/` to start.
+> **26 tests passing across 3 files.** Run `npm test` from `site/` to run in watch mode, or `npx vitest run` for a single pass.
+
+| File | Tests |
+|---|---|
+| `src/pages/PromptsPage.test.js` | 12 — `parseFrontmatter`, `parsePromptFile` |
+| `src/components/StatusPill.test.jsx` | 9 — all color variants, dot indicator, defaults |
+| `src/components/NavBar.test.jsx` | 5 — link rendering, active/inactive route classes |
 
 ---
 
@@ -46,15 +52,15 @@ No backend, no database, no authentication — no need for API mocking, DB fixtu
 
 ---
 
-## Test Pyramid (When Implemented)
+## Test Pyramid
 
 ```
           ┌───────────────┐
           │   E2E (none)  │  Playwright — TODO if needed
           ├───────────────┤
-          │  Integration  │  Route resolution, PromptsPage load
+          │  Integration  │  NavBar route-active state ✓
           ├───────────────┤
-          │  Unit Tests   │  parseFrontmatter, parsePromptFile
+          │  Unit Tests   │  parseFrontmatter ✓  parsePromptFile ✓  StatusPill ✓
           └───────────────┘
 ```
 
@@ -64,44 +70,21 @@ Prioritize unit tests for pure functions. Integration tests for page rendering. 
 
 ## High-Value Test Targets
 
-### `parseFrontmatter()` in `site/src/pages/PromptsPage.jsx`
+### `parseFrontmatter()` — `site/src/pages/PromptsPage.test.js` ✓
 
-Pure function. Takes a raw markdown string, returns a key-value object from YAML frontmatter.
+Exported from `PromptsPage.jsx`. Pure function — takes a raw markdown string, returns a key-value object from YAML frontmatter. Covered cases: missing block, title/category parsing, block-style tag arrays, empty block, value whitespace trimming.
 
-```js
-// Expected behavior
-parseFrontmatter(`---
-title: Resume Signal Analysis
-category: resume
-tags: [resume, signals]
----`) 
-// → { title: 'Resume Signal Analysis', category: 'resume', tags: ['resume', 'signals'] }
+### `parsePromptFile()` — `site/src/pages/PromptsPage.test.js` ✓
 
-// Edge cases to test:
-// - Missing frontmatter block
-// - Frontmatter with multi-value tags
-// - Empty frontmatter
-// - Malformed YAML
-```
+Exported from `PromptsPage.jsx`. Pure function — extracts id, title, category, tags, purpose, and the fenced code block under `## Prompt`. Covered cases: id from path, frontmatter extraction, prompt text extraction, missing `## Prompt` section, missing frontmatter fallbacks, purpose paragraph.
 
-### `parsePromptFile()` in `site/src/pages/PromptsPage.jsx`
+### `StatusPill` — `site/src/components/StatusPill.test.jsx` ✓
 
-Pure function. Extracts title, category, tags, purpose, and the fenced code block under `## Prompt`.
+All four color variants (`blue`, `coral`, `gold`, `dim`), dot indicator presence/absence, default prop, unknown color fallback.
 
-```js
-// Edge cases to test:
-// - Missing ## Prompt section
-// - Prompt block with no language specifier
-// - File with no frontmatter
-```
+### `NavBar` — `site/src/components/NavBar.test.jsx` ✓
 
-### `StatusPill` component
-
-Renders with all four color variants: `blue`, `coral`, `gold`, `dim`.
-
-### `NavBar` active state
-
-Active route should have `border-is-primary/40 text-is-primary bg-is-primary/10` classes applied.
+Link rendering, active route classes (`border-is-primary/40 text-is-primary bg-is-primary/10`), inactive route classes. Wrapped in `MemoryRouter` with `initialEntries`.
 
 ---
 
@@ -131,26 +114,24 @@ describe('StatusPill', () => {
   Object.assign(navigator, { clipboard: { writeText: vi.fn() } })
   ```
 
-- **import.meta.glob**: Mock the glob result as a plain object mapping paths to raw strings
+- **import.meta.glob**: Vitest resolves `import.meta.glob` natively via the Vite transform pipeline — no manual mocking required. The actual markdown files in `prompts/` are loaded during the test run.
 - **React Router**: Wrap components in `MemoryRouter` for route-dependent tests
 
 ---
 
 ## Coverage Expectations
 
-> **TODO:** Define coverage thresholds.
-
-Suggested baseline:
+Baseline targets:
 
 - `parseFrontmatter`: 100% line coverage
 - `parsePromptFile`: 100% line coverage
 - Component render tests: all pages render without error
 
+Run `npm run test:coverage` to generate a coverage report (requires `@vitest/coverage-v8` to be added as a dev dependency).
+
 ---
 
 ## Flaky Test Guidance
-
-No tests exist yet. When added:
 
 - Avoid `setTimeout`-based assertions; use `waitFor` from `@testing-library/react`
 - The `CopyButton` 2-second timeout reset should be tested with `vi.useFakeTimers()`
