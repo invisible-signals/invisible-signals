@@ -216,5 +216,6 @@ This prompt provides a résumé signal audit, not a guarantee of interviews, off
 
 ## Related frameworks
 
-[Résumé Review](../../frameworks/hiring-funnel/resume-review.md)<br>
-[Signal Stack](../../docs/signal-stack.md)
+- [Résumé Review](../../frameworks/hiring-funnel/resume-review.md)
+- [Signal Stack](../../docs/signal-stack.md)<br>
+- [Responsible AI Use](../../docs/responsible-ai-use.md)
