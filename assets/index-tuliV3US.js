@@ -216,9 +216,9 @@ For each issue, classify severity:
 - Medium — weakens the answer but may be fixable with better evidence or structure
 - Low — clarity, phrasing, or polish issue
 
-## Signal Stack
+## Signal Stack™
 
-Evaluate the answer using the Signal Stack when relevant:
+Evaluate the answer using the Signal Stack™ when relevant:
 
 1. Technical Capability
 2. Execution Reliability
@@ -321,9 +321,9 @@ If there is no quantified result, identify what type of evidence would strengthe
 
 Do not invent the result.
 
-### 6. Signal Stack Mapping
+### 6. Signal Stack™ Mapping
 
-Identify which Signal Stack layers the answer provides evidence for.
+Identify which Signal Stack™ layers the answer provides evidence for.
 
 For each relevant layer, include:
 
@@ -333,7 +333,7 @@ For each relevant layer, include:
 - strength of signal
 - what would make the signal stronger
 
-Also identify which Signal Stack layer the question was most likely designed to probe, and whether the answer actually supports that layer.
+Also identify which Signal Stack™ layer the question was most likely designed to probe, and whether the answer actually supports that layer.
 
 ### 7. Role and Level Relevance
 
@@ -445,7 +445,7 @@ Analyze patterns across them as a behavioral interview story portfolio.
 
 Identify:
 
-- repeated weak Signal Stack layers
+- repeated weak Signal Stack™ layers
 - overused examples
 - missing conflict, failure, ambiguity, or leadership stories
 - too much “we” language across answers
@@ -487,7 +487,7 @@ If the diagnostic exposes a weak claim, recover truthful evidence or reframe the
 
 - [Onsite](../../frameworks/hiring-funnel/onsite.md)
 - [Hiring Manager Screen](../../frameworks/hiring-funnel/hiring-manager-screen.md)
-- [Signal Stack](../../docs/signal-stack.md)
+- [Signal Stack™](../../docs/signal-stack.md)
 - [Responsible AI Use](../../docs/responsible-ai-use.md)
 `,Gm=`---
 title: Skeptical Hiring Manager
@@ -666,9 +666,9 @@ Do not ask more interview questions after the debrief trigger.
 
 Give direct, structured feedback.
 
-Evaluate both interview performance and Signal Stack coverage.
+Evaluate both interview performance and Signal Stack™ coverage.
 
-The Signal Stack layers are:
+The Signal Stack™ layers are:
 
 1. Technical Capability
 2. Execution Reliability
@@ -709,9 +709,9 @@ Call out patterns such as:
 - over-polished but low-evidence answers
 - examples that do not match the target level
 
-### 4. Signal Stack Coverage
+### 4. Signal Stack™ Coverage
 
-For each relevant Signal Stack layer, identify:
+For each relevant Signal Stack™ layer, identify:
 
 - strong signals
 - weak or missing signals
@@ -782,7 +782,7 @@ If the simulation exposes a weak claim, strengthen the underlying evidence or re
 
 - [Hiring Manager Screen](../../frameworks/hiring-funnel/hiring-manager-screen.md)
 - [Onsite](../../frameworks/hiring-funnel/onsite.md)
-- [Signal Stack](../../docs/signal-stack.md)
+- [Signal Stack™](../../docs/signal-stack.md)
 - [Responsible AI Use](../../docs/responsible-ai-use.md)
 `,Qm=`---
 title: Résumé Signal Analysis
@@ -875,13 +875,13 @@ For each issue, label severity:
 - Medium — weakens the résumé but may not be disqualifying
 - Low — cleanup, clarity, or polish issue
 
-For Signal Stack coverage, use:
+For Signal Stack™ coverage, use:
 - Strong
 - Moderate
 - Weak
 - Missing
 
-Signal Stack layers:
+Signal Stack™ layers:
 1. Technical Capability
 2. Execution Reliability
 3. Ownership
@@ -902,8 +902,8 @@ Explain what story the résumé tells based on titles, tenure, scope, progressio
 ### 3. Signal Hierarchy
 Evaluate whether the strongest role-relevant evidence appears early enough. Identify buried strengths, weak content taking premium space, and ordering changes that would improve the signal read.
 
-### 4. Signal Stack Coverage
-For each Signal Stack layer, provide:
+### 4. Signal Stack™ Coverage
+For each Signal Stack™ layer, provide:
 - rating
 - visible evidence
 - likely inference
@@ -987,7 +987,7 @@ Give the three highest-impact changes to improve résumé signal quality for thi
 
 - Rewrite bullets only after recovering truthful evidence.
 - Address tailoring gaps for each role.
-- Use the Signal Stack map to decide what to add, remove, compress, or elevate.
+- Use the Signal Stack™ map to decide what to add, remove, compress, or elevate.
 - Prepare interview stories for any claim or trajectory concern that cannot be fully resolved on the résumé.
 
 ## Market context warning
@@ -1003,7 +1003,7 @@ This prompt provides a résumé signal audit, not a guarantee of interviews, off
 ## Related frameworks
 
 - [Résumé Review](../../frameworks/hiring-funnel/resume-review.md)
-- [Signal Stack](../../docs/signal-stack.md)<br>
+- [Signal Stack™](../../docs/signal-stack.md)<br>
 - [Responsible AI Use](../../docs/responsible-ai-use.md)
 `;/**
  * @license lucide-react v0.462.0 - ISC
