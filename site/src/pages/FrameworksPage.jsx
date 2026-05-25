@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import StatusPill from '../components/StatusPill.jsx'
 
 const stages = [
@@ -15,6 +16,38 @@ const stages = [
       'Activity-based bullets with no outcome or impact',
       'Generic résumés sent without tailoring',
       'Missing evidence for ownership or business judgment',
+    ],
+    examples: [
+      {
+        id: 'EX_01',
+        label: '01 // ACTIVITY VS IMPACT',
+        weak: 'Worked on Android app modernization using Kotlin.',
+        strong: 'Migrated critical Android checkout flows from Java to Kotlin, reducing crash-related support tickets by 32% and improving release stability during peak retail periods.',
+      },
+      {
+        id: 'EX_02',
+        label: '02 // GENERIC LEADERSHIP',
+        weak: 'Led cross-functional collaboration across teams.',
+        strong: 'Coordinated API contract alignment between mobile, backend, and platform teams to unblock a multi-quarter authentication migration affecting 4 product surfaces.',
+      },
+      {
+        id: 'EX_03',
+        label: '03 // SENIOR-LEVEL SIGNAL',
+        weak: 'Responsible for architecture decisions.',
+        strong: 'Defined mobile caching strategy for high-traffic commerce APIs, reducing redundant network requests and improving app startup reliability under unstable network conditions.',
+      },
+      {
+        id: 'EX_04',
+        label: '04 // ENGINEERING LEADERSHIP',
+        weak: 'Managed a team of engineers.',
+        strong: 'Led a team of 8 engineers across mobile and platform initiatives, improving sprint predictability and reducing production escalation volume through tighter dependency planning and release coordination.',
+      },
+      {
+        id: 'EX_05',
+        label: '05 // AI-ASSISTED RISKS',
+        weak: 'Visionary engineering leader driving innovative scalable solutions across cross-functional ecosystems.',
+        strong: 'Standardized CI workflows across 12 repositories, reducing release inconsistencies and shortening onboarding time for new engineers.',
+      },
     ],
   },
   {
@@ -84,6 +117,8 @@ const stages = [
 ]
 
 export default function FrameworksPage() {
+  const [openExamples, setOpenExamples] = useState(null)
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
       {/* Header */}
@@ -164,6 +199,45 @@ export default function FrameworksPage() {
                 </ul>
               </div>
             </div>
+
+            {/* Examples panel — only rendered for stages that have examples */}
+            {s.examples && (
+              <div className="border-t border-is-border">
+                <button
+                  onClick={() => setOpenExamples(openExamples === s.id ? null : s.id)}
+                  className="w-full flex items-center justify-between px-6 py-3 bg-is-surface hover:bg-is-border transition-colors text-left"
+                >
+                  <span className="is-label">EXAMPLES // SIGNAL_CALIBRATION</span>
+                  <span className="font-mono text-xs text-is-dim">
+                    {openExamples === s.id ? '[−]' : '[+]'}
+                  </span>
+                </button>
+
+                {openExamples === s.id && (
+                  <div className="px-6 py-5 space-y-6">
+                    {s.examples.map((ex) => (
+                      <div key={ex.id}>
+                        <div className="is-label text-is-dim mb-3">{ex.label}</div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-is-border">
+                          <div className="bg-is-bg px-4 py-4">
+                            <div className="font-mono text-xs text-is-alert mb-2 flex items-center gap-2">
+                              <span>⚠</span> WEAK
+                            </div>
+                            <p className="font-mono text-xs text-is-dim leading-relaxed">{ex.weak}</p>
+                          </div>
+                          <div className="bg-is-bg px-4 py-4">
+                            <div className="font-mono text-xs text-is-primary mb-2 flex items-center gap-2">
+                              <span>→</span> STRONG
+                            </div>
+                            <p className="font-mono text-xs text-is-dim leading-relaxed">{ex.strong}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         ))}
       </div>
