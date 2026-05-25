@@ -33,7 +33,7 @@ site/
     │   ├── NavBar.jsx              ← Global nav; NavLink active states; version badge
     │   └── StatusPill.jsx          ← Colored status badge (blue/coral/gold/dim)
     └── pages/
-        ├── HomePage.jsx            ← Hero; Signal Stack; Product modules; Principles
+        ├── HomePage.jsx            ← Hero; Signal Stack™; Product modules; Principles
         ├── FrameworksPage.jsx      ← Hiring funnel 5-stage accordion
         ├── PromptsPage.jsx         ← import.meta.glob loader; frontmatter parser; CopyButton
         ├── AgentsPage.jsx          ← Coming soon placeholder

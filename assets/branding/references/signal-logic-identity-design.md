@@ -1,5 +1,5 @@
 ---
-name: Invisible Signals
+name: Invisible Signals™
 colors:
   surface: '#131313'
   surface-dim: '#131313'

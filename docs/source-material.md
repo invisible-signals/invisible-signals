@@ -11,7 +11,7 @@ tags:
 
 # Source Material
 
-Invisible Signals builds on Annyce Davis's prior work teaching career growth, software development, technical hiring, and leadership development.
+Invisible Signals™ builds on Annyce Davis's prior work teaching career growth, software development, technical hiring, and leadership development.
 
 ## Foundational Sources
 

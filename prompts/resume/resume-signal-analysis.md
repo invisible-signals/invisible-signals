@@ -89,13 +89,13 @@ For each issue, label severity:
 - Medium — weakens the résumé but may not be disqualifying
 - Low — cleanup, clarity, or polish issue
 
-For Signal Stack coverage, use:
+For Signal Stack™ coverage, use:
 - Strong
 - Moderate
 - Weak
 - Missing
 
-Signal Stack layers:
+Signal Stack™ layers:
 1. Technical Capability
 2. Execution Reliability
 3. Ownership
@@ -116,8 +116,8 @@ Explain what story the résumé tells based on titles, tenure, scope, progressio
 ### 3. Signal Hierarchy
 Evaluate whether the strongest role-relevant evidence appears early enough. Identify buried strengths, weak content taking premium space, and ordering changes that would improve the signal read.
 
-### 4. Signal Stack Coverage
-For each Signal Stack layer, provide:
+### 4. Signal Stack™ Coverage
+For each Signal Stack™ layer, provide:
 - rating
 - visible evidence
 - likely inference
@@ -201,7 +201,7 @@ Give the three highest-impact changes to improve résumé signal quality for thi
 
 - Rewrite bullets only after recovering truthful evidence.
 - Address tailoring gaps for each role.
-- Use the Signal Stack map to decide what to add, remove, compress, or elevate.
+- Use the Signal Stack™ map to decide what to add, remove, compress, or elevate.
 - Prepare interview stories for any claim or trajectory concern that cannot be fully resolved on the résumé.
 
 ## Market context warning
@@ -217,5 +217,5 @@ This prompt provides a résumé signal audit, not a guarantee of interviews, off
 ## Related frameworks
 
 - [Résumé Review](../../frameworks/hiring-funnel/resume-review.md)
-- [Signal Stack](../../docs/signal-stack.md)<br>
+- [Signal Stack™](../../docs/signal-stack.md)<br>
 - [Responsible AI Use](../../docs/responsible-ai-use.md)

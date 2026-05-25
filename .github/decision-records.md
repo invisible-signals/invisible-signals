@@ -99,7 +99,7 @@ All page-specific data arrays (`stages`, `modules`, `principles`, etc.) are defi
 
 ### Rationale
 
-- Invisible Signals has 5 pages; the data is trivially small
+- Invisible Signals™ has 5 pages; the data is trivially small
 - Co-location minimizes file-hopping during edits — the data and its rendering are always in one file
 - No data layer eliminates a layer of abstraction that would add no value at this scale
 
@@ -184,7 +184,7 @@ Use Tailwind CSS with all color tokens namespaced under `is-` (e.g., `is-primary
 ### Rationale
 
 - Custom namespace prevents collisions with Tailwind's built-in color scale (e.g., `blue-500`)
-- `is-` prefix signals that colors are from the Invisible Signals design system
+- `is-` prefix signals that colors are from the Invisible Signals™ design system
 - Single source of truth in `tailwind.config.js` — token changes propagate automatically
 - Tailwind's purging ensures zero unused CSS in production
 

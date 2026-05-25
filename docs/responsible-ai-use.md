@@ -13,7 +13,7 @@ tags:
 
 # Responsible AI Use
 
-Invisible Signals uses AI to help people understand, strengthen, and communicate their real experience more clearly.
+Invisible Signals™ uses AI to help people understand, strengthen, and communicate their real experience more clearly.
 
 It is not designed to help people fabricate experience, exaggerate credentials, game interviews, or misrepresent their qualifications.
 
@@ -35,7 +35,7 @@ Not artificially polished beyond recognition.
 
 AI should improve clarity, not manufacture credibility.
 
-Invisible Signals prompts, agents, and tools should help users:
+Invisible Signals™ prompts, agents, and tools should help users:
 
 - identify what their materials currently signal
 - uncover truthful evidence from their real work
@@ -88,7 +88,7 @@ The line is not complicated. If the AI output creates a claim the user cannot de
 
 ## Do not invent evidence
 
-Invisible Signals tools should not invent:
+Invisible Signals™ tools should not invent:
 
 - metrics
 - revenue impact
@@ -354,7 +354,7 @@ The market can be brutal. Better signal helps, but it is not magic.
 
 ## Guidance for contributors
 
-Contributions to Invisible Signals should follow these principles:
+Contributions to Invisible Signals™ should follow these principles:
 
 - Help users communicate real experience more clearly.
 - Do not encourage deception, exaggeration, or credential inflation.
@@ -418,4 +418,4 @@ It can uncover real evidence that was hidden under vague language.
 
 But it should never become a substitute for truth.
 
-Invisible Signals exists to help people communicate their value with clarity, substance, and integrity.
+Invisible Signals™ exists to help people communicate their value with clarity, substance, and integrity.

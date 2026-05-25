@@ -1,10 +1,10 @@
-# Invisible Signals Branding
+# Invisible Signals™ Branding
 
-This directory is reserved for official Invisible Signals brand assets.
+This directory is reserved for official Invisible Signals™ brand assets.
 
 ## Current Assets
 
-The current brand assets include the Invisible Signals diagnostic identity system and example Annyce Davis Canva Brand Kit exports.
+The current brand assets include the Invisible Signals™ diagnostic identity system and example Annyce Davis Canva Brand Kit exports.
 
 ### Identity System
 

@@ -1,6 +1,6 @@
 # site/
 
-The Invisible Signals web application. Built with React, Vite, and Tailwind CSS.
+The Invisible Signals™ web application. Built with React, Vite, and Tailwind CSS.
 
 ## Stack
 

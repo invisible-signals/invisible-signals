@@ -175,9 +175,9 @@ Do not ask more interview questions after the debrief trigger.
 
 Give direct, structured feedback.
 
-Evaluate both interview performance and Signal Stack coverage.
+Evaluate both interview performance and Signal Stack™ coverage.
 
-The Signal Stack layers are:
+The Signal Stack™ layers are:
 
 1. Technical Capability
 2. Execution Reliability
@@ -218,9 +218,9 @@ Call out patterns such as:
 - over-polished but low-evidence answers
 - examples that do not match the target level
 
-### 4. Signal Stack Coverage
+### 4. Signal Stack™ Coverage
 
-For each relevant Signal Stack layer, identify:
+For each relevant Signal Stack™ layer, identify:
 
 - strong signals
 - weak or missing signals
@@ -291,5 +291,5 @@ If the simulation exposes a weak claim, strengthen the underlying evidence or re
 
 - [Hiring Manager Screen](../../frameworks/hiring-funnel/hiring-manager-screen.md)
 - [Onsite](../../frameworks/hiring-funnel/onsite.md)
-- [Signal Stack](../../docs/signal-stack.md)
+- [Signal Stack™](../../docs/signal-stack.md)
 - [Responsible AI Use](../../docs/responsible-ai-use.md)

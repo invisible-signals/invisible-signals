@@ -1,6 +1,6 @@
 # Code of Conduct
 
-Invisible Signals is intended to be a thoughtful, practical space for improving how technical people communicate their work. Participation should reflect that purpose.
+Invisible Signals™ is intended to be a thoughtful, practical space for improving how technical people communicate their work. Participation should reflect that purpose.
 
 ## Expected Behavior
 
@@ -31,4 +31,4 @@ Maintainers may remove comments, close issues, reject contributions, or restrict
 
 ## Scope
 
-This code of conduct applies to project spaces, including issues, pull requests, discussions, documentation, and community channels associated with Invisible Signals.
+This code of conduct applies to project spaces, including issues, pull requests, discussions, documentation, and community channels associated with Invisible Signals™.

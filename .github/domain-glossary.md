@@ -13,13 +13,13 @@ The domain is **career signal intelligence** — the practice of surfacing, diag
 | **Signal** | Verifiable evidence of engineering capability, judgment, or impact that a hiring system can interpret |
 | **Invisible Signal** | Real competence or contribution that exists but is not communicated clearly — the gap this toolkit addresses |
 | **Signal Loss** | The failure to communicate genuine value due to vague language, missing metrics, or poor story structure |
-| **Signal Stack** | The 8-layer framework describing the full surface area of engineering effectiveness; see [docs/signal-stack.md](../docs/signal-stack.md) |
+| **Signal Stack™** | The 8-layer framework describing the full surface area of engineering effectiveness; see [docs/signal-stack.md](../docs/signal-stack.md) |
 | **Career Intelligence** | The structured practice of understanding, measuring, and communicating one's own professional evidence |
 | **Hiring Signal** | A data point that influences a hiring decision — can be positive (credible evidence) or negative (vague claim, risk indicator) |
 
 ---
 
-## The Signal Stack (8 Layers)
+## The Signal Stack™ (8 Layers)
 
 | Layer | Name | Description |
 |---|---|---|
@@ -132,4 +132,4 @@ Without evidence, these are weak claims. With evidence, they become strong signa
 | **Annyce Davis** | Creator and source material author |
 | **Diagnostic** | Preferred descriptor for the analysis tools (not "checker", not "scorer") |
 | **Telemetry** | Metaphor used in UI labels (e.g., `SIGNAL_READS`, `SYSTEM_STATUS: ONLINE`) |
-| **Stack** | The 8-layer framework is "the Signal Stack" |
+| **Stack** | The 8-layer framework is "the Signal Stack™" |

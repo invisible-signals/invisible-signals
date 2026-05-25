@@ -1,6 +1,6 @@
 # examples/
 
-Annotated examples that illustrate how the Invisible Signals frameworks apply in practice.
+Annotated examples that illustrate how the Invisible Signals™ frameworks apply in practice.
 
 ## Contents
 

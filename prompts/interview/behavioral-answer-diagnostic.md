@@ -124,9 +124,9 @@ For each issue, classify severity:
 - Medium — weakens the answer but may be fixable with better evidence or structure
 - Low — clarity, phrasing, or polish issue
 
-## Signal Stack
+## Signal Stack™
 
-Evaluate the answer using the Signal Stack when relevant:
+Evaluate the answer using the Signal Stack™ when relevant:
 
 1. Technical Capability
 2. Execution Reliability
@@ -229,9 +229,9 @@ If there is no quantified result, identify what type of evidence would strengthe
 
 Do not invent the result.
 
-### 6. Signal Stack Mapping
+### 6. Signal Stack™ Mapping
 
-Identify which Signal Stack layers the answer provides evidence for.
+Identify which Signal Stack™ layers the answer provides evidence for.
 
 For each relevant layer, include:
 
@@ -241,7 +241,7 @@ For each relevant layer, include:
 - strength of signal
 - what would make the signal stronger
 
-Also identify which Signal Stack layer the question was most likely designed to probe, and whether the answer actually supports that layer.
+Also identify which Signal Stack™ layer the question was most likely designed to probe, and whether the answer actually supports that layer.
 
 ### 7. Role and Level Relevance
 
@@ -353,7 +353,7 @@ Analyze patterns across them as a behavioral interview story portfolio.
 
 Identify:
 
-- repeated weak Signal Stack layers
+- repeated weak Signal Stack™ layers
 - overused examples
 - missing conflict, failure, ambiguity, or leadership stories
 - too much “we” language across answers
@@ -395,5 +395,5 @@ If the diagnostic exposes a weak claim, recover truthful evidence or reframe the
 
 - [Onsite](../../frameworks/hiring-funnel/onsite.md)
 - [Hiring Manager Screen](../../frameworks/hiring-funnel/hiring-manager-screen.md)
-- [Signal Stack](../../docs/signal-stack.md)
+- [Signal Stack™](../../docs/signal-stack.md)
 - [Responsible AI Use](../../docs/responsible-ai-use.md)

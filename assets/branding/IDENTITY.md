@@ -1,10 +1,10 @@
-# Invisible Signals Identity
+# Invisible Signals™ Identity
 
-Invisible Signals uses a dark, diagnostic identity: precise, technical, and quietly intense. The system should feel like career intelligence instrumentation, not a conventional corporate learning brand.
+Invisible Signals™ uses a dark, diagnostic identity: precise, technical, and quietly intense. The system should feel like career intelligence instrumentation, not a conventional corporate learning brand.
 
 ## Positioning
 
-Invisible Signals helps engineers and technical leaders detect, refine, and transmit professional impact. The identity should make invisible career evidence feel observable, structured, and actionable.
+Invisible Signals™ helps engineers and technical leaders detect, refine, and transmit professional impact. The identity should make invisible career evidence feel observable, structured, and actionable.
 
 Core idea:
 
@@ -41,7 +41,7 @@ Avoid:
 
 ## Color System
 
-Invisible Signals is dark-mode first. Deep black and charcoal surfaces carry the experience; color is used as signal, not decoration.
+Invisible Signals™ is dark-mode first. Deep black and charcoal surfaces carry the experience; color is used as signal, not decoration.
 
 Primary roles:
 

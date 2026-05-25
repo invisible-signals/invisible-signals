@@ -1,6 +1,6 @@
-# Contributing to Invisible Signals
+# Contributing to Invisible Signals™
 
-Thanks for your interest in improving Invisible Signals.
+Thanks for your interest in improving Invisible Signals™.
 
 This project is opinionated. Contributions should make the system clearer, more useful, and more honest for engineers and leaders trying to communicate real experience.
 
@@ -21,7 +21,7 @@ Please do not contribute material that:
 - Encourages candidates to fabricate experience.
 - Optimizes for deception, evasion, or interview manipulation.
 - Copies proprietary interview questions or confidential company material.
-- Adds generic career advice without connecting it to the Invisible Signals philosophy.
+- Adds generic career advice without connecting it to the Invisible Signals™ philosophy.
 - Introduces unnecessary complexity or broad rewrites without a clear benefit.
 
 ## Pull Requests

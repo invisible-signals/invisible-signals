@@ -7,7 +7,7 @@ This project is not about gaming interviews or manufacturing expertise.
 It is about making real experience easier to understand.
 
 > [!IMPORTANT]
-> Invisible Signals is an evolving body of work.
+> Invisible Signals™ is an evolving body of work.
 > The frameworks here are intended to support thoughtful career development — not shortcut experience, inflate credentials, or replace engineering judgment.
 
 ---
@@ -23,7 +23,7 @@ We believe:
 - Better preparation should make interviews more honest, not more performative.
 - Leadership visibility should be earned through consistent contribution, not self-promotion theater.
 
-Invisible Signals exists to help people better understand the implicit systems that shape technical careers — and navigate them without losing authenticity.
+Invisible Signals™ exists to help people better understand the implicit systems that shape technical careers — and navigate them without losing authenticity.
 
 ---
 
@@ -42,9 +42,9 @@ This repository includes frameworks, prompts, templates, workflows, and referenc
 
 ## Start Here
 
-New to Invisible Signals?
+New to Invisible Signals™?
 
-1. Read the [Signal Stack](docs/signal-stack.md)
+1. Read the [Signal Stack™](docs/signal-stack.md)
 2. Use the [Signal Scorecard](templates/signal-scorecard.md)
 3. Review [Weak vs Strong Résumé Bullets](examples/resumes/weak-vs-strong-bullets.md)
 4. Try the [Résumé Signal Analysis Prompt](prompts/resume/resume-signal-analysis.md)
@@ -67,7 +67,7 @@ Unless otherwise noted, the Apache 2.0 license applies to:
 
 ### Brand & Identity
 
-The Apache 2.0 license does **not** grant unrestricted rights to the Invisible Signals name, logos, visual identity, or related brand assets.
+The Apache 2.0 license does **not** grant unrestricted rights to the Invisible Signals™ name, logos, visual identity, or related brand assets.
 
 See [BRAND_GUIDELINES.md](BRAND_GUIDELINES.md) for permitted usage.
 
@@ -85,9 +85,9 @@ You may:
 
 You may not:
 
-- Present derivative work as the official Invisible Signals project
+- Present derivative work as the official Invisible Signals™ project
 - Imply endorsement, certification, partnership, or affiliation without permission
-- Use the Invisible Signals name, logo, or visual identity commercially without permission
+- Use the Invisible Signals™ name, logo, or visual identity commercially without permission
 - Remove attribution or required license notices from redistributed materials
 
 ---
@@ -105,6 +105,6 @@ Before opening a pull request, please review:
 
 ## Community
 
-Invisible Signals is intended to be thoughtful, practical, and grounded in real engineering experience.
+Invisible Signals™ is intended to be thoughtful, practical, and grounded in real engineering experience.
 
 Respectful participation is expected from everyone contributing to the project.
