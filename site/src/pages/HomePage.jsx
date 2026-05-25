@@ -82,6 +82,15 @@ const modules = [
     pill: 'V0.3 MAT',
     pillColor: 'dim',
   },
+  {
+    to: '/templates',
+    tag: 'TEMPLATES',
+    icon: '◻',
+    title: 'Templates',
+    desc: 'Structured markdown documents for auditing, scoring, and improving your career signals.',
+    pill: 'SIGNAL_ACTIVE',
+    pillColor: 'gold',
+  },
 ]
 
 const principles = [

@@ -5,6 +5,7 @@ const links = [
   { to: '/prompts',    label: '_02_PROMPTS'    },
   { to: '/agents',     label: '_03_AGENTS'     },
   { to: '/workflows',  label: '_04_WORKFLOWS'  },
+  { to: '/templates',  label: '_05_TEMPLATES'  },
 ]
 
 export default function NavBar() {

@@ -2,20 +2,16 @@
 
 ## Current Status
 
-> **There is no test framework configured in this repository.**
-
-Do not add tests without first configuring a test runner. The recommended option is **Vitest** (aligns with the existing Vite build toolchain).
+> **Vitest is configured and ready.** Run `npm test` from `site/` to start.
 
 ---
 
-## Recommended Setup (Not Yet Implemented)
+## Setup
 
-```bash
-# From site/
-npm install --save-dev vitest @testing-library/react @testing-library/user-event jsdom
-```
+Installed dev dependencies: `vitest`, `@testing-library/react`, `@testing-library/user-event`, `jsdom`
 
-Add to `site/package.json` scripts:
+`site/package.json` scripts:
+
 ```json
 {
   "test": "vitest",
@@ -24,7 +20,8 @@ Add to `site/package.json` scripts:
 }
 ```
 
-Add to `site/vite.config.js`:
+`site/vite.config.js` test block:
+
 ```js
 test: {
   environment: 'jsdom',
@@ -32,6 +29,8 @@ test: {
   setupFiles: './src/test-setup.js',
 }
 ```
+
+`site/src/test-setup.js` — mocks the clipboard API, which jsdom does not implement.
 
 ---
 
@@ -66,6 +65,7 @@ Prioritize unit tests for pure functions. Integration tests for page rendering. 
 ## High-Value Test Targets
 
 ### `parseFrontmatter()` in `site/src/pages/PromptsPage.jsx`
+
 Pure function. Takes a raw markdown string, returns a key-value object from YAML frontmatter.
 
 ```js
@@ -85,6 +85,7 @@ tags: [resume, signals]
 ```
 
 ### `parsePromptFile()` in `site/src/pages/PromptsPage.jsx`
+
 Pure function. Extracts title, category, tags, purpose, and the fenced code block under `## Prompt`.
 
 ```js
@@ -95,9 +96,11 @@ Pure function. Extracts title, category, tags, purpose, and the fenced code bloc
 ```
 
 ### `StatusPill` component
+
 Renders with all four color variants: `blue`, `coral`, `gold`, `dim`.
 
 ### `NavBar` active state
+
 Active route should have `border-is-primary/40 text-is-primary bg-is-primary/10` classes applied.
 
 ---
@@ -123,9 +126,11 @@ describe('StatusPill', () => {
 ## Mocking Guidance
 
 - **Clipboard API**: Mock `navigator.clipboard.writeText` — it is not available in jsdom
+
   ```js
   Object.assign(navigator, { clipboard: { writeText: vi.fn() } })
   ```
+
 - **import.meta.glob**: Mock the glob result as a plain object mapping paths to raw strings
 - **React Router**: Wrap components in `MemoryRouter` for route-dependent tests
 
@@ -133,9 +138,10 @@ describe('StatusPill', () => {
 
 ## Coverage Expectations
 
-> **TODO:** Define coverage thresholds once testing is configured.
+> **TODO:** Define coverage thresholds.
 
-Suggested baseline when testing is added:
+Suggested baseline:
+
 - `parseFrontmatter`: 100% line coverage
 - `parsePromptFile`: 100% line coverage
 - Component render tests: all pages render without error
@@ -145,13 +151,14 @@ Suggested baseline when testing is added:
 ## Flaky Test Guidance
 
 No tests exist yet. When added:
+
 - Avoid `setTimeout`-based assertions; use `waitFor` from `@testing-library/react`
 - The `CopyButton` 2-second timeout reset should be tested with `vi.useFakeTimers()`
 - CSS animation tests are unreliable in jsdom — test class presence, not visual output
 
 ---
 
-## Running Tests (Once Configured)
+## Running Tests
 
 ```bash
 cd site
@@ -160,6 +167,7 @@ npm run test:coverage # Single run with coverage report
 ```
 
 Target specific files:
+
 ```bash
 npx vitest PromptsPage
 npx vitest src/components/StatusPill
