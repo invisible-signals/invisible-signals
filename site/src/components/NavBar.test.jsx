@@ -18,9 +18,7 @@ describe('NavBar', () => {
     const { getByText } = renderNavBar()
     expect(getByText('_01_FRAMEWORKS')).not.toBeNull()
     expect(getByText('_02_PROMPTS')).not.toBeNull()
-    expect(getByText('_03_AGENTS')).not.toBeNull()
-    expect(getByText('_04_WORKFLOWS')).not.toBeNull()
-    expect(getByText('_05_TEMPLATES')).not.toBeNull()
+    expect(getByText('_03_TEMPLATES')).not.toBeNull()
   })
 
   it('renders the brand logo', () => {
