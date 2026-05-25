@@ -40,6 +40,18 @@ This repository includes frameworks, prompts, templates, workflows, and referenc
 
 ---
 
+## Start Here
+
+New to Invisible Signals?
+
+1. Read the [Signal Stack](docs/signal-stack.md)
+2. Use the [Signal Scorecard](templates/signal-scorecard.md)
+3. Review [Weak vs Strong Résumé Bullets](examples/resumes/weak-vs-strong-bullets.md)
+4. Try the [Résumé Signal Analysis Prompt](prompts/resumes/resume-signal-analysis.md)
+5. Review the [STAR Answer Diagnostic](examples/interviews/star-answer-diagnostic.md)
+
+---
+
 ## License
 
 The repository contents are licensed under the Apache License 2.0. See [LICENSE](LICENSE).
