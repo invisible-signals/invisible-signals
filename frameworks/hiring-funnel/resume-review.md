@@ -1,3 +1,15 @@
+---
+title: Résumé Review
+version: 1.0
+status: draft
+category: framework
+tags:
+  - hiring-funnel
+  - resume
+  - job-search
+  - career-signal-intelligence
+---
+
 # Résumé Review
 
 ## Goal of this phase

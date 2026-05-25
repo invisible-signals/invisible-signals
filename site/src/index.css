@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background-color: #05070a;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #05070a;
+    color: #e5e2e1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * {
+    border-radius: 0 !important;
+  }
+}
+
+@layer components {
+  .is-panel {
+    @apply border border-is-border bg-is-surface;
+  }
+
+  .is-label {
+    @apply font-mono text-xs uppercase tracking-widest text-is-dim;
+  }
+
+  .is-btn-primary {
+    @apply font-mono text-xs uppercase tracking-widest px-5 py-2.5 bg-is-primary text-is-bg-deep border border-is-primary transition-all hover:bg-is-primary/90;
+  }
+
+  .is-btn-ghost {
+    @apply font-mono text-xs uppercase tracking-widest px-5 py-2.5 bg-transparent text-is-text border border-is-border transition-all hover:border-is-outline;
+  }
+}

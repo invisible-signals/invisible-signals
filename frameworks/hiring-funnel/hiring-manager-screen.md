@@ -1,3 +1,15 @@
+---
+title: Hiring Manager Screen
+version: 1.0
+status: draft
+category: framework
+tags:
+  - hiring-funnel
+  - hiring-manager
+  - interview
+  - career-signal-intelligence
+---
+
 # Hiring Manager Screen
 
 ## Goal of this phase

@@ -1,3 +1,15 @@
+---
+title: The Signal Stack
+version: 1.0
+status: draft
+category: docs
+tags:
+  - signal-stack
+  - hiring
+  - evaluation
+  - career-signal-intelligence
+---
+
 # The Signal Stack
 
 The Signal Stack describes the layers of evidence hiring teams, managers, and peers use to evaluate technical talent.

@@ -1,3 +1,14 @@
+---
+title: Philosophy
+version: 1.0
+status: draft
+category: docs
+tags:
+  - philosophy
+  - invisible-signals
+  - career-signal-intelligence
+---
+
 ## Philosophy
 
 Invisible Signals is not designed to help candidates game interviews.

@@ -1,3 +1,15 @@
+---
+title: Technical Screen
+version: 1.0
+status: draft
+category: framework
+tags:
+  - hiring-funnel
+  - technical-screen
+  - interview
+  - career-signal-intelligence
+---
+
 # Technical Screen
 
 ## Goal of this phase

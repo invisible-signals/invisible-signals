@@ -1,3 +1,15 @@
+---
+title: Onsite
+version: 1.0
+status: draft
+category: framework
+tags:
+  - hiring-funnel
+  - onsite
+  - interview
+  - career-signal-intelligence
+---
+
 # Onsite
 
 ## Goal of this phase

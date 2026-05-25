@@ -1,3 +1,14 @@
+---
+title: Hiring Funnel — Overview
+version: 1.0
+status: draft
+category: framework
+tags:
+  - hiring-funnel
+  - interview
+  - career-signal-intelligence
+---
+
 # Hiring Funnel — Overview
 
 The hiring funnel is a sequence of increasingly selective conversations. Each stage filters for different signals. Candidates who understand what is actually being evaluated at each stage can communicate their value more clearly.

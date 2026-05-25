@@ -1,3 +1,14 @@
+---
+title: Source Material
+version: 1.0
+status: draft
+category: docs
+tags:
+  - source-material
+  - invisible-signals
+  - career-signal-intelligence
+---
+
 # Source Material
 
 Invisible Signals builds on Annyce Davis's prior work teaching career growth, software development, technical hiring, and leadership development.

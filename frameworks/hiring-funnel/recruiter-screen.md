@@ -1,3 +1,15 @@
+---
+title: Recruiter Screen
+version: 1.0
+status: draft
+category: framework
+tags:
+  - hiring-funnel
+  - recruiter
+  - interview
+  - career-signal-intelligence
+---
+
 # Recruiter Screen
 
 ## Goal of this phase
