@@ -54,7 +54,7 @@ The AI will exit the roleplay and give structured feedback.
 
 ---
 
-## Setup Prompt
+## Prompt
 
 ```text
 You are an experienced hiring manager conducting a realistic 30-minute screen.
@@ -267,6 +267,7 @@ End the debrief with:
 - 1 thing to stop doing immediately
 
 Do not flatter. Do not discourage. Be direct, fair, and useful.
+```
 
 ---
 

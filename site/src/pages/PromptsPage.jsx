@@ -2,57 +2,49 @@ import { useState } from 'react'
 import { Copy, Check } from 'lucide-react'
 import StatusPill from '../components/StatusPill.jsx'
 
-const resumePrompt = `I am going to share my résumé and a job description. I want you to analyze the signals my résumé sends — both what is visible on the page and what can be inferred about my judgment, trajectory, and ownership.
+const modules = import.meta.glob('../../../prompts/**/*.md', { eager: true, query: '?raw', import: 'default' })
 
-Here is the job description:
+function parseFrontmatter(raw) {
+  const match = raw.match(/^---\n([\s\S]*?)\n---/)
+  if (!match) return {}
+  const block = match[1]
+  const result = {}
+  block.replace(/^(\w+):\s*(.+)$/gm, (_, k, v) => { result[k] = v.trim() })
+  const tagsMatch = block.match(/^tags:\n((?:[ \t]+-[ \t]+.+\n?)+)/m)
+  if (tagsMatch) {
+    result.tags = tagsMatch[1].match(/[ \t]+-[ \t]+(.+)/g)
+      ?.map((l) => l.replace(/[ \t]+-[ \t]+/, '').trim()) ?? []
+  }
+  return result
+}
 
-[PASTE JOB DESCRIPTION]
+function parsePromptFile(path, raw) {
+  const fm = parseFrontmatter(raw)
+  const purposeMatch = raw.match(/## Purpose\s*\n+([\s\S]*?)(?=\n## |\n---)/m)
+  const purpose = purposeMatch ? purposeMatch[1].split('\n\n')[0].trim() : ''
+  const promptMatch = raw.match(/## Prompt\s+```(?:text)?\n([\s\S]*?)\n```/)
+  const text = promptMatch ? promptMatch[1].trim() : ''
+  const id = path.split('/').pop().replace('.md', '')
+  return {
+    id,
+    title: fm.title || id,
+    category: fm.category || 'general',
+    tags: fm.tags || [],
+    purpose,
+    text,
+  }
+}
 
-Here is my résumé:
+const CATEGORY_ORDER = ['resume', 'interview']
 
-[PASTE RÉSUMÉ]
-
-Please do the following:
-
-1. **Trajectory read** — Based on my job titles, tenures, and progression, what story does the trajectory tell? Is scope and responsibility clearly growing? Are there gaps or reversals that need addressing?
-
-2. **Ownership audit** — For each bullet point, classify it as one of: (a) activity-based — describes what I did, (b) outcome-based — describes the result, or (c) impact-based — describes the result and its business significance. Flag every activity-based bullet and suggest a rewrite using the X/Y/Z formula: accomplished [X] as measured by [Y] by doing [Z].
-
-3. **Signal Stack coverage** — The Signal Stack has eight layers: Technical Capability, Execution Reliability, Ownership, Communication, Product and Business Judgment, Collaboration and Influence, Strategic Thinking, and Leadership Maturity. Which layers does my résumé provide evidence for? Which layers are absent or underrepresented given this role?
-
-4. **Tailoring gap** — Which requirements from the job description are not reflected anywhere in my résumé? List them specifically.
-
-5. **Invisible signal read** — What does my judgment about inclusion and omission suggest? What do I appear to value? What story am I telling about myself that I may not have intended?
-
-6. **Summary** — Give me a ranked list of the three changes that would most improve the signal quality of this résumé for this role.
-
-Be direct. Do not soften observations to be encouraging. I need an honest signal read, not validation.`
-
-const behavioralPrompt = `I am going to share a behavioral interview answer I have prepared. I need you to diagnose the signal quality — not just whether it tells a good story, but whether it transmits the right evidence to a skeptical hiring manager.
-
-Here is the question I was asked:
-
-[PASTE INTERVIEW QUESTION]
-
-Here is my answer:
-
-[PASTE YOUR ANSWER]
-
-Please analyze:
-
-1. **Signal classification** — What layers of the Signal Stack does this answer provide evidence for? Which layers are absent that a strong answer for this question should include?
-
-2. **Ownership signal** — Does the answer clearly distinguish what YOU did vs. what the team did? Are there specific decisions, calls, or judgments that are attributed to you personally?
-
-3. **Business impact translation** — Does the answer land at business or organizational significance, or does it stop at technical completion?
-
-4. **Specificity score** — Rate the answer on a scale of 1–5 for specificity. Generic, reusable answers score low. Answers with concrete numbers, names, stakes, and decisions score high.
-
-5. **Skeptic read** — What would a skeptical hiring manager infer about you from this answer? What might they probe on?
-
-6. **Rewrite** — Provide a tightened version of this answer that scores higher on ownership, impact translation, and specificity without fabricating any claims.
-
-Be direct. Flag weak signals clearly.`
+const prompts = Object.entries(modules)
+  .map(([path, raw]) => parsePromptFile(path, raw))
+  .sort((a, b) => {
+    const ai = CATEGORY_ORDER.indexOf(a.category)
+    const bi = CATEGORY_ORDER.indexOf(b.category)
+    if (ai !== bi) return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi)
+    return a.id.localeCompare(b.id)
+  })
 
 function CopyButton({ text }) {
   const [copied, setCopied] = useState(false)
@@ -75,43 +67,6 @@ function CopyButton({ text }) {
   )
 }
 
-const prompts = [
-  {
-    id: 'RESUME_SIGNAL_ANALYSIS',
-    label: '01 // RÉSUMÉ SIGNAL ANALYSIS',
-    purpose: 'Identify what signals your résumé is sending — visible and invisible — before a recruiter or hiring manager reads it. This is not a formatting review. It is a signal audit.',
-    pill: 'SIGNAL_ACTIVE',
-    pillColor: 'blue',
-    text: resumePrompt,
-    outputs: [
-      'Trajectory read with gap analysis',
-      'Bullet-by-bullet ownership audit with X/Y/Z rewrites',
-      'Signal Stack coverage map for the target role',
-      'Tailoring gap — missing JD requirements',
-      'Invisible signal interpretation',
-      'Ranked top-3 improvement actions',
-    ],
-    related: ['Résumé Review framework', 'Signal Stack'],
-  },
-  {
-    id: 'BEHAVIORAL_ANSWER_DIAGNOSTIC',
-    label: '02 // BEHAVIORAL ANSWER DIAGNOSTIC',
-    purpose: 'Diagnose the signal quality of a behavioral answer — not just whether it tells a good story, but whether it transmits the right evidence to a skeptical hiring manager.',
-    pill: 'SIGNAL_ACTIVE',
-    pillColor: 'blue',
-    text: behavioralPrompt,
-    outputs: [
-      'Signal Stack layer coverage for the answer',
-      'Ownership vs. team attribution analysis',
-      'Business impact translation score',
-      'Specificity rating (1–5)',
-      'Skeptic read — what a hiring manager infers',
-      'Tightened rewrite with higher signal fidelity',
-    ],
-    related: ['Hiring Manager Screen framework', 'Onsite framework', 'Signal Stack'],
-  },
-]
-
 export default function PromptsPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
@@ -131,13 +86,15 @@ export default function PromptsPage() {
 
       {/* Prompt cards */}
       <div className="space-y-px bg-is-border">
-        {prompts.map(({ id, label, purpose, pill, pillColor, text, outputs, related }) => (
+        {prompts.map(({ id, title, purpose, tags, text }, index) => (
           <div key={id} className="bg-is-bg">
             {/* Header */}
             <div className="border-b border-is-border px-6 py-4 bg-is-surface flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <span className="font-mono text-sm font-semibold uppercase text-is-text">{label}</span>
-                <StatusPill color={pillColor}>{pill}</StatusPill>
+                <span className="font-mono text-sm font-semibold uppercase text-is-text">
+                  {String(index + 1).padStart(2, '0')} // {title.toUpperCase()}
+                </span>
+                <StatusPill color="blue">SIGNAL_ACTIVE</StatusPill>
               </div>
               <CopyButton text={text} />
             </div>
@@ -158,26 +115,18 @@ export default function PromptsPage() {
                   <p className="font-body text-sm text-is-dim leading-relaxed">{purpose}</p>
                 </div>
 
-                <div>
-                  <div className="is-label mb-3">OUTPUT_SIGNALS</div>
-                  <ul className="space-y-1.5">
-                    {outputs.map((o) => (
-                      <li key={o} className="flex gap-2">
-                        <span className="font-mono text-xs text-is-primary shrink-0 mt-0.5">→</span>
-                        <span className="font-body text-xs text-is-dim leading-relaxed">{o}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <div className="is-label mb-3">RELATED_FRAMEWORKS</div>
-                  <div className="flex flex-wrap gap-2">
-                    {related.map((r) => (
-                      <span key={r} className="border border-is-border px-2 py-0.5 font-mono text-xs text-is-dim">{r}</span>
-                    ))}
+                {tags.length > 0 && (
+                  <div>
+                    <div className="is-label mb-3">TAGS</div>
+                    <div className="flex flex-wrap gap-2">
+                      {tags.map((t) => (
+                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-xs text-is-dim">
+                          {t.toUpperCase().replace(/-/g, '_')}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

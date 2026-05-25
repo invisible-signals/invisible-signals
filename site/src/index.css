@@ -24,6 +24,16 @@
   }
 }
 
+@keyframes orbit-cw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes orbit-ccw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
 @layer components {
   .is-panel {
     @apply border border-is-border bg-is-surface;

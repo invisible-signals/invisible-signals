@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom'
 import StatusPill from '../components/StatusPill.jsx'
 
-// Decorative bar chart
+// Signal strength bars — CSS pulse animation, each bar at its own rhythm
 function BarChart() {
-  const bars = [40, 60, 45, 80, 55, 90, 65, 75, 50, 85, 70, 95]
   return (
-    <div className="flex items-end gap-1 h-20">
-      {bars.map((h, i) => (
-        <div
-          key={i}
-          className="flex-1 bg-is-surface-high border-t border-is-primary/40"
-          style={{ height: `${h}%` }}
-        />
-      ))}
+    <div className="h-32 flex items-end gap-1 overflow-hidden opacity-40">
+      <div className="flex-1 bg-is-primary/20 animate-[pulse_2s_infinite]"   style={{ height: '20%' }} />
+      <div className="flex-1 bg-is-primary/30 animate-[pulse_2.2s_infinite]" style={{ height: '45%' }} />
+      <div className="flex-1 bg-is-primary/20 animate-[pulse_1.8s_infinite]" style={{ height: '70%' }} />
+      <div className="flex-1 bg-is-primary/25 animate-[pulse_2.5s_infinite]" style={{ height: '30%' }} />
+      <div className="flex-1 bg-is-primary/40 animate-[pulse_1.5s_infinite]" style={{ height: '90%' }} />
+      <div className="flex-1 bg-is-primary/20 animate-[pulse_2.1s_infinite]" style={{ height: '50%' }} />
+      <div className="flex-1 bg-is-primary/35 animate-[pulse_2.4s_infinite]" style={{ height: '65%' }} />
+      <div className="flex-1 bg-is-primary/20 animate-[pulse_1.9s_infinite]" style={{ height: '25%' }} />
+      <div className="flex-1 bg-is-primary/50 animate-[pulse_1.2s_infinite]" style={{ height: '100%' }} />
+      <div className="flex-1 bg-is-primary/20 animate-[pulse_2.3s_infinite]" style={{ height: '40%' }} />
+      <div className="flex-1 bg-is-primary/30 animate-[pulse_1.7s_infinite]" style={{ height: '80%' }} />
     </div>
   )
 }
@@ -26,8 +29,12 @@ function RadarRing() {
       <div className="absolute inset-8 border border-is-primary/50 rounded-full" />
       <div className="absolute inset-12 border border-is-primary/70 rounded-full" />
       <div className="w-3 h-3 bg-is-primary rounded-full" />
-      <div className="absolute top-4 right-8 w-1.5 h-1.5 bg-is-alert rounded-full" />
-      <div className="absolute bottom-6 left-6 w-1.5 h-1.5 bg-is-warning rounded-full" />
+      <div className="absolute top-4 right-8" style={{ animation: 'orbit-cw 7s linear infinite', transformOrigin: '-42px 64px' }}>
+        <div className="w-1.5 h-1.5 bg-is-alert" style={{ animation: 'orbit-ccw 7s linear infinite' }} />
+      </div>
+      <div className="absolute bottom-6 left-6" style={{ animation: 'orbit-cw 5.5s linear infinite', transformOrigin: '56px -50px' }}>
+        <div className="w-1.5 h-1.5 bg-is-warning" style={{ animation: 'orbit-ccw 5.5s linear infinite' }} />
+      </div>
     </div>
   )
 }
@@ -133,7 +140,8 @@ export default function HomePage() {
             </div>
 
             {/* Bar chart visualization */}
-            <div className="is-panel p-4">
+            <div className="is-panel p-4 relative">
+              <div className="absolute -top-3 -left-1 px-2 bg-is-bg-deep font-mono text-[10px] text-is-primary">SIG_TRACE_01</div>
               <div className="is-label mb-3">SIGNAL_STRENGTH_READOUT</div>
               <BarChart />
               <div className="grid grid-cols-3 gap-px mt-1 border-t border-is-border pt-3">

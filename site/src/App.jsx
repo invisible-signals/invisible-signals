@@ -26,7 +26,7 @@ export default function App() {
             <a href="https://github.com/invisible-signals/invisible-signals" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-dim hover:text-is-text transition-colors">GITHUB</a>
             <a href="https://github.com/invisible-signals/invisible-signals/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-dim hover:text-is-text transition-colors">CODE_OF_CONDUCT</a>
             <a href="https://github.com/invisible-signals/invisible-signals/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-dim hover:text-is-text transition-colors">CONTRIBUTING</a>
-            <span className="font-mono text-xs text-is-dim">SECURITY: MIT // OPEN_SOURCE_LICENSED</span>
+            <span className="font-mono text-xs text-is-dim">SECURITY: APACHE-2.0 // OPEN_SOURCE_LICENSED</span>
           </div>
         </footer>
       </div>
