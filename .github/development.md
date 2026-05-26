@@ -86,11 +86,9 @@ Results are written to `eval/results/` as timestamped JSON files.
 npm run dev        # Dev server with HMR on :5173
 npm run build      # Production build → site/dist/
 npm run preview    # Serve production build locally on :4173
+npm run lint       # ESLint — check for errors
+npm run format     # Prettier — format src/
 ```
-
-There is no lint or format command configured. See TODO below.
-
-> **TODO:** Add ESLint + Prettier configuration for consistent code style enforcement.
 
 ---
 

@@ -287,7 +287,7 @@ export default function HomePage() {
               <div className="bg-is-bg p-6">
                 <div className="is-label mb-4">RAW_INPUT_SIGNAL</div>
                 <div className="is-panel p-4 font-mono text-xs text-is-dim leading-relaxed italic">
-                  "I helped build a signup feature for a new user flow. It was a difficult project but we finished it on time."
+                  {`"I helped build a signup feature for a new user flow. It was a difficult project but we finished it on time."`}
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
                   {[
@@ -307,7 +307,7 @@ export default function HomePage() {
               <div className="bg-is-bg p-6">
                 <div className="is-label mb-4">PROCESSED_SIGNAL_CLARITY</div>
                 <div className="is-panel border-is-primary/30 p-4 font-mono text-xs text-is-text leading-relaxed">
-                  "Led the end-to-end migration of the critical 'Core-Billing' service to AWS, eliminating $482k in maintenance debt and achieving 99.99% availability."
+                  {`"Led the end-to-end migration of the critical 'Core-Billing' service to AWS, eliminating $482k in maintenance debt and achieving 99.99% availability."`}
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
                   {[

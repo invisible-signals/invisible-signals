@@ -1,6 +1,9 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import NavBar from './components/NavBar.jsx'
 import HomePage from './pages/HomePage.jsx'
+import FrameworksPage from './pages/FrameworksPage.jsx'
+import PromptsPage from './pages/PromptsPage.jsx'
+import TemplatesPage from './pages/TemplatesPage.jsx'
 import SignalStackLayout from './pages/SignalStackLayout.jsx'
 import SignalStackOverviewPage from './pages/SignalStackOverviewPage.jsx'
 import SignalStackLayerPage from './pages/SignalStackLayerPage.jsx'
@@ -14,6 +17,9 @@ export default function App() {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/frameworks" element={<FrameworksPage />} />
+            <Route path="/prompts" element={<PromptsPage />} />
+            <Route path="/templates" element={<TemplatesPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/signal-stack" element={<SignalStackLayout />}>
               <Route index element={<SignalStackOverviewPage />} />

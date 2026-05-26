@@ -116,8 +116,146 @@ export const stages = [
   },
 ]
 
+const coachingLens = [
+  { id: 'PROOF_OF_OWNERSHIP', label: 'PROOF OF OWNERSHIP', question: 'What are you truly driving end-to-end?' },
+  { id: 'PROBLEM_SOLVING_DEPTH', label: 'PROBLEM-SOLVING DEPTH', question: 'Where did you personally reduce ambiguity or unblock something hard?' },
+  { id: 'BOUNDARY_CLARITY', label: 'BOUNDARY CLARITY', question: 'What do you own — and what should you stop absorbing?' },
+  { id: 'VISIBLE_SIGNAL', label: 'VISIBLE SIGNAL', question: 'What artifact or outcome shows your impact clearly and honestly?' },
+]
+
+const coachingPatterns = [
+  {
+    id: 'COORDINATION_VS_OWNERSHIP',
+    label: '01 // COORDINATION vs OWNERSHIP',
+    question: 'What work are you truly owning vs. just coordinating?',
+    signals: [
+      'Named scope with clear delivery accountability',
+      'End-to-end ownership of an outcome — not just a task',
+      'Proof-point project with measurable, attributable result',
+      'Technical leadership visible beyond orchestration',
+    ],
+    pitfalls: [
+      'All work described as "helping," "supporting," or "coordinating"',
+      'No single outcome the person can fully claim',
+      'Growth stalls because no delivery signal is accumulating',
+    ],
+    dropIn: [
+      'What work are you truly owning end-to-end — not just coordinating?',
+      'What proof-point project would make your impact obvious in 60–90 days?',
+      'What outcome from the last quarter can you fully claim?',
+    ],
+  },
+  {
+    id: 'DIAGNOSE_NOT_MONITOR',
+    label: '02 // DIAGNOSE, NOT MONITOR',
+    question: 'Where are you reviewing progress instead of helping unblock it?',
+    signals: [
+      'Drills into blockers — does not just collect status',
+      'Applies technical judgment to ambiguous situations',
+      'Offers concrete paths forward, not just escalation pathways',
+      'Problem-solving depth visible beyond stakeholder updates',
+    ],
+    pitfalls: [
+      'Asking for status without understanding root causes',
+      'Offering options instead of helping solve the problem',
+      'Delegation without technical depth erodes leadership signal',
+    ],
+    dropIn: [
+      'Where are you reviewing progress instead of helping unblock it?',
+      'What issue this week required deeper technical judgment from you?',
+      'Where did you go one level deeper than status last week?',
+    ],
+  },
+  {
+    id: 'DECISION_RIGHTS_CLARITY',
+    label: '03 // DECISION RIGHTS CLARITY',
+    question: 'What decision do you think you own that others may think they own too?',
+    signals: [
+      'Can name the DRI for every active cross-team decision',
+      'Leaves every discussion with decision, owner, escalation path, and handoff stated',
+      'Proactively surfaces ownership ambiguity before it becomes a blocker',
+      'Clarity around approval boundaries reduces churn and wasted cycles',
+    ],
+    pitfalls: [
+      'Ownership ambiguity costing time and eroding trust',
+      'Cross-team decisions stalling without a named driver',
+      'Confusing contribution with accountability',
+    ],
+    dropIn: [
+      'What decision do you think you own that others may think they own too?',
+      'Where is ambiguity costing you time or trust right now?',
+      'After your last cross-team meeting, could you state the decision, the DRI, the escalation path, and the handoff boundary?',
+    ],
+  },
+  {
+    id: 'BOUNDARY_SETTING',
+    label: '04 // BOUNDARY SETTING',
+    question: 'What work are you carrying that should belong to someone else?',
+    signals: [
+      'Support is bounded and communicated proactively',
+      'Responsibility transitions back to the right owner',
+      'Contribution is real, visible, and sustainable',
+      'Protects their own cycles and signal integrity',
+    ],
+    pitfalls: [
+      "Support drifting into shaping other teams' artifacts",
+      "Absorbing other teams' responsibilities without visibility",
+      'Helpfulness that hides ownership problems',
+    ],
+    dropIn: [
+      'What work are you carrying that should belong to someone else?',
+      'Where are you being helpful in a way that hides an ownership problem?',
+      'What support commitment do you need to define a boundary around?',
+    ],
+  },
+  {
+    id: 'BLOCKERS_TO_SIGNAL',
+    label: '05 // BLOCKERS TO LEADERSHIP SIGNAL',
+    question: 'What blocker did you convert into a concrete recommendation this week?',
+    signals: [
+      'Risk framing and proposed paths forward — not just problem reporting',
+      'Dependency maps and decision framing created proactively for others',
+      'Ambiguity reduced through artifacts, not just flagged in meetings',
+      'Blockers converted into structured leadership communication',
+    ],
+    pitfalls: [
+      'Reporting friction without proposing a path forward',
+      'Blockers listed without ownership of resolution',
+      'Ambiguity escalated without reducing it first',
+    ],
+    dropIn: [
+      'What blocker did you convert into a concrete recommendation this week?',
+      'What ambiguity did you reduce for others — not just surface?',
+      'What artifact did you create that made the work easier to understand?',
+    ],
+  },
+  {
+    id: 'HONEST_VISIBILITY',
+    label: '06 // HONEST VISIBILITY',
+    question: 'What is the most credible evidence of your growth right now?',
+    signals: [
+      'Contribution translated into clear, honest signal',
+      'Named ownership, measurable results, reduced risk',
+      'Growth visible to someone who only has the last 60 days of evidence',
+      'Impact communicated without relying on explanation or context',
+    ],
+    pitfalls: [
+      'Visibility built on self-promotion rather than earned contribution',
+      'Contributions that require extensive explanation to sound significant',
+      'Growth narrative inflated beyond what evidence supports',
+    ],
+    dropIn: [
+      'What is the most credible evidence of your growth right now?',
+      'If someone senior looked only at your last 60 days, what signal would they see?',
+      'What contribution have you made that improved clarity, speed, or quality for the team?',
+    ],
+  },
+]
+
 export default function FrameworksPage() {
   const [openExamples, setOpenExamples] = useState(null)
+  const [openDropIn, setOpenDropIn] = useState(null)
+  const [activeFramework, setActiveFramework] = useState('HIRING_FUNNEL')
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
@@ -128,126 +266,247 @@ export default function FrameworksPage() {
           <StatusPill color="blue">SIGNAL_ACTIVE</StatusPill>
         </div>
         <h1 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
-          HIRING FUNNEL
+          {activeFramework === 'HIRING_FUNNEL' ? 'HIRING FUNNEL' : 'COACHING'}
         </h1>
-        <p className="font-body text-base text-is-dim leading-relaxed max-w-2xl">
-          The hiring funnel is a sequence of increasingly selective conversations. Each stage filters for different signals. Candidates who understand what is actually being evaluated at each stage can communicate their value more clearly.
+        <p className="font-body text-base text-is-dim leading-relaxed max-w-2xl mb-6">
+          {activeFramework === 'HIRING_FUNNEL'
+            ? 'The hiring funnel is a sequence of increasingly selective conversations. Each stage filters for different signals. Candidates who understand what is actually being evaluated at each stage can communicate their value more clearly.'
+            : 'Career coaching through signal clarity. Helping engineers and technical leaders own something real, solve something hard, clarify boundaries, and leave behind visible evidence of impact.'}
         </p>
-      </div>
-
-      {/* Stage overview table */}
-      <div className="is-panel mb-12 overflow-hidden">
-        <div className="border-b border-is-border px-5 py-3 bg-is-surface">
-          <span className="is-label">STAGE_OVERVIEW // SIGNAL_MAP</span>
+        <div className="flex gap-1">
+          {[
+            { id: 'HIRING_FUNNEL', label: 'HIRING_FUNNEL' },
+            { id: 'COACHING', label: 'COACHING' },
+          ].map((f) => (
+            <button
+              key={f.id}
+              onClick={() => setActiveFramework(f.id)}
+              className={`font-mono text-xs px-3 py-1.5 border uppercase tracking-widest transition-all ${
+                activeFramework === f.id
+                  ? 'border-is-primary text-is-primary bg-is-primary/10'
+                  : 'border-is-border text-is-dim hover:border-is-primary/40 hover:text-is-text'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
         </div>
-        <table className="w-full text-sm">
-          <thead className="border-b border-is-border">
-            <tr>
-              <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest">STAGE</th>
-              <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest">PRIMARY_SIGNAL_QUESTION</th>
-              <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest hidden md:table-cell">STATUS</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-is-border">
-            {stages.map((s) => (
-              <tr key={s.id} className="hover:bg-is-surface transition-colors">
-                <td className="px-5 py-3 font-mono text-xs text-is-primary">{s.label}</td>
-                <td className="px-5 py-3 font-body text-sm text-is-text">{s.question}</td>
-                <td className="px-5 py-3 hidden md:table-cell">
-                  <StatusPill color="blue">ACTIVE</StatusPill>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
 
-      {/* Stage detail panels */}
-      <div className="space-y-px bg-is-border">
-        {stages.map((s) => (
-          <div key={s.id} className="bg-is-bg">
-            {/* Stage header */}
-            <div className="border-b border-is-border px-6 py-4 bg-is-surface flex flex-wrap items-center gap-4">
-              <span className="font-mono text-sm font-semibold uppercase text-is-text">{s.label}</span>
-              <span className="font-mono text-xs text-is-dim flex-1">{s.question}</span>
+      {activeFramework === 'HIRING_FUNNEL' && (
+        <>
+          {/* Stage overview table */}
+          <div className="is-panel mb-12 overflow-hidden">
+            <div className="border-b border-is-border px-5 py-3 bg-is-surface">
+              <span className="is-label">STAGE_OVERVIEW // SIGNAL_MAP</span>
             </div>
+            <table className="w-full text-sm">
+              <thead className="border-b border-is-border">
+                <tr>
+                  <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest">STAGE</th>
+                  <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest">PRIMARY_SIGNAL_QUESTION</th>
+                  <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest hidden md:table-cell">STATUS</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-is-border">
+                {stages.map((s) => (
+                  <tr key={s.id} className="hover:bg-is-surface transition-colors">
+                    <td className="px-5 py-3 font-mono text-xs text-is-primary">{s.label}</td>
+                    <td className="px-5 py-3 font-body text-sm text-is-text">{s.question}</td>
+                    <td className="px-5 py-3 hidden md:table-cell">
+                      <StatusPill color="blue">ACTIVE</StatusPill>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-is-border">
-              {/* What they're reading */}
-              <div className="bg-is-bg px-6 py-5">
-                <div className="is-label mb-4">SIGNAL_READS</div>
-                <ul className="space-y-2">
-                  {s.signals.map((sig) => (
-                    <li key={sig} className="flex gap-3">
-                      <span className="font-mono text-xs text-is-primary mt-0.5 shrink-0">→</span>
-                      <span className="font-body text-sm text-is-dim leading-relaxed">{sig}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* Stage detail panels */}
+          <div className="space-y-px bg-is-border">
+            {stages.map((s) => (
+              <div key={s.id} className="bg-is-bg">
+                {/* Stage header */}
+                <div className="border-b border-is-border px-6 py-4 bg-is-surface flex flex-wrap items-center gap-4">
+                  <span className="font-mono text-sm font-semibold uppercase text-is-text">{s.label}</span>
+                  <span className="font-mono text-xs text-is-dim flex-1">{s.question}</span>
+                </div>
 
-              {/* Common failures */}
-              <div className="bg-is-bg px-6 py-5">
-                <div className="is-label text-is-alert mb-4">COMMON_SIGNAL_LOSS</div>
-                <ul className="space-y-2">
-                  {s.pitfalls.map((p) => (
-                    <li key={p} className="flex gap-3">
-                      <span className="font-mono text-xs text-is-alert mt-0.5 shrink-0">⚠</span>
-                      <span className="font-body text-sm text-is-dim leading-relaxed">{p}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-is-border">
+                  {/* What they're reading */}
+                  <div className="bg-is-bg px-6 py-5">
+                    <div className="is-label mb-4">SIGNAL_READS</div>
+                    <ul className="space-y-2">
+                      {s.signals.map((sig) => (
+                        <li key={sig} className="flex gap-3">
+                          <span className="font-mono text-xs text-is-primary mt-0.5 shrink-0">→</span>
+                          <span className="font-body text-sm text-is-dim leading-relaxed">{sig}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-            {/* Examples panel — only rendered for stages that have examples */}
-            {s.examples && (
-              <div className="border-t border-is-border">
-                <button
-                  onClick={() => setOpenExamples(openExamples === s.id ? null : s.id)}
-                  className="w-full flex items-center justify-between px-6 py-3 bg-is-surface hover:bg-is-border transition-colors text-left"
-                >
-                  <span className="is-label">EXAMPLES // SIGNAL_CALIBRATION</span>
-                  <span className="font-mono text-xs text-is-dim">
-                    {openExamples === s.id ? '[−]' : '[+]'}
-                  </span>
-                </button>
+                  {/* Common failures */}
+                  <div className="bg-is-bg px-6 py-5">
+                    <div className="is-label text-is-alert mb-4">COMMON_SIGNAL_LOSS</div>
+                    <ul className="space-y-2">
+                      {s.pitfalls.map((p) => (
+                        <li key={p} className="flex gap-3">
+                          <span className="font-mono text-xs text-is-alert mt-0.5 shrink-0">⚠</span>
+                          <span className="font-body text-sm text-is-dim leading-relaxed">{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
 
-                {openExamples === s.id && (
-                  <div className="px-6 py-5 space-y-6">
-                    {s.examples.map((ex) => (
-                      <div key={ex.id}>
-                        <div className="is-label text-is-dim mb-3">{ex.label}</div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-is-border">
-                          <div className="bg-is-bg px-4 py-4">
-                            <div className="font-mono text-xs text-is-alert mb-2 flex items-center gap-2">
-                              <span>⚠</span> WEAK
+                {/* Examples panel — only rendered for stages that have examples */}
+                {s.examples && (
+                  <div className="border-t border-is-border">
+                    <button
+                      onClick={() => setOpenExamples(openExamples === s.id ? null : s.id)}
+                      className="w-full flex items-center justify-between px-6 py-3 bg-is-surface hover:bg-is-border transition-colors text-left"
+                    >
+                      <span className="is-label">EXAMPLES // SIGNAL_CALIBRATION</span>
+                      <span className="font-mono text-xs text-is-dim">
+                        {openExamples === s.id ? '[−]' : '[+]'}
+                      </span>
+                    </button>
+
+                    {openExamples === s.id && (
+                      <div className="px-6 py-5 space-y-6">
+                        {s.examples.map((ex) => (
+                          <div key={ex.id}>
+                            <div className="is-label text-is-dim mb-3">{ex.label}</div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-is-border">
+                              <div className="bg-is-bg px-4 py-4">
+                                <div className="font-mono text-xs text-is-alert mb-2 flex items-center gap-2">
+                                  <span>⚠</span> WEAK
+                                </div>
+                                <p className="font-mono text-xs text-is-dim leading-relaxed">{ex.weak}</p>
+                              </div>
+                              <div className="bg-is-bg px-4 py-4">
+                                <div className="font-mono text-xs text-is-primary mb-2 flex items-center gap-2">
+                                  <span>→</span> STRONG
+                                </div>
+                                <p className="font-mono text-xs text-is-dim leading-relaxed">{ex.strong}</p>
+                              </div>
                             </div>
-                            <p className="font-mono text-xs text-is-dim leading-relaxed">{ex.weak}</p>
                           </div>
-                          <div className="bg-is-bg px-4 py-4">
-                            <div className="font-mono text-xs text-is-primary mb-2 flex items-center gap-2">
-                              <span>→</span> STRONG
-                            </div>
-                            <p className="font-mono text-xs text-is-dim leading-relaxed">{ex.strong}</p>
-                          </div>
-                        </div>
+                        ))}
                       </div>
-                    ))}
+                    )}
                   </div>
                 )}
               </div>
-            )}
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* Source */}
-      <div className="mt-10 pt-6 border-t border-is-border">
-        <p className="font-mono text-xs text-is-dim">
-          SOURCE: Derived from Annyce Davis, <em>Landing Your Next Gig in Tech</em> (2020) · SIGNAL_REF: HIRING_FUNNEL_FRAMEWORK
-        </p>
-      </div>
+          {/* Source */}
+          <div className="mt-10 pt-6 border-t border-is-border">
+            <p className="font-mono text-xs text-is-dim">
+              SOURCE: Derived from Annyce Davis, <em>Landing Your Next Gig in Tech</em> (2020) · SIGNAL_REF: HIRING_FUNNEL_FRAMEWORK
+            </p>
+          </div>
+        </>
+      )}
+
+      {activeFramework === 'COACHING' && (
+        <>
+          {/* 4-part lens table */}
+          <div className="is-panel mb-12 overflow-hidden">
+            <div className="border-b border-is-border px-5 py-3 bg-is-surface">
+              <span className="is-label">COACHING_LENS // 4_PART_FRAMEWORK</span>
+            </div>
+            <table className="w-full text-sm">
+              <thead className="border-b border-is-border">
+                <tr>
+                  <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest">LENS</th>
+                  <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest">CORE_QUESTION</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-is-border">
+                {coachingLens.map((l) => (
+                  <tr key={l.id} className="hover:bg-is-surface transition-colors">
+                    <td className="px-5 py-3 font-mono text-xs text-is-primary whitespace-nowrap">{l.label}</td>
+                    <td className="px-5 py-3 font-body text-sm text-is-text">{l.question}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Coaching pattern panels */}
+          <div className="space-y-px bg-is-border">
+            {coachingPatterns.map((p) => (
+              <div key={p.id} className="bg-is-bg">
+                <div className="border-b border-is-border px-6 py-4 bg-is-surface flex flex-wrap items-center gap-4">
+                  <span className="font-mono text-sm font-semibold uppercase text-is-text">{p.label}</span>
+                  <span className="font-mono text-xs text-is-dim flex-1">{p.question}</span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-is-border">
+                  <div className="bg-is-bg px-6 py-5">
+                    <div className="is-label mb-4">SIGNAL_READS</div>
+                    <ul className="space-y-2">
+                      {p.signals.map((sig) => (
+                        <li key={sig} className="flex gap-3">
+                          <span className="font-mono text-xs text-is-primary mt-0.5 shrink-0">→</span>
+                          <span className="font-body text-sm text-is-dim leading-relaxed">{sig}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="bg-is-bg px-6 py-5">
+                    <div className="is-label text-is-alert mb-4">COMMON_SIGNAL_LOSS</div>
+                    <ul className="space-y-2">
+                      {p.pitfalls.map((pit) => (
+                        <li key={pit} className="flex gap-3">
+                          <span className="font-mono text-xs text-is-alert mt-0.5 shrink-0">⚠</span>
+                          <span className="font-body text-sm text-is-dim leading-relaxed">{pit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="border-t border-is-border">
+                  <button
+                    onClick={() => setOpenDropIn(openDropIn === p.id ? null : p.id)}
+                    className="w-full flex items-center justify-between px-6 py-3 bg-is-surface hover:bg-is-border transition-colors text-left"
+                  >
+                    <span className="is-label">DROP-IN_QUESTIONS // 1:1_USE</span>
+                    <span className="font-mono text-xs text-is-dim">
+                      {openDropIn === p.id ? '[−]' : '[+]'}
+                    </span>
+                  </button>
+
+                  {openDropIn === p.id && (
+                    <div className="px-6 py-5">
+                      <ul className="space-y-3">
+                        {p.dropIn.map((q) => (
+                          <li key={q} className="flex gap-3">
+                            <span className="font-mono text-xs text-is-primary mt-0.5 shrink-0">?</span>
+                            <span className="font-body text-sm text-is-dim leading-relaxed">{q}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Source */}
+          <div className="mt-10 pt-6 border-t border-is-border">
+            <p className="font-mono text-xs text-is-dim">
+              SOURCE: Annyce Davis · SIGNAL_REF: COACHING_FRAMEWORK
+            </p>
+          </div>
+        </>
+      )}
     </div>
   )
 }

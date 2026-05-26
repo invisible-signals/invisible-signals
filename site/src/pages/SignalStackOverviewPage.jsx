@@ -32,7 +32,7 @@ const SCORE_STATUS = {
 }
 
 export default function SignalStackOverviewPage() {
-  const { frontmatter, scoringRows, layers } = useOutletContext()
+  const { scoringRows, layers } = useOutletContext()
   const reversed = [...layers].reverse()
 
   return (

@@ -44,7 +44,26 @@ export default function NavBar() {
         {/* Separator */}
         <span className="hidden sm:block w-px h-4 bg-is-border shrink-0" />
 
-
+        {/* Secondary nav links */}
+        <div className="hidden md:flex items-center">
+          {[
+            { to: '/frameworks', label: 'FRAMEWORKS' },
+            { to: '/prompts', label: 'PROMPTS' },
+            { to: '/templates', label: 'TEMPLATES' },
+          ].map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) =>
+                `px-3 py-1.5 font-mono text-xs uppercase tracking-widest whitespace-nowrap transition-colors ${
+                  isActive ? 'text-is-text' : 'text-is-dim hover:text-is-text'
+                }`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
 
         {/* Search */}
         <form onSubmit={handleSearch} className="flex items-center gap-0 border border-is-border bg-is-surface shrink-0">
