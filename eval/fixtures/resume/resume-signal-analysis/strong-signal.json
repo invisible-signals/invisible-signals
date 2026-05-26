@@ -46,27 +46,15 @@
         "Databases (MySQL, MongoDB)"
       ]
     },
-    "[X]": 5,
-    "[Y]": [
-      "Technical Capability",
-      "Execution Reliability"
-    ],
-    "[Z]": [
-      {
-        "question": "Can you describe your experience with containerization?",
-        "answer": "I have used Kubernetes for a while now. I can describe the benefits and challenges of using it."
-      },
-      {
-        "question": "How do you approach designing scalable infrastructure?",
-        "answer": "I use a combination of cloud provider tools and open-source libraries to design scalable infrastructure."
-      }
-    ]
+    "[X]": "",
+    "[Y]": "",
+    "[Z]": ""
   },
   "evalCriteria": [
-    "Should detect measurable impact metrics (e.g., 30% reduction in latency)",
-    "Should flag lack of clear individual ownership (e.g., multiple team collaborations without clear leader)",
-    "Should rate technical capability as strong for cloud computing and containerization",
-    "Should identify missing skills in data engineering or machine learning",
-    "Should ask evidence recovery questions about scalability and efficiency"
+    "Should identify and highlight measurable impact metrics present in the résumé (e.g., 30% reduction in latency, 50% reduction in page load times, 30% reduction in infrastructure costs).",
+    "Should flag that several bullets use 'Collaborated with [team]' without specifying the candidate's individual ownership or decision-making contribution.",
+    "Should correctly identify technical capability as Strong or equivalent given documented experience with AWS, GCP, Kubernetes, and Docker alongside measurable outcomes.",
+    "Should identify missing depth in data engineering or machine learning as a potential gap for the Principal level.",
+    "Should ask evidence recovery questions about scalability and efficiency."
   ]
 }

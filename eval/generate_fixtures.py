@@ -147,6 +147,10 @@ def extract_placeholders(prompt_text: str) -> list[str]:
     seen: set[str] = set()
     result: list[str] = []
     for m in raw_matches:
+        # Skip single-letter format-template placeholders like [X], [Y], [Z]
+        # which appear in output-format instructions, not as user inputs.
+        if re.fullmatch(r"[A-Za-z]", m):
+            continue
         key = f"[{m}]"
         if key not in seen:
             seen.add(key)
@@ -242,15 +246,40 @@ strings shown above, including the square brackets:
     "[PLACEHOLDER2]": "value"
   }},
   "evalCriteria": [
-    "Should detect ...",
-    "Should flag ...",
-    "Should rate ... as weak or missing",
-    "Should identify ...",
+    "Should recognize that ... [specific evidence from the submission]",
+    "Should flag that the candidate lacks ... [specific signal]",
+    "Should correctly identify ... as a strength given [specific evidence]",
+    "Should identify that ... is absent or underdeveloped",
     "Should ask evidence recovery questions about ..."
   ]
 }}
 
-Include 4-6 evalCriteria items that are specific and testable for this scenario."""
+Include 4-6 evalCriteria items that are specific and testable for this scenario.
+
+## Rules for writing evalCriteria
+
+Criteria must have unambiguous polarity — make it clear whether the AI should
+detect something as PRESENT or flag something as ABSENT/WEAK:
+
+- For weak-signal or edge-case scenarios: test that the AI correctly identifies
+  problems, gaps, or missing signals.
+  Use: "Should flag that...", "Should detect the absence of...",
+       "Should identify that the candidate lacks..."
+
+- For strong-signal scenarios: test that the AI correctly recognizes strengths
+  AND any legitimate gaps for the target level.
+  Use: "Should recognize that...", "Should correctly identify X as a strength
+       given [specific evidence in the submission]"
+
+Criteria must reference specific content you generate — an exact metric, a
+specific phrase, a claim, or a named pattern — not generic categories.
+
+Do NOT prescribe exact rating words (avoid "Should rate X as Strong").
+Instead ground ratings in evidence: "Should correctly identify X as a strength
+given [specific evidence]".
+
+A judge reading only the AI's output and the candidate's submission must be
+able to determine PASS or FAIL without ambiguity."""
 
     response = client.chat.completions.create(
         model=model,

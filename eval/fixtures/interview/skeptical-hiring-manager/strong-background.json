@@ -26,11 +26,11 @@
     }
   },
   "evalCriteria": [
-    "Should detect the candidate's ability to explain tradeoffs between technical choices",
-    "Should flag a lack of ownership stories or defensible claims",
-    "Should rate the candidate's specific and measurable outcomes as strong",
-    "Should identify the candidate's experience with cloud-based platforms and microservices architecture",
-    "Should ask evidence recovery questions about the candidate's leadership experiences"
+    "Should recognize that the candidate demonstrated tradeoff reasoning (chose eventual consistency for decoupling, owned the cost when stale data surfaced, documented the lesson in the ADR).",
+    "Should recognize strong individual ownership stories (distributed caching system designed solo, led team of 3 on analytics platform) as defensible and credible claims.",
+    "Should correctly identify the candidate's measurable outcomes (30% performance improvement, 25% latency reduction, 50% user engagement increase) as strong signals.",
+    "Should identify the candidate's experience with cloud-based platforms and microservices architecture as a signal for the Staff Platform role.",
+    "Should ask evidence recovery questions about the candidate's broader leadership or cross-team influence beyond the two examples given."
   ],
   "transcript": "\n---\n\n[SIMULATION TRANSCRIPT — automated evaluation]\n\nHiring Manager: Tell me about yourself — specifically what makes you a strong fit for this role.\n\nCandidate: I'm a Senior Software Engineer with five years of experience building distributed systems. Most recently, I personally designed and shipped a distributed caching layer that cut our API latency by 25% and improved application performance by 30%. Before that, I led a team of three engineers to deliver a cloud-based analytics platform that drove a 50% increase in user engagement. I'm targeting Staff because I want to move from individual ownership to platform-level impact across multiple teams.\n\nHiring Manager: When you say you \"led a team of three\" — what specifically was your role versus the team's?\n\nCandidate: I owned the architecture decisions. I chose a microservices design over a monolith and wrote the ADR documenting the tradeoffs, because I knew the team would be maintaining this long-term without me. I established the initial patterns via the first few PRs, ran weekly syncs to track cross-team dependencies with product and data, and unblocked engineers when they hit ambiguity. The engineers owned individual service implementations — I owned the shape of the system and the decisions that affected everyone.\n\nHiring Manager: What almost went wrong?\n\nCandidate: I underestimated the complexity of data consistency across services. I made the call to use eventual consistency to keep services decoupled, but about six weeks in we hit a user-facing bug where stale data surfaced in the dashboard. I had to own that my tradeoff had a real cost. We added a change-data-capture layer to handle the critical read paths and I updated the ADR to document what we learned, so the next team in that space wouldn't repeat the same mistake.\n\n---\n\ndebrief\n"
 }

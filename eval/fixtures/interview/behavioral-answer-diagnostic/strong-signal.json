@@ -2,10 +2,10 @@
   "scenario": "strong-signal",
   "description": "Clear individual ownership, specific metric outcome, explicit tradeoff reasoning, and brief reflection on what they would do differently.",
   "evalCriteria": [
-    "Should detect clear individual ownership of the technical decision.",
-    "Should flag explicit tradeoff reasoning for the chosen solution.",
-    "Should rate the ability to articulate a specific metric outcome as weak or missing if not mentioned.",
-    "Should identify evidence of reflection on what they would do differently in a similar situation.",
+    "Should detect clear individual ownership of the technical decision (candidate said 'I decided' and 'I recognized').",
+    "Should recognize that the candidate described competing requirements as an explicit tradeoff (deadline vs. security).",
+    "Should recognize that the candidate cited a specific measurable outcome (15% reduction in security incidents) and not rate it as weak or missing.",
+    "Should identify that the candidate reflected on what they would do differently (involving more team members), even if briefly stated.",
     "Should ask evidence recovery questions about the candidate's experience with ambiguity and uncertainty."
   ],
   "inputs": {

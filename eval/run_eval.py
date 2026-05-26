@@ -136,22 +136,41 @@ def check_sections(output: str, sections: list[str]) -> dict[str, bool]:
 
 # ── LLM-as-judge ──────────────────────────────────────────────────────────────
 
+JUDGE_DOMAIN: dict[str, str] = {
+    "resume-signal-analysis": "a CANDIDATE'S RESUME",
+    "behavioral-answer-diagnostic": "a CANDIDATE'S BEHAVIORAL INTERVIEW ANSWER",
+    "skeptical-hiring-manager": "a CANDIDATE'S RESPONSES during a hiring manager screen",
+}
+
 
 def run_judge_pass(
-    client: OpenAI, judge_model: str, output: str, eval_criteria: list[str]
+    client: OpenAI,
+    judge_model: str,
+    prompt_id: str,
+    output: str,
+    eval_criteria: list[str],
+    candidate_input: str = "",
 ) -> list[dict]:
     """Evaluate each evalCriteria item with a second Ollama call."""
     results = []
-    excerpt = output[:4000]
+    domain = JUDGE_DOMAIN.get(prompt_id, "a CANDIDATE'S SUBMISSION")
+    context_block = (
+        f"What the candidate submitted:\n---\n{candidate_input[:2000]}\n---\n\n"
+        if candidate_input
+        else ""
+    )
 
     for criterion in eval_criteria:
         prompt = (
-            "You are a strict evaluator checking whether a DIAGNOSTIC AI RESPONSE "
-            "correctly analyzes a CANDIDATE'S ANSWER to an interview question.\n"
+            f"You are a balanced evaluator checking whether a DIAGNOSTIC AI RESPONSE "
+            f"correctly analyzes {domain}.\n"
             "The criterion describes what the diagnostic AI should detect or flag "
-            "about the CANDIDATE — not about itself.\n\n"
+            "about the CANDIDATE — not about itself.\n"
+            "Score PASS if the criterion is meaningfully addressed, even if implicit. "
+            "Score FAIL only if the criterion is clearly absent or directly contradicted.\n\n"
+            f"{context_block}"
             f"Criterion: {criterion}\n\n"
-            f"Diagnostic AI's analysis of the candidate (may be truncated):\n---\n{excerpt}\n---\n\n"
+            f"Diagnostic AI's full analysis:\n---\n{output}\n---\n\n"
             "Does the diagnostic AI's analysis meet the criterion? "
             "Reply with exactly PASS or FAIL followed by a colon and one sentence of reasoning.\n"
             "Format: PASS: [reason]  OR  FAIL: [reason]"
@@ -213,7 +232,14 @@ def run_prompt_eval(
     }
 
     if use_judge and fixture.get("evalCriteria"):
-        scores = run_judge_pass(client, judge_model, output, fixture["evalCriteria"])
+        raw_inputs = fixture.get("inputs", {})
+        candidate_input = "\n".join(
+            f"{k}: {json.dumps(v)[:300] if isinstance(v, (dict, list)) else str(v)[:300]}"
+            for k, v in raw_inputs.items()
+        )
+        scores = run_judge_pass(
+            client, judge_model, prompt_id, output, fixture["evalCriteria"], candidate_input
+        )
         result["judge_scores"] = scores
         result["judge_passed"] = sum(1 for s in scores if s["verdict"] == "PASS")
         result["judge_total"] = len(scores)
@@ -270,12 +296,12 @@ def main() -> None:
     parser.add_argument(
         "--judge-model",
         default=None,
-        help="Ollama model for the judge pass (default: qwen2.5:32b)",
+        help="Ollama model for the judge pass (default: llama3.1:8b)",
     )
     args = parser.parse_args()
 
     model = os.environ.get("OLLAMA_MODEL", DEFAULT_MODEL)
-    judge_model = args.judge_model or os.environ.get("OLLAMA_JUDGE_MODEL", "qwen2.5:32b")
+    judge_model = args.judge_model or os.environ.get("OLLAMA_JUDGE_MODEL", "llama3.1:8b")
     base_url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1")
 
     client = OpenAI(base_url=base_url, api_key="ollama")
@@ -289,6 +315,12 @@ def main() -> None:
         sys.exit(1)
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    if args.judge and model == judge_model:
+        console.print(
+            "[yellow]Warning: using the same model for generation and judging. "
+            "Self-judging produces unreliable scores — use --judge-model to set a different model.[/yellow]\n"
+        )
 
     console.print(Rule("[bold]Invisible Signals™ — Prompt Evaluator[/bold]"))
     judge_label = judge_model if args.judge else "no"
