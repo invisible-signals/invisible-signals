@@ -2,13 +2,14 @@
 
 ## Current Status
 
-> **26 tests passing across 3 files.** Run `npm test` from `site/` to run in watch mode, or `npx vitest run` for a single pass.
+> **48 tests passing across 4 files.** Run `npm test` from `site/` to run in watch mode, or `npx vitest run` for a single pass.
 
 | File | Tests |
 |---|---|
 | `src/pages/PromptsPage.test.js` | 12 — `parseFrontmatter`, `parsePromptFile` |
 | `src/components/StatusPill.test.jsx` | 9 — all color variants, dot indicator, defaults |
 | `src/components/NavBar.test.jsx` | 5 — link rendering, active/inactive route classes |
+| `src/lib/promptSchema.test.js` | 22 — frontmatter schema validation across all prompt files |
 
 ---
 
@@ -58,7 +59,7 @@ No backend, no database, no authentication — no need for API mocking, DB fixtu
           ┌───────────────┐
           │   E2E (none)  │  Playwright — TODO if needed
           ├───────────────┤
-          │  Integration  │  NavBar route-active state ✓
+          │  Integration  │  NavBar route-active state ✓  Prompt schema ✓
           ├───────────────┤
           │  Unit Tests   │  parseFrontmatter ✓  parsePromptFile ✓  StatusPill ✓
           └───────────────┘
@@ -85,6 +86,37 @@ All four color variants (`blue`, `coral`, `gold`, `dim`), dot indicator presence
 ### `NavBar` — `site/src/components/NavBar.test.jsx` ✓
 
 Link rendering, active route classes (`border-is-primary/40 text-is-primary bg-is-primary/10`), inactive route classes. Wrapped in `MemoryRouter` with `initialEntries`.
+
+### Prompt Schema — `site/src/lib/promptSchema.test.js` ✓
+
+Validates every `prompts/**/*.md` file against the required frontmatter schema at build time via `import.meta.glob`. Covered cases: at least one prompt exists, all required keys present (`title`, `version`, `status`, `category`, `tags`), valid `status` values, valid `category` values, non-empty `tags` array, `## Purpose` section present, `## Prompt` section with fenced code block present, no empty `[]` placeholder brackets in the prompt body.
+
+---
+
+## Prompt Eval (Python)
+
+A separate Python-based evaluation system lives under `eval/`. It is **not** part of the Vitest suite — it requires a running [Ollama](https://ollama.com) server.
+
+```bash
+# From repo root
+cd eval
+pip install -r requirements.txt
+cp .env.example .env   # set OLLAMA_BASE_URL and OLLAMA_MODEL
+
+# Run all prompt evals
+python run_eval.py
+
+# Run a single prompt
+python run_eval.py --prompt resume-signal-analysis
+
+# Run with LLM-as-judge scoring
+python run_eval.py --judge
+
+# Regenerate fixtures
+python generate_fixtures.py
+```
+
+Results are written as JSON to `eval/results/`. Fixtures live in `eval/fixtures/{category}/{prompt-id}/`. The eval checks that the model's output contains all expected section headers defined in `EXPECTED_SECTIONS` in `run_eval.py`.
 
 ---
 

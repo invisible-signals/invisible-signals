@@ -49,8 +49,11 @@ npm run preview
 
 1. Create `prompts/{category}/your-prompt.md`
 2. Add YAML frontmatter: `title`, `category`, `tags`, `status`, `version`
-3. Add a `## Prompt` section with a fenced code block containing the prompt text
-4. `PromptsPage.jsx` auto-discovers it via `import.meta.glob` — no registration needed
+3. Add a `## Purpose` section (one paragraph)
+4. Add a `## Prompt` section with a fenced code block containing the prompt text
+5. `PromptsPage.jsx` auto-discovers it via `import.meta.glob` — no registration needed
+6. `site/src/lib/promptSchema.test.js` will automatically validate the new file — run `npm test` to confirm it passes
+7. If adding eval coverage, create a fixture directory under `eval/fixtures/{category}/{prompt-id}/` and add `EXPECTED_SECTIONS` in `eval/run_eval.py`
 
 ### Adding a new framework doc
 
@@ -110,6 +113,7 @@ npm run preview
 ## Definition of Done
 
 - [ ] `npm run build` passes with no errors or warnings
+- [ ] `npm test` passes (48 tests across 4 files)
 - [ ] No hardcoded hex values in JSX
 - [ ] No `rounded-*` classes added
 - [ ] New prompts auto-appear on `/prompts` page

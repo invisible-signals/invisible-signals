@@ -7,6 +7,7 @@ invisible-signals/
 ├── .github/              ← AI context, contributing guides, CI (this folder)
 ├── assets/branding/      ← Design system: tokens, colors, identity specs
 ├── docs/                 ← Philosophy and conceptual documentation
+├── eval/                 ← Python prompt quality evaluator + fixtures + results
 ├── examples/             ← Annotated weak-vs-strong examples
 ├── frameworks/           ← Hiring funnel stage guides
 ├── prompts/              ← AI prompts (auto-loaded by the site)
@@ -32,12 +33,33 @@ site/
     ├── components/
     │   ├── NavBar.jsx              ← Global nav; NavLink active states; version badge
     │   └── StatusPill.jsx          ← Colored status badge (blue/coral/gold/dim)
+    ├── lib/
+    │   └── promptSchema.test.js    ← Validates all prompts/**/*.md frontmatter at build time
     └── pages/
         ├── HomePage.jsx            ← Hero; Signal Stack™; Product modules; Principles
         ├── FrameworksPage.jsx      ← Hiring funnel 5-stage accordion
         ├── PromptsPage.jsx         ← import.meta.glob loader; frontmatter parser; CopyButton
         ├── AgentsPage.jsx          ← Coming soon placeholder
         └── WorkflowsPage.jsx       ← Coming soon placeholder
+```
+
+---
+
+## Prompt Evaluator (`eval/`)
+
+```
+eval/
+├── run_eval.py             ← Entry point; runs prompts against fixtures via Ollama
+├── generate_fixtures.py    ← Generates fixture JSON files via Ollama
+├── requirements.txt        ← Python deps: openai, rich, python-dotenv
+├── .env.example            ← OLLAMA_BASE_URL + OLLAMA_MODEL config template
+├── fixtures/               ← Input JSON per prompt (“scenario” objects with inputs + evalCriteria)
+│   ├── interview/
+│   │   ├── behavioral-answer-diagnostic/
+│   │   └── skeptical-hiring-manager/
+│   └── resume/
+│       └── resume-signal-analysis/
+└── results/                ← JSON output from eval runs (gitignored except committed samples)
 ```
 
 ---
@@ -93,6 +115,8 @@ site/
 | New template | `templates/name.md` |
 | New design token | `assets/branding/tokens/invisible-signals-tokens.json` + `.css` + `tailwind.config.js` |
 | New documentation | `docs/name.md` |
+| New eval fixture | `eval/fixtures/{category}/{prompt-id}/{scenario}.json` |
+| New expected output section (eval) | `EXPECTED_SECTIONS` dict in `eval/run_eval.py` |
 
 ---
 
@@ -119,6 +143,7 @@ site/
 | `docs/` | Philosophy, signal stack, responsible AI use | No — linked from README |
 | `examples/` | Weak vs. strong bullet examples | No — referenced in `FrameworksPage.jsx` data |
 | `templates/` | Signal scorecard template | No — distributed directly |
+| `eval/fixtures/` | Prompt eval input scenarios (JSON) | No — used by `eval/run_eval.py` only |
 
 ---
 

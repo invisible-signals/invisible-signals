@@ -61,6 +61,34 @@ Files to edit:
 2. If surfacing in the site, also update `FrameworksPage.jsx`
 3. No server restart needed for markdown-only changes (they aren't live-imported except in PromptsPage)
 
+### Running the prompt evaluator
+
+The `eval/` directory contains an offline Python harness that runs prompts against real Ollama output and checks for expected section headers.
+
+**Prerequisites:** [Ollama](https://ollama.com) running locally with a compatible model pulled (default: `llama3.1:8b`).
+
+```bash
+# From repo root
+cd eval
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env: set OLLAMA_BASE_URL and OLLAMA_MODEL
+
+# Run all evals
+python run_eval.py
+
+# Run a specific prompt
+python run_eval.py --prompt resume-signal-analysis
+
+# Run with LLM-as-judge scoring
+python run_eval.py --judge
+
+# Regenerate fixtures (requires Ollama)
+python generate_fixtures.py
+```
+
+Results are written to `eval/results/` as timestamped JSON files.
+
 ---
 
 ## Commands
@@ -151,9 +179,18 @@ docs(frameworks): add technical screen invisible signals
 
 ## Local Environment Variables
 
-There are **no environment variables** required. This is a fully static site with no server-side configuration.
+The **web app** has no environment variables — it is a fully static site.
 
-> If environment variables are needed in future, use Vite's `import.meta.env.VITE_*` convention and add them to `.env.local` (gitignored).
+The **prompt evaluator** (`eval/`) uses a `.env` file (not committed) for Ollama configuration:
+
+```
+OLLAMA_BASE_URL=http://localhost:11434/v1
+OLLAMA_MODEL=llama3.1:8b
+```
+
+Copy `eval/.env.example` to `eval/.env` and adjust as needed. The `.env` file is gitignored.
+
+> For the web app, if environment variables are needed in future, use Vite's `import.meta.env.VITE_*` convention and add them to `.env.local` (gitignored).
 
 ---
 

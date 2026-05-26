@@ -1,0 +1,20 @@
+{
+  "scenario": "strong-signal",
+  "description": "Clear individual ownership, specific metric outcome, explicit tradeoff reasoning, and brief reflection on what they would do differently.",
+  "evalCriteria": [
+    "Should detect clear individual ownership of the technical decision.",
+    "Should flag explicit tradeoff reasoning for the chosen solution.",
+    "Should rate the ability to articulate a specific metric outcome as weak or missing if not mentioned.",
+    "Should identify evidence of reflection on what they would do differently in a similar situation.",
+    "Should ask evidence recovery questions about the candidate's experience with ambiguity and uncertainty."
+  ],
+  "inputs": {
+    "[PASTE BEHAVIORAL QUESTION]": "Tell me about a time you drove an ambiguous technical decision under uncertainty.",
+    "[PASTE YOUR ANSWER]": "When leading our team's migration to cloud-based services, I recognized that we had two competing requirements: meet the customer's deadline and ensure robust security. After discussing with stakeholders, I decided to prioritize security by investing additional resources upfront. This choice resulted in a 15% reduction in security incidents over the next quarter. In retrospect, I would have benefited from involving more team members in the decision-making process to better understand their perspectives.",
+    "[PASTE CURRENT LEVEL / TITLE]": "Staff Software Engineer",
+    "[PASTE TARGET LEVEL / TITLE]": "Senior Staff Software Engineer",
+    "[senior IC / staff IC / principal IC / engineering manager / director+ / mobile engineer / platform engineer / data engineer / career changer / returning-to-work candidate / other]": "staff IC",
+    "[PASTE ROLE TITLE, KEY REQUIREMENTS, OR JOB DESCRIPTION EXCERPT]": "Developing and implementing scalable software solutions for our cloud-based services team. Key requirements include driving technical decisions under uncertainty, collaborating with cross-functional teams, and delivering high-quality results within tight timelines.",
+    "[OPTIONAL CONTEXT — layoff, promotion target, career transition, industry pivot, IC-to-manager transition, manager-to-IC transition, return from career break, etc.]": "Career progression within the company. Seeking to take on more senior responsibilities and contribute to the team's technical growth."
+  }
+}

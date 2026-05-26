@@ -32,6 +32,7 @@ Invisible Signals™ is a **static single-page application** backed by a **flat 
 | Knowledge Base | `docs/`, `frameworks/`, `prompts/`, `examples/`, `templates/` | Source-of-truth markdown content |
 | Web Application | `site/` | React SPA that surfaces the knowledge base |
 | Brand Identity | `assets/branding/` | Design tokens, color system, visual identity |
+| Prompt Evaluator | `eval/` | Python offline eval harness; tests prompts against Ollama |
 
 ---
 
@@ -47,6 +48,11 @@ Invisible Signals™ is a **static single-page application** backed by a **flat 
 │   └── interview/     # behavioral-answer-diagnostic.md, skeptical-hiring-manager.md
 ├── examples/          # Annotated weak-vs-strong examples
 ├── templates/         # Reusable self-assessment templates
+├── eval/              # Python prompt evaluator (Ollama-based, offline)
+│   ├── run_eval.py    # Runs prompts against fixture inputs, checks expected sections
+│   ├── generate_fixtures.py  # Generates fixture JSON via Ollama
+│   ├── fixtures/      # Input scenarios per prompt ({category}/{prompt-id}/*.json)
+│   └── results/       # JSON output from eval runs
 ├── assets/
 │   └── branding/      # Design system: tokens, colors, identity docs
 │       ├── colors/    # annyce-davis-palette.css/.json (Canva Brand Kit)
@@ -62,6 +68,8 @@ Invisible Signals™ is a **static single-page application** backed by a **flat 
         ├── components/
         │   ├── NavBar.jsx   # Global navigation
         │   └── StatusPill.jsx # Colored status badge
+        ├── lib/
+        │   └── promptSchema.test.js  # Validates all prompt frontmatter at build time
         └── pages/
             ├── HomePage.jsx       # Landing, hero, signal stack overview
             ├── FrameworksPage.jsx # Hiring funnel stage breakdown

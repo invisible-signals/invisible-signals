@@ -1,0 +1,36 @@
+{
+  "scenario": "strong-background",
+  "description": "Prepared candidate with concrete ownership stories, defensible claims, specific and measurable outcomes, and clear tradeoff reasoning.",
+  "inputs": {
+    "[PASTE CURRENT LEVEL / TITLE]": "Senior Software Engineer",
+    "[PASTE TARGET ROLE / TITLE]": "Staff Software Engineer (Platform)",
+    "[PASTE TARGET LEVEL]": "Staff",
+    "[senior IC / staff IC / principal IC / engineering manager / director+ / mobile engineer / platform engineer / data engineer / career changer / returning-to-work candidate / other]": "senior IC",
+    "[PASTE COMPANY TYPE OR STAGE — e.g., Series B startup, large enterprise, nonprofit, agency, regulated industry]": "mid-sized tech company (Series C)",
+    "[OPTIONAL CONTEXT — layoff, promotion target, career transition, industry pivot, IC-to-manager transition, manager-to-IC transition, return from career break, etc.]": "career progression to a more senior role",
+    "[PASTE RÉSUMÉ OR SUMMARY — OPTIONAL]": {
+      "summary": "Highly motivated and experienced software engineer with 5+ years of experience in building scalable and efficient systems. Proven track record of delivering high-quality code and leading cross-functional teams.",
+      "bullet_points": [
+        "Designed and developed a distributed caching system that improved application performance by 30% and reduced latency by 25%",
+        "Led a team of 3 engineers to deliver a cloud-based analytics platform, resulting in a 50% increase in user engagement",
+        "Contributed to the development of a microservices architecture for a large-scale e-commerce platform"
+      ]
+    },
+    "[PASTE JOB DESCRIPTION]": {
+      "job_title": "Staff Software Engineer (Platform)",
+      "description": [
+        "Design, develop, and deploy scalable and efficient software systems",
+        "Lead cross-functional teams to deliver high-quality code and meet project deadlines",
+        "Collaborate with product managers to define system requirements and architecture"
+      ]
+    }
+  },
+  "evalCriteria": [
+    "Should detect the candidate's ability to explain tradeoffs between technical choices",
+    "Should flag a lack of ownership stories or defensible claims",
+    "Should rate the candidate's specific and measurable outcomes as strong",
+    "Should identify the candidate's experience with cloud-based platforms and microservices architecture",
+    "Should ask evidence recovery questions about the candidate's leadership experiences"
+  ],
+  "transcript": "\n---\n\n[SIMULATION TRANSCRIPT — automated evaluation]\n\nHiring Manager: Tell me about yourself — specifically what makes you a strong fit for this role.\n\nCandidate: I'm a Senior Software Engineer with five years of experience building distributed systems. Most recently, I personally designed and shipped a distributed caching layer that cut our API latency by 25% and improved application performance by 30%. Before that, I led a team of three engineers to deliver a cloud-based analytics platform that drove a 50% increase in user engagement. I'm targeting Staff because I want to move from individual ownership to platform-level impact across multiple teams.\n\nHiring Manager: When you say you \"led a team of three\" — what specifically was your role versus the team's?\n\nCandidate: I owned the architecture decisions. I chose a microservices design over a monolith and wrote the ADR documenting the tradeoffs, because I knew the team would be maintaining this long-term without me. I established the initial patterns via the first few PRs, ran weekly syncs to track cross-team dependencies with product and data, and unblocked engineers when they hit ambiguity. The engineers owned individual service implementations — I owned the shape of the system and the decisions that affected everyone.\n\nHiring Manager: What almost went wrong?\n\nCandidate: I underestimated the complexity of data consistency across services. I made the call to use eventual consistency to keep services decoupled, but about six weeks in we hit a user-facing bug where stale data surfaced in the dashboard. I had to own that my tradeoff had a real cost. We added a change-data-capture layer to handle the critical read paths and I updated the ADR to document what we learned, so the next team in that space wouldn't repeat the same mistake.\n\n---\n\ndebrief\n"
+}

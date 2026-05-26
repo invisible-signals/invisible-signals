@@ -1,0 +1,43 @@
+{
+  "scenario": "weak-background",
+  "description": "Candidate with vague résumé claims, activity-based bullets, no concrete outcomes, and no specific examples ready to defend under scrutiny.",
+  "inputs": {
+    "[PASTE CURRENT LEVEL / TITLE]": "Software Engineer I",
+    "[PASTE TARGET ROLE / TITLE]": "Senior Software Engineer (Backend)",
+    "[PASTE TARGET LEVEL]": "senior IC",
+    "[senior IC / staff IC / principal IC / engineering manager / director+ / mobile engineer / platform engineer / data engineer / career changer / returning-to-work candidate / other]": "senior IC",
+    "[PASTE COMPANY TYPE OR STAGE — e.g., Series B startup, large enterprise, nonprofit, agency, regulated industry]": "Series A startup",
+    "[OPTIONAL CONTEXT — layoff, promotion target, career transition, industry pivot, IC-to-manager transition, manager-to-IC transition, return from career break, etc.]": "Career transition from data analyst to software engineer",
+    "[PASTE RÉSUMÉ OR SUMMARY — OPTIONAL]": {
+      "summary": "Results-driven professional with 2+ years of experience in software development. Proficient in Java, Python, and Agile methodologies.",
+      "experience": [
+        {
+          "company": "DataScale Inc",
+          "position": "Software Engineer I",
+          "dates": "2020-Present",
+          "tasks": [
+            "Developed multiple features for our flagship product using Java and Spring Boot.",
+            "Collaborated with cross-functional teams to improve code quality and reduce technical debt.",
+            "Participated in code reviews and provided feedback to improve team's overall coding standards."
+          ]
+        }
+      ],
+      "education": [
+        {
+          "institution": "University of California, Berkeley",
+          "degree": "Bachelor of Science in Computer Science",
+          "dates": "2018-2020"
+        }
+      ]
+    },
+    "[PASTE JOB DESCRIPTION]": "Design, develop, and deploy scalable and efficient software applications. Collaborate with cross-functional teams to identify business needs and implement solutions."
+  },
+  "evalCriteria": [
+    "Should detect vague claims in the summary (e.g., 'results-driven professional')",
+    "Should flag lack of concrete outcomes in experience section",
+    "Should rate candidate's ability to explain technical decisions as weak or missing",
+    "Should identify need for evidence recovery questions about specific projects and technologies",
+    "Should ask evidence recovery questions about candidate's career transition from data analyst to software engineer"
+  ],
+  "transcript": "\n---\n\n[SIMULATION TRANSCRIPT — automated evaluation]\n\nHiring Manager: Tell me about yourself — specifically what makes you a strong fit for this role.\n\nCandidate: I've been a backend engineer for about four years. I've worked on APIs and built some data pipelines. I think I'm a good fit because I've shipped a lot of features and I work well with teams.\n\nHiring Manager: When you say you've \"shipped features\" — can you give me a specific example? What was your individual contribution?\n\nCandidate: We built a new API for our mobile app. The team worked on it for about three months and it went live without any major issues.\n\n---\n\ndebrief\n"
+}

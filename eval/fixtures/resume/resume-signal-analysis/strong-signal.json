@@ -1,0 +1,72 @@
+{
+  "scenario": "strong-signal",
+  "description": "Senior IC with outcome-based bullets, measurable impact metrics, clear individual ownership, and cross-team influence. Well-calibrated for the target level.",
+  "inputs": {
+    "[PASTE CURRENT LEVEL / TITLE]": "Staff Software Engineer",
+    "[PASTE TARGET LEVEL / TITLE]": "Principal Software Engineer",
+    "[software engineer / senior IC / staff IC / principal IC / engineering manager / director+ / mobile engineer / platform engineer / data engineer / career changer / returning-to-work candidate / other]": "Senior IC in Platform Infrastructure",
+    "[OPTIONAL CONTEXT]": "",
+    "[PASTE JOB DESCRIPTION]": "Design and implement scalable, efficient, and secure infrastructure for cloud-based applications. Collaborate with cross-functional teams to drive technical strategy and innovation.",
+    "[PASTE RÉSUMÉ]": {
+      "name": "John Doe",
+      "contact": {
+        "email": "johndoe@example.com",
+        "github": "https://github.com/johndoe"
+      },
+      "experience": [
+        {
+          "company": "Acme Corp",
+          "title": "Senior IC in Platform Infrastructure",
+          "dates": "2018-Present",
+          "bullet-points": [
+            "Designed and implemented a cloud-based infrastructure for real-time data processing, resulting in 30% reduction in latency and 25% improvement in throughput.",
+            "Collaborated with the ML team to integrate a new machine learning model into our platform, leading to 20% increase in accuracy and 15% decrease in inference time.",
+            "Developed and maintained a set of open-source libraries for building scalable and efficient cloud-based applications."
+          ]
+        },
+        {
+          "company": "DataScale Inc",
+          "title": "Staff Software Engineer",
+          "dates": "2015-2018",
+          "bullet-points": [
+            "Designed and implemented a high-performance caching layer for our e-commerce platform, resulting in 50% reduction in page load times.",
+            "Collaborated with the ops team to implement a containerization strategy using Kubernetes, leading to 30% reduction in infrastructure costs."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "MS in Computer Science",
+        "university": "Stanford University",
+        "dates": "2010-2012"
+      },
+      "skills": [
+        "Cloud Computing (AWS, GCP)",
+        "Containerization (Kubernetes, Docker)",
+        "Programming Languages (Java, Python, C++)",
+        "Databases (MySQL, MongoDB)"
+      ]
+    },
+    "[X]": 5,
+    "[Y]": [
+      "Technical Capability",
+      "Execution Reliability"
+    ],
+    "[Z]": [
+      {
+        "question": "Can you describe your experience with containerization?",
+        "answer": "I have used Kubernetes for a while now. I can describe the benefits and challenges of using it."
+      },
+      {
+        "question": "How do you approach designing scalable infrastructure?",
+        "answer": "I use a combination of cloud provider tools and open-source libraries to design scalable infrastructure."
+      }
+    ]
+  },
+  "evalCriteria": [
+    "Should detect measurable impact metrics (e.g., 30% reduction in latency)",
+    "Should flag lack of clear individual ownership (e.g., multiple team collaborations without clear leader)",
+    "Should rate technical capability as strong for cloud computing and containerization",
+    "Should identify missing skills in data engineering or machine learning",
+    "Should ask evidence recovery questions about scalability and efficiency"
+  ]
+}

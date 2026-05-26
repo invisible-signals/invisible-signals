@@ -1,0 +1,18 @@
+{
+  "scenario": "weak-signal",
+  "description": "Answer dominated by collective 'we' language, vague outcome, no reflection, no measurable result, and unclear individual contribution.",
+  "inputs": {
+    "[PASTE BEHAVIORAL QUESTION]": "Tell me about a time you led a complex technical project.",
+    "[PASTE YOUR ANSWER]": "We worked on this project as a team. I don't really remember the specifics of it all. We got some stuff done, but I'm not sure what the outcome was. I think we learned something, though, and that's always good, right?",
+    "[PASTE CURRENT LEVEL / TITLE]": "Software Engineer II",
+    "[PASTE TARGET LEVEL / TITLE]": "Senior Software Engineer",
+    "[senior IC / staff IC / principal IC / engineering manager / director+ / mobile engineer / platform engineer / data engineer / career changer / returning-to-work candidate / other]": "engineer"
+  },
+  "evalCriteria": [
+    "Should flag the use of collective 'we' language without specifying individual contributions.",
+    "Should rate the lack of measurable result as weak or missing.",
+    "Should identify vague outcome and unclear individual contribution as potential issues.",
+    "Should ask evidence recovery questions about specific actions taken during the project.",
+    "Should detect a lack of reflection on what was learned from the experience."
+  ]
+}

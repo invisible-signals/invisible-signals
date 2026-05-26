@@ -1,0 +1,20 @@
+{
+  "scenario": "edge-case-failure-story",
+  "description": "Candidate minimizes the failure, deflects blame to circumstances or teammates, no clear lesson, and no stated behavior change afterward.",
+  "inputs": {
+    "[PASTE BEHAVIORAL QUESTION]": "Tell me about a time you failed.",
+    "[PASTE YOUR ANSWER]": "Well, so I was working on this project at DataScale Inc. and we had some issues with the deployment pipeline. It turned out that one of my teammates didn't follow the standard procedure for setting up the environment. I mean, it's not like it's a big deal or anything, but yeah... We got it fixed eventually.",
+    "[PASTE CURRENT LEVEL / TITLE]": "Software Engineer II",
+    "[PASTE TARGET LEVEL / TITLE]": "Senior Software Engineer",
+    "[senior IC / staff IC / principal IC / engineering manager / director+ / mobile engineer / platform engineer / data engineer / career changer / returning-to-work candidate / other]": "staff IC",
+    "[PASTE ROLE TITLE, KEY REQUIREMENTS, OR JOB DESCRIPTION EXCERPT]": "As a Senior Software Engineer at DataScale Inc., you will be responsible for leading cross-functional teams to design and implement scalable software systems. You will be expected to drive technical vision, execute on complex projects, and mentor junior engineers.",
+    "[OPTIONAL CONTEXT — layoff, promotion target, career transition, industry pivot, IC-to-manager transition, manager-to-IC transition, return from career break, etc.]": "Career transition"
+  },
+  "evalCriteria": [
+    "Should detect that the candidate minimizes the failure",
+    "Should flag that the candidate deflects blame to circumstances or teammates",
+    "Should rate 'no clear lesson' as weak or missing",
+    "Should identify that the candidate does not state a behavior change afterward",
+    "Should ask evidence recovery questions about what the candidate learned from the experience"
+  ]
+}

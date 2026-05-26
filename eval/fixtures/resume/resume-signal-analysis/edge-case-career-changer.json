@@ -1,0 +1,63 @@
+{
+  "scenario": "edge-case-career-changer",
+  "description": "Non-engineering background making an IC transition. Strong product and business judgment signals but no direct software engineering work experience on the résumé.",
+  "inputs": {
+    "[PASTE CURRENT LEVEL / TITLE]": "Product Manager",
+    "[PASTE TARGET LEVEL / TITLE]": "Software Engineer II",
+    "[software engineer / senior IC / staff IC / principal IC / engineering manager / director+ / mobile engineer / platform engineer / data engineer / career changer / returning-to-work candidate / other]": "Career Changer",
+    "[OPTIONAL CONTEXT]": "",
+    "[PASTE JOB DESCRIPTION]": "Design, develop, and deploy scalable software systems with high reliability and low latency. Collaborate with cross-functional teams to drive technical decision-making.",
+    "[PASTE RÉSUMÉ]": {
+      "name": "John Doe",
+      "contact": "john.doe@email.com",
+      "summary": "",
+      "experience": [
+        {
+          "title": "Product Manager at Acme Corp",
+          "company": "Acme Corp",
+          "dates": "2018-2022",
+          "bulletPoints": [
+            "- Developed and executed product roadmaps that resulted in 25% increase in revenue.",
+            "- Led cross-functional teams to launch new features, resulting in 95% customer satisfaction ratings.",
+            "- Collaborated with engineering team to improve product reliability by 30%",
+            "- Analyzed market trends and competitor analysis to inform product decisions"
+          ]
+        },
+        {
+          "title": "Operations Manager at DataScale Inc",
+          "company": "DataScale Inc",
+          "dates": "2015-2018",
+          "bulletPoints": [
+            "- Managed a team of 10 to improve operational efficiency by 20%",
+            "- Developed and implemented process improvements that resulted in 15% cost savings.",
+            "- Collaborated with executive team to develop strategic plans for company growth"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "degree": "Bachelor's Degree",
+          "fieldOfStudy": "Business Administration",
+          "university": "XYZ University",
+          "dates": "2010-2014"
+        }
+      ],
+      "skills": [
+        "Product Management",
+        "Project Management",
+        "Leadership",
+        "Communication"
+      ]
+    },
+    "[X]": "",
+    "[Y]": "",
+    "[Z]": ""
+  },
+  "evalCriteria": [
+    "Should detect a mismatch between the candidate's current role and target role.",
+    "Should flag the lack of direct software engineering experience as a potential weakness.",
+    "Should rate the candidate's ability to communicate technical concepts as weak or missing.",
+    "Should identify areas where the candidate can leverage their product management experience in an IC role.",
+    "Should ask evidence recovery questions about how the candidate would handle complex technical discussions."
+  ]
+}

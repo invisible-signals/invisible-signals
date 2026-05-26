@@ -1,0 +1,62 @@
+{
+  "scenario": "weak-signal",
+  "description": "Mid-level backend engineer with activity-based bullets, no measurable outcomes, and minimal ownership language. Heavy task descriptions with no results.",
+  "inputs": {
+    "[PASTE CURRENT LEVEL / TITLE]": "Software Engineer II",
+    "[PASTE TARGET LEVEL / TITLE]": "Senior Software Engineer",
+    "[software engineer / senior IC / staff IC / principal IC / engineering manager / director+ / mobile engineer / platform engineer / data engineer / career changer / returning-to-work candidate / other]": "Software Engineer",
+    "[OPTIONAL CONTEXT]": "",
+    "[PASTE JOB DESCRIPTION]": {
+      "jobTitle": "Senior Software Engineer",
+      "responsibilities": [
+        "Design and develop scalable backend systems.",
+        "Collaborate with cross-functional teams to deliver high-quality products.",
+        "Identify areas for process improvements and implement changes."
+      ],
+      "requirements": [
+        "5+ years of experience in software engineering.",
+        "Strong understanding of computer science fundamentals.",
+        "Excellent communication skills."
+      ]
+    },
+    "[PASTE RÉSUMÉ]": {
+      "name": "John Doe",
+      "experience": [
+        {
+          "company": "Acme Corp",
+          "position": "Software Engineer II",
+          "dates": "2020-2022",
+          "bullets": [
+            "Designed and developed a real-time analytics system using Node.js and MongoDB.",
+            "Worked with the DevOps team to improve deployment efficiency by 30%.",
+            "Participated in code reviews and provided feedback to colleagues."
+          ]
+        },
+        {
+          "company": "DataScale Inc",
+          "position": "Software Engineer I",
+          "dates": "2018-2020",
+          "bullets": [
+            "Developed a data processing pipeline using Apache Beam and Google Cloud Storage.",
+            "Collaborated with the QA team to identify and resolve issues in a timely manner.",
+            "Contributed to the development of a microservices architecture."
+          ]
+        }
+      ],
+      "education": {
+        "degree": "Bachelor's degree in Computer Science",
+        "institution": "University of California, Berkeley"
+      }
+    },
+    "[X]": "",
+    "[Y]": "",
+    "[Z]": ""
+  },
+  "evalCriteria": [
+    "Should detect a lack of measurable outcomes and results in the résumé bullets.",
+    "Should flag the heavy use of task descriptions without any supporting evidence or outcomes.",
+    "Should rate Technical Capability as weak due to the absence of significant technical achievements.",
+    "Should identify the need for more ownership language and specific examples of impact.",
+    "Should ask evidence recovery questions about measurable outcomes, results, and ownership in the résumé."
+  ]
+}
