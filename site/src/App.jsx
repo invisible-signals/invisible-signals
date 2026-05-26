@@ -1,4 +1,11 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 import NavBar from './components/NavBar.jsx'
 import HomePage from './pages/HomePage.jsx'
 import FrameworksPage from './pages/FrameworksPage.jsx'
@@ -12,6 +19,7 @@ import SearchPage from './pages/SearchPage.jsx'
 export default function App() {
   return (
     <HashRouter>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col bg-is-bg-deep">
         <NavBar />
         <main className="flex-1">

@@ -8,7 +8,7 @@ const modules = import.meta.glob('../../../prompts/**/*.md', {
 })
 
 const VALID_STATUSES = ['draft', 'active', 'deprecated']
-const VALID_CATEGORIES = ['resume', 'interview']
+const VALID_CATEGORIES = ['resume', 'interview', 'coaching']
 
 const promptFiles = Object.entries(modules).filter(
   ([path]) => !path.endsWith('README.md'),
