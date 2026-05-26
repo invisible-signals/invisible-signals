@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import StatusPill from '../components/StatusPill.jsx'
 
-const stages = [
+export const stages = [
   {
     id: 'RESUME_REVIEW',
     label: '01 // RÉSUMÉ REVIEW',

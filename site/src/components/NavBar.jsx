@@ -1,4 +1,6 @@
-import { NavLink } from 'react-router-dom'
+import { useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { Search } from 'lucide-react'
 
 const signalStackLink = { to: '/signal-stack', label: 'SIGNAL_STACK' }
 
@@ -9,6 +11,16 @@ const links = [
 ]
 
 export default function NavBar() {
+  const navigate = useNavigate()
+  const [query, setQuery] = useState('')
+
+  function handleSearch(e) {
+    e.preventDefault()
+    const q = query.trim()
+    if (!q) return
+    navigate(`/search?q=${encodeURIComponent(q)}`)
+  }
+
   return (
     <nav className="border-b border-is-border bg-is-bg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 flex items-center h-12 gap-8">
@@ -57,8 +69,22 @@ export default function NavBar() {
           ))}
         </div>
 
+        {/* Search */}
+        <form onSubmit={handleSearch} className="flex items-center gap-0 border border-is-border bg-is-surface shrink-0">
+          <span className="pl-3 pr-2 flex items-center text-is-dim">
+            <Search size={12} />
+          </span>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="QUERY_SYSTEM..."
+            className="bg-transparent font-mono text-xs tracking-widest text-is-text placeholder:text-is-dim outline-none py-1.5 pr-3 w-40 sm:w-48"
+          />
+        </form>
+
         {/* Right side */}
-        <div className="flex items-center gap-3 shrink-0 ml-auto">
+        <div className="flex items-center gap-3 shrink-0">
           <span className="hidden sm:block font-mono text-xs text-is-dim tracking-widest">V0.1</span>
           <a
             href="https://github.com/invisible-signals/invisible-signals"

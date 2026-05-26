@@ -7,6 +7,7 @@ import TemplatesPage from './pages/TemplatesPage.jsx'
 import SignalStackLayout from './pages/SignalStackLayout.jsx'
 import SignalStackOverviewPage from './pages/SignalStackOverviewPage.jsx'
 import SignalStackLayerPage from './pages/SignalStackLayerPage.jsx'
+import SearchPage from './pages/SearchPage.jsx'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/frameworks" element={<FrameworksPage />} />
             <Route path="/prompts" element={<PromptsPage />} />
             <Route path="/templates" element={<TemplatesPage />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/signal-stack" element={<SignalStackLayout />}>
               <Route index element={<SignalStackOverviewPage />} />
               <Route path=":layer" element={<SignalStackLayerPage />} />
