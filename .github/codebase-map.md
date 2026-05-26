@@ -36,11 +36,14 @@ site/
     ├── lib/
     │   └── promptSchema.test.js    ← Validates all prompts/**/*.md frontmatter at build time
     └── pages/
-        ├── HomePage.jsx            ← Hero; Signal Stack™; Product modules; Principles
-        ├── FrameworksPage.jsx      ← Hiring funnel 5-stage accordion
-        ├── PromptsPage.jsx         ← import.meta.glob loader; frontmatter parser; CopyButton
-        ├── AgentsPage.jsx          ← Coming soon placeholder
-        └── WorkflowsPage.jsx       ← Coming soon placeholder
+        ├── HomePage.jsx                ← Hero; Signal Stack™; Product modules; Principles
+        ├── FrameworksPage.jsx          ← Hiring funnel 5-stage accordion
+        ├── PromptsPage.jsx             ← import.meta.glob loader; frontmatter parser; CopyButton
+        ├── TemplatesPage.jsx           ← Signal scorecard + self-assessment templates
+        ├── SearchPage.jsx              ← Full-text search across prompts and frameworks
+        ├── SignalStackLayout.jsx       ← Nested layout shell for /#/signal-stack routes
+        ├── SignalStackOverviewPage.jsx ← Signal Stack™ 8-layer overview
+        └── SignalStackLayerPage.jsx    ← Individual layer deep-dive (/:layer)
 ```
 
 ---
@@ -92,7 +95,7 @@ eval/
 
 | Component | Props | Used In |
 |---|---|---|
-| `StatusPill` | `color` (blue/coral/gold/dim), `children` | HomePage, AgentsPage, WorkflowsPage, NavBar |
+| `StatusPill` | `color` (blue/coral/gold/dim), `children` | HomePage, SignalStackOverviewPage, NavBar |
 | `NavBar` | none (self-contained) | App.jsx (global layout) |
 
 **Inline-only sub-components** (not in `components/`, not shared):

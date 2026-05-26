@@ -112,22 +112,33 @@ The `dist/` folder is the deployable artifact. It is gitignored.
 
 ## Branching Strategy
 
-> **TODO:** Define and document the team's branching strategy here.
+This project uses **trunk-based development**.
 
-Suggested default:
-
-- `main` — production-ready, protected
-- `feat/description` — feature branches
-- `fix/description` — bug fix branches
-- `chore/description` — maintenance, dependency updates
+- `main` — the trunk; always deployable, protected
+- Short-lived feature branches (1–2 days max) branched from and merged back to `main`
+- Branch naming: `feat/description`, `fix/description`, `chore/description`
+- No long-lived branches; no `develop` or `release` branches
+- Merge via pull request with at least one passing CI check before merging
+- Delete branches immediately after merge
 
 ---
 
 ## Commit Conventions
 
-> **TODO:** Define commit message conventions (Conventional Commits recommended).
+This project uses **[Conventional Commits](https://www.conventionalcommits.org/)**.
 
-Suggested format:
+Format: `<type>(<scope>): <description>`
+
+| Type | When to use |
+|---|---|
+| `feat` | New feature or content |
+| `fix` | Bug fix |
+| `chore` | Maintenance, dependency updates, tooling |
+| `docs` | Documentation only changes |
+| `refactor` | Code change that neither fixes a bug nor adds a feature |
+| `test` | Adding or updating tests |
+
+Common scopes: `prompts`, `site`, `frameworks`, `deps`, `eval`
 
 ```
 feat(prompts): add interview framing prompt

@@ -12,10 +12,11 @@ Invisible Signals™ is a **static single-page application** backed by a **flat 
 │  │           React SPA (HashRouter)             │   │
 │  │                                              │   │
 │  │  NavBar ──► Route /           ► HomePage     │   │
-│  │             Route /frameworks ► FrameworksPage│   │
-│  │             Route /prompts    ► PromptsPage  │   │
-│  │             Route /agents     ► AgentsPage   │   │
-│  │             Route /workflows  ► WorkflowsPage│   │
+│  │             Route /frameworks   ► FrameworksPage        │   │
+│  │             Route /prompts     ► PromptsPage           │   │
+│  │             Route /templates   ► TemplatesPage         │   │
+│  │             Route /search      ► SearchPage            │   │
+│  │             Route /signal-stack► SignalStackLayout      │   │
 │  └──────────────────────────────────────────────┘   │
 │                         │                           │
 │          Prompts bundled at build time via           │
@@ -71,11 +72,14 @@ Invisible Signals™ is a **static single-page application** backed by a **flat 
         ├── lib/
         │   └── promptSchema.test.js  # Validates all prompt frontmatter at build time
         └── pages/
-            ├── HomePage.jsx       # Landing, hero, signal stack overview
-            ├── FrameworksPage.jsx # Hiring funnel stage breakdown
-            ├── PromptsPage.jsx    # Dynamic prompt loader + copy UI
-            ├── AgentsPage.jsx     # Coming soon: AI agent tools
-            └── WorkflowsPage.jsx  # Coming soon: workflow automation
+            ├── HomePage.jsx               # Landing, hero, signal stack overview
+            ├── FrameworksPage.jsx         # Hiring funnel stage breakdown
+            ├── PromptsPage.jsx            # Dynamic prompt loader + copy UI
+            ├── TemplatesPage.jsx          # Signal scorecard + self-assessment templates
+            ├── SearchPage.jsx             # Full-text search across prompts and frameworks
+            ├── SignalStackLayout.jsx      # Nested layout shell for signal stack routes
+            ├── SignalStackOverviewPage.jsx# Signal Stack™ 8-layer overview
+            └── SignalStackLayerPage.jsx   # Individual layer deep-dive (/:layer)
 ```
 
 ---
@@ -88,13 +92,16 @@ flowchart TD
     B -->|/#/| C[HomePage]
     B -->|/#/frameworks| D[FrameworksPage]
     B -->|/#/prompts| E[PromptsPage]
-    B -->|/#/agents| F[AgentsPage]
-    B -->|/#/workflows| G[WorkflowsPage]
+    B -->|/#/templates| F[TemplatesPage]
+    B -->|/#/search| G[SearchPage]
+    B -->|/#/signal-stack| H[SignalStackLayout]
+    H --> H1[SignalStackOverviewPage]
+    H --> H2[SignalStackLayerPage]
 
-    E --> H[import.meta.glob\nprompts/**/*.md]
-    H --> I[parseFrontmatter\nparsePromptFile]
-    I --> J[Render prompt cards\nwith CopyButton]
-    J --> K[navigator.clipboard.writeText]
+    E --> I[import.meta.glob\nprompts/**/*.md]
+    I --> J[parseFrontmatter\nparsePromptFile]
+    J --> K[Render prompt cards\nwith CopyButton]
+    K --> L[navigator.clipboard.writeText]
 ```
 
 **Prompt loading** is the only non-trivial data flow:
@@ -116,15 +123,16 @@ graph TD
     Pages --> HomePage
     Pages --> FrameworksPage
     Pages --> PromptsPage
-    Pages --> AgentsPage
-    Pages --> WorkflowsPage
+    Pages --> TemplatesPage
+    Pages --> SearchPage
+    Pages --> SignalStackLayout
+    SignalStackLayout --> SignalStackOverviewPage
+    SignalStackLayout --> SignalStackLayerPage
 
     PromptsPage --> CopyButton["CopyButton (local)"]
     HomePage --> BarChart["BarChart() (inline)"]
     HomePage --> RadarRing["RadarRing() (inline)"]
     HomePage --> StatusPill
-    AgentsPage --> StatusPill
-    WorkflowsPage --> StatusPill
     NavBar --> StatusPill
 ```
 

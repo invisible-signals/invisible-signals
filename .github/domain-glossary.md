@@ -106,10 +106,10 @@ Used in signal-scorecard template and STAR answer diagnostic.
 
 | ID | Display Label | Status |
 |---|---|---|
-| `FRAMEWORKS` | `_01_FRAMEWORKS` | Active |
-| `PROMPTS` | `_02_PROMPTS` | Active |
-| `AGENTS` | `_03_AGENTS` | Coming Soon (INITIALIZING) |
-| `WORKFLOWS` | `_04_WORKFLOWS` | Coming Soon (NOT_YET_ACTIVE) |
+| `SIGNAL_STACK` | `SIGNAL_STACK` | Active |
+| `FRAMEWORKS` | `FRAMEWORKS` | Active |
+| `PROMPTS` | `PROMPTS` | Active |
+| `TEMPLATES` | `TEMPLATES` | Active |
 
 ---
 

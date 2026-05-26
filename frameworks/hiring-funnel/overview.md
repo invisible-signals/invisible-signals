@@ -1,7 +1,7 @@
 ---
 title: Hiring Funnel — Overview
 version: 1.0
-status: draft
+status: active
 category: framework
 tags:
   - hiring-funnel

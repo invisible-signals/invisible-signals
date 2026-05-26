@@ -1,7 +1,7 @@
 ---
 title: Recruiter Screen
 version: 1.0
-status: draft
+status: active
 category: framework
 tags:
   - hiring-funnel
@@ -64,4 +64,4 @@ In-house recruiter or external recruiting partner. They are not evaluating techn
 
 ## Related prompts
 
-_Coming soon._
+- [Behavioral Answer Diagnostic](../../prompts/interview/behavioral-answer-diagnostic.md) — Strengthen how you frame your experience and role clarity

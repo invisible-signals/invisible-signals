@@ -1,7 +1,7 @@
 ---
 title: Skeptical Hiring Manager
 version: 1.0
-status: draft
+status: active
 category: interview
 tags:
   - interview

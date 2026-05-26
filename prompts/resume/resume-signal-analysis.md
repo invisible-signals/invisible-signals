@@ -1,7 +1,7 @@
 ---
 title: Résumé Signal Analysis
 version: 1.0
-status: draft
+status: active
 category: resume
 tags:
   - resume

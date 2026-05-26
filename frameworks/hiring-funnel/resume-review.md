@@ -1,7 +1,7 @@
 ---
 title: Résumé Review
 version: 1.0
-status: draft
+status: active
 category: framework
 tags:
   - hiring-funnel
@@ -72,4 +72,4 @@ Write a summary statement that describes what you offer, not what you want.
 
 ## Related prompts
 
-_Coming soon._
+- [Resume Signal Analysis](../../prompts/resume/resume-signal-analysis.md) — Diagnose your résumé bullets for signal quality

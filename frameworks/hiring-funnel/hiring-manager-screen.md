@@ -1,7 +1,7 @@
 ---
 title: Hiring Manager Screen
 version: 1.0
-status: draft
+status: active
 category: framework
 tags:
   - hiring-funnel
@@ -74,4 +74,4 @@ Ask questions that reveal you have thought about the role:
 
 ## Related prompts
 
-*Coming soon.*
+- [Skeptical Hiring Manager](../../prompts/interview/skeptical-hiring-manager.md) — Practice the HM screen with a probing AI roleplay persona

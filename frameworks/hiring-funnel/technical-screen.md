@@ -1,7 +1,7 @@
 ---
 title: Technical Screen
 version: 1.0
-status: draft
+status: active
 category: framework
 tags:
   - hiring-funnel
@@ -71,4 +71,4 @@ Ways to stay sharp before the interview:
 
 ## Related prompts
 
-*Coming soon.*
+- [Behavioral Answer Diagnostic](../../prompts/interview/behavioral-answer-diagnostic.md) — Strengthen technical STAR stories and ownership language

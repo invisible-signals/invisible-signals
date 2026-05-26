@@ -1,7 +1,7 @@
 ---
 title: Onsite
 version: 1.0
-status: draft
+status: active
 category: framework
 tags:
   - hiring-funnel
@@ -80,4 +80,5 @@ Prompt to practice: *"Tell me about a time when..."*
 
 ## Related prompts
 
-*Coming soon.*
+- [Behavioral Answer Diagnostic](../../prompts/interview/behavioral-answer-diagnostic.md) — Diagnose and sharpen behavioral answers for onsite panels
+- [Skeptical Hiring Manager](../../prompts/interview/skeptical-hiring-manager.md) — Simulate the toughest onsite interviewer type

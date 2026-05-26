@@ -1,7 +1,7 @@
 ---
 title: Behavioral Answer Diagnostic
 version: 1.0
-status: draft
+status: active
 category: interview
 tags:
   - interview

@@ -15,8 +15,6 @@ Invisible Signals™ is a **fully static site**. Deployment is building `site/` 
 | Local | `http://localhost:5173` | any | `npm run dev` |
 | Local preview | `http://localhost:4173` | any | `npm run preview` (tests production build) |
 
-> **TODO:** Document production URL once deployed.
-
 ---
 
 ## Build Artifact
@@ -109,8 +107,7 @@ Since this is a static site:
 
 There is no feature flag system. Pages with incomplete features use `StatusPill` with `color="gold"` (INITIALIZING) or `color="dim"` (NOT_YET_ACTIVE) as a visual signal.
 
-Active pages: `/`, `/signal-stack`, `/search`  
-Coming-soon pages: `/agents`, `/workflows`
+Active pages: `/`, `/frameworks`, `/prompts`, `/templates`, `/search`, `/signal-stack`, `/signal-stack/:layer`
 
 ---
 
