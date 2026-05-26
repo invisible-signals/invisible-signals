@@ -109,7 +109,7 @@ Since this is a static site:
 
 There is no feature flag system. Pages with incomplete features use `StatusPill` with `color="gold"` (INITIALIZING) or `color="dim"` (NOT_YET_ACTIVE) as a visual signal.
 
-Active pages: `/`, `/frameworks`, `/prompts`  
+Active pages: `/`, `/signal-stack`, `/search`  
 Coming-soon pages: `/agents`, `/workflows`
 
 ---

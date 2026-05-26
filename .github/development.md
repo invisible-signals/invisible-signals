@@ -49,18 +49,6 @@ Files to edit:
 - `site/src/index.css` — global styles
 - `site/tailwind.config.js` — design tokens
 
-### Changing prompts (markdown)
-
-1. Edit or add files in `prompts/`
-2. Restart `npm run dev` to re-trigger `import.meta.glob`
-3. Visit `http://localhost:5173/#/prompts` to verify
-
-### Changing framework docs
-
-1. Edit files in `frameworks/`
-2. If surfacing in the site, also update `FrameworksPage.jsx`
-3. No server restart needed for markdown-only changes (they aren't live-imported except in PromptsPage)
-
 ### Running the prompt evaluator
 
 The `eval/` directory contains an offline Python harness that runs prompts against real Ollama output and checks for expected section headers.

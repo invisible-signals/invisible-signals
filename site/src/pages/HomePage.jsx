@@ -63,24 +63,6 @@ const modules = [
     pillColor: 'blue',
   },
   {
-    to: '/agents',
-    tag: 'AGENTS',
-    icon: '◈',
-    title: 'Agents',
-    desc: 'Automated workflows that scan project history and generate high-fidelity impact reports.',
-    pill: 'V0.4 / PUBLIC',
-    pillColor: 'gold',
-  },
-  {
-    to: '/workflows',
-    tag: 'WORKFLOWS',
-    icon: '↻',
-    title: 'Workflows',
-    desc: 'Repeatable pipelines for live interview calibration, performance cycles, and promotion runs.',
-    pill: 'V0.3 MAT',
-    pillColor: 'dim',
-  },
-  {
     to: '/templates',
     tag: 'TEMPLATES',
     icon: '◻',
@@ -170,7 +152,7 @@ export default function HomePage() {
               <em className="not-italic text-is-alert">ISSUE.</em>
             </h2>
             <p className="font-body text-base text-is-dim leading-relaxed mb-8 max-w-lg">
-              In a market saturated with technical noise, your ability to "translate" until transmitted. The clarity of your signal determines your career trajectory.
+              Amidst technical noise, the clarity of your signal—how well you communicate your capabilities—determines your career trajectory.
             </p>
 
             {/* Alert callout */}
@@ -289,11 +271,11 @@ export default function HomePage() {
 
           <div className="is-panel p-0 overflow-hidden">
             {/* Panel header */}
-            <div className="border-b border-is-border px-5 py-3 flex items-center justify-between bg-is-surface">
+            <div className="border-b border-is-border px-3 sm:px-5 py-2 sm:py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 bg-is-surface">
               <div className="flex items-center gap-4">
                 <span className="is-label">PROCESS_ID: SIGNAL_PARALLAX</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-start">
                 <span className="font-mono text-xs text-is-dim">STEP: 1 / 3</span>
                 <StatusPill color="gold">CALIBRATING</StatusPill>
                 <StatusPill color="blue">SIGNAL_BLANKET</StatusPill>
@@ -307,13 +289,13 @@ export default function HomePage() {
                 <div className="is-panel p-4 font-mono text-xs text-is-dim leading-relaxed italic">
                   "I helped build a signup feature for a new user flow. It was a difficult project but we finished it on time."
                 </div>
-                <div className="grid grid-cols-3 gap-2 mt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
                   {[
                     { label: 'ENGINEER_CONFIDENCE', val: '0.13 (CRITICAL_LOW)', color: 'text-is-alert' },
                     { label: 'INPUT_RESOLUTION', val: 'NULL_DETECTED', color: 'text-is-alert' },
                     { label: 'COMPLEXITY_INDEX', val: 'GHOST_RUN', color: 'text-is-warning' },
                   ].map(({ label, val, color }) => (
-                    <div key={label} className="border border-is-border p-2">
+                    <div key={label} className="border border-is-border p-3 sm:p-2">
                       <div className="font-mono text-xs text-is-dim mb-1">{label}</div>
                       <div className={`font-mono text-xs font-semibold ${color}`}>{val}</div>
                     </div>
@@ -327,13 +309,13 @@ export default function HomePage() {
                 <div className="is-panel border-is-primary/30 p-4 font-mono text-xs text-is-text leading-relaxed">
                   "Led the end-to-end migration of the critical 'Core-Billing' service to AWS, eliminating $482k in maintenance debt and achieving 99.99% availability."
                 </div>
-                <div className="grid grid-cols-3 gap-2 mt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
                   {[
                     { label: 'ENGINEER_CONFIDENCE', val: '0.94 CONFIRMED', color: 'text-is-primary' },
                     { label: 'INPUT_RESOLUTION', val: 'QUANTIFIED', color: 'text-is-primary' },
                     { label: 'COMPLEXITY_INDEX', val: 'HYPERLINK_HIGH', color: 'text-is-primary' },
                   ].map(({ label, val, color }) => (
-                    <div key={label} className="border border-is-border p-2">
+                    <div key={label} className="border border-is-border p-3 sm:p-2">
                       <div className="font-mono text-xs text-is-dim mb-1">{label}</div>
                       <div className={`font-mono text-xs font-semibold ${color}`}>{val}</div>
                     </div>

@@ -1,9 +1,6 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import NavBar from './components/NavBar.jsx'
 import HomePage from './pages/HomePage.jsx'
-import FrameworksPage from './pages/FrameworksPage.jsx'
-import PromptsPage from './pages/PromptsPage.jsx'
-import TemplatesPage from './pages/TemplatesPage.jsx'
 import SignalStackLayout from './pages/SignalStackLayout.jsx'
 import SignalStackOverviewPage from './pages/SignalStackOverviewPage.jsx'
 import SignalStackLayerPage from './pages/SignalStackLayerPage.jsx'
@@ -17,9 +14,6 @@ export default function App() {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/frameworks" element={<FrameworksPage />} />
-            <Route path="/prompts" element={<PromptsPage />} />
-            <Route path="/templates" element={<TemplatesPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/signal-stack" element={<SignalStackLayout />}>
               <Route index element={<SignalStackOverviewPage />} />
@@ -32,7 +26,6 @@ export default function App() {
           <div className="flex items-center gap-6">
             <a href="https://github.com/invisible-signals/invisible-signals" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-dim hover:text-is-text transition-colors">GITHUB</a>
             <a href="https://github.com/invisible-signals/invisible-signals/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-dim hover:text-is-text transition-colors">CODE_OF_CONDUCT</a>
-            <a href="https://github.com/invisible-signals/invisible-signals/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-dim hover:text-is-text transition-colors">CONTRIBUTING</a>
             <span className="font-mono text-xs text-is-dim">SECURITY: APACHE-2.0 // OPEN_SOURCE_LICENSED</span>
           </div>
         </footer>
