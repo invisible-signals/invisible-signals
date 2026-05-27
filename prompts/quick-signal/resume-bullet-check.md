@@ -2,7 +2,7 @@
 title: Résumé Bullet Signal Check
 version: 1.0
 status: active
-category: quick-start
+category: quick-signal
 tags:
   - resume
   - quick-check

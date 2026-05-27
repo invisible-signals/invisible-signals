@@ -36,6 +36,12 @@ export function parsePromptFile(path, raw) {
 }
 
 const CATEGORY_ORDER = ['resume', 'interview']
+const QUICK_PROMPT_ORDER = [
+  'resume-bullet-check',
+  'interview-answer-check',
+  'github-profile-check',
+  'linkedin-profile-check',
+]
 
 const prompts = Object.entries(modules)
   .filter(([path]) => !path.endsWith('README.md'))
@@ -46,6 +52,11 @@ const prompts = Object.entries(modules)
     if (ai !== bi) return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi)
     return a.id.localeCompare(b.id)
   })
+
+const quickPrompts = prompts
+  .filter((prompt) => prompt.category === 'quick-signal')
+  .sort((a, b) => QUICK_PROMPT_ORDER.indexOf(a.id) - QUICK_PROMPT_ORDER.indexOf(b.id))
+const otherPrompts = prompts.filter((prompt) => prompt.category !== 'quick-signal')
 
 function CopyButton({ text }) {
   const [copied, setCopied] = useState(false)
@@ -77,18 +88,78 @@ export default function PromptsPage() {
           <span className="is-label">_02_PROMPTS</span>
           <StatusPill color="blue">SIGNAL_ACTIVE</StatusPill>
         </div>
-        <h1 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
+        <h2 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
+          QUICK SIGNAL PROMPTS
+        </h2>
+        <p className="font-body text-base text-is-dim leading-relaxed max-w-2xl">
+          Want fast feedback? Copy one focused prompt and run it in your preferred AI tool. System-level instructions to analyze career metadata and generate telemetry goals.
+        </p>
+      </div>
+
+      {/* Quick signal prompts */}
+      {quickPrompts.length > 0 && (
+        <div className="mb-12">
+
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            {quickPrompts.map(({ id, title, purpose, tags, text }, index) => (
+              <section key={id} className="border border-is-border bg-is-surface-container-lowest p-6 relative group overflow-hidden glow-border transition-all">
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <div>
+                    <h3 className="text-sm font-mono uppercase tracking-widest text-is-text mb-3">
+                      {String(index + 1).padStart(2, '0')} // {title.toUpperCase()}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {tags.map((t) => (
+                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-[10px] uppercase text-is-dim">
+                          #{t.replace(/-/g, '_').toUpperCase()}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="shrink-0">
+                    <CopyButton text={text} />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,4fr)_200px] gap-6">
+                  <div>
+                    <div className="is-label mb-3">PROMPT_BODY</div>
+                    <div className="is-panel p-6 font-mono text-xs text-is-dim leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-72 overflow-y-auto">
+                      {text}
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-between gap-6">
+                    <div>
+                      <div className="is-label mb-3">PURPOSE</div>
+                      <p className="font-body text-sm text-is-dim leading-relaxed">{purpose}</p>
+                    </div>
+                    <div className="border-t border-is-border pt-5 text-[10px] uppercase tracking-widest text-is-dim flex items-center gap-3">
+                      <span className="font-mono">TELEMETRY:</span>
+                      <span className="text-is-primary">{tags.includes('quick-check') ? 'READY' : 'ACTIVE'}</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Prompt cards */}
+      <div className="border-b border-is-border pb-10 mb-12">
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <StatusPill color="blue">SIGNAL_ACTIVE</StatusPill>
+        </div>
+        <h2 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
           SIGNAL PROMPTS
-        </h1>
+        </h2>
         <p className="font-body text-base text-is-dim leading-relaxed max-w-2xl">
           System-level instructions to analyze career metadata and generate telemetry goals. Paste these prompts into any AI tool and replace the bracketed placeholders with your actual content.
         </p>
       </div>
-
-      {/* Prompt cards */}
       <div className="space-y-px bg-is-border">
-        {prompts.map(({ id, title, purpose, tags, text }, index) => (
-          <div key={id} className="bg-is-bg">
+        {otherPrompts.map(({ id, title, purpose, tags, text }, index) => (
+          <div key={id} className="bg-is-bg border border-is-border glow-border transition-all">
             {/* Header */}
             <div className="border-b border-is-border px-6 py-4 bg-is-surface flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-4">
@@ -100,11 +171,11 @@ export default function PromptsPage() {
               <CopyButton text={text} />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-is-border">
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_280px] gap-px bg-is-border">
               {/* Prompt text */}
-              <div className="lg:col-span-2 bg-is-bg p-6">
+              <div className="bg-is-bg p-6">
                 <div className="is-label mb-4">PROMPT_BODY</div>
-                <div className="is-panel p-4 font-mono text-xs text-is-dim leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-96 overflow-y-auto">
+                <div className="is-panel p-6 font-mono text-xs text-is-dim leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-96 overflow-y-auto">
                   {text}
                 </div>
               </div>

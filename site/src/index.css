@@ -69,6 +69,24 @@
     @apply border border-is-border bg-is-surface;
   }
 
+  .is-panel::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .is-panel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .is-panel::-webkit-scrollbar-thumb {
+    background: #1a1d23;
+    border-radius: 0;
+  }
+
+  .is-panel::-webkit-scrollbar-thumb:hover {
+    background: #282d35;
+  }
+
   .is-label {
     @apply font-mono text-xs uppercase tracking-widest text-is-dim;
   }

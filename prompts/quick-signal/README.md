@@ -1,4 +1,4 @@
-# Quick Start Signal Checks
+# Quick Signal Prompts
 
 ## Purpose
 

@@ -2,7 +2,7 @@
 title: GitHub Profile Signal Check
 version: 1.0
 status: active
-category: quick-start
+category: quick-signal
 tags:
   - github
   - profile

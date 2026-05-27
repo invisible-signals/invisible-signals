@@ -76,9 +76,8 @@ export default function NavBar() {
         {/* Secondary nav links */}
         <div className="hidden md:flex items-center">
           {[
-            { to: '/frameworks', label: 'FRAMEWORKS' },
-            { to: '/prompts', label: 'PROMPTS' },
-            { to: '/templates', label: 'TEMPLATES' },
+            { to: '/frameworks', label: '_01_FRAMEWORKS' },
+            { to: '/prompts', label: '_02_PROMPTS' },
           ].map((link) => (
             <NavLink
               key={link.to}
@@ -144,13 +143,10 @@ export default function NavBar() {
 
             <div className="flex flex-col">
               <NavLink to="/frameworks" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-dim hover:text-is-text">
-                FRAMEWORKS
+                _01_FRAMEWORKS
               </NavLink>
               <NavLink to="/prompts" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-dim hover:text-is-text">
-                PROMPTS
-              </NavLink>
-              <NavLink to="/templates" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-dim hover:text-is-text">
-                TEMPLATES
+                _02_PROMPTS
               </NavLink>
             </div>
 
