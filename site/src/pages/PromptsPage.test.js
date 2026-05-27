@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { parseFrontmatter, parsePromptFile } from './PromptsPage.jsx'
+import { parseFrontmatter, parsePromptFile } from '../lib/parsePrompts.js'
 
 // ─── parseFrontmatter ────────────────────────────────────────────────────────
 

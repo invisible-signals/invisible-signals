@@ -1,39 +1,11 @@
 import { useState } from 'react'
 import { Copy, Check, AlertTriangle } from 'lucide-react'
 import StatusPill from '../components/StatusPill.jsx'
+import { parseFrontmatter, parsePromptFile } from '../lib/parsePrompts.js'
+
+export { parseFrontmatter, parsePromptFile }
 
 const modules = import.meta.glob('../../../prompts/**/*.md', { eager: true, query: '?raw', import: 'default' })
-
-export function parseFrontmatter(raw) {
-  const match = raw.match(/^---\n([\s\S]*?)\n---/)
-  if (!match) return {}
-  const block = match[1]
-  const result = {}
-  block.replace(/^(\w+):\s*(.+)$/gm, (_, k, v) => { result[k] = v.trim() })
-  const tagsMatch = block.match(/^tags:\n((?:[ \t]+-[ \t]+.+\n?)+)/m)
-  if (tagsMatch) {
-    result.tags = tagsMatch[1].match(/[ \t]+-[ \t]+(.+)/g)
-      ?.map((l) => l.replace(/[ \t]+-[ \t]+/, '').trim()) ?? []
-  }
-  return result
-}
-
-export function parsePromptFile(path, raw) {
-  const fm = parseFrontmatter(raw)
-  const purposeMatch = raw.match(/## Purpose\s*\n+([\s\S]*?)(?=\n## |\n---)/m)
-  const purpose = purposeMatch ? purposeMatch[1].split('\n\n')[0].trim() : ''
-  const promptMatch = raw.match(/## Prompt\s+```(?:text)?\n([\s\S]*?)\n```/)
-  const text = promptMatch ? promptMatch[1].trim() : ''
-  const id = path.split('/').pop().replace('.md', '')
-  return {
-    id,
-    title: fm.title || id,
-    category: fm.category || 'general',
-    tags: fm.tags || [],
-    purpose,
-    text,
-  }
-}
 
 const CATEGORY_ORDER = ['resume', 'interview']
 const QUICK_PROMPT_ORDER = [
@@ -86,7 +58,7 @@ export default function PromptsPage() {
       <div className="border-b border-is-border pb-10 mb-12">
         <div className="flex flex-wrap items-center gap-3 mb-6">
           <span className="is-label">_02_PROMPTS</span>
-          <StatusPill color="blue">SIGNAL_ACTIVE</StatusPill>
+          <StatusPill color="coral">SIGNAL_ACTIVE</StatusPill>
         </div>
         <h2 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
           QUICK SIGNAL PROMPTS

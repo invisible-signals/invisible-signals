@@ -124,7 +124,7 @@ export default function TemplatesPage() {
                 {purpose && (
                   <div>
                     <div className="is-label mb-3">PURPOSE</div>
-                    <p className="font-body text-sm text-is-dim leading-relaxed">{purpose}</p>
+                    <p className="font-body text-sm text-is-text leading-relaxed">{purpose}</p>
                   </div>
                 )}
 

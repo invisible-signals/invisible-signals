@@ -1,7 +1,19 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Copy, Check } from 'lucide-react'
 import StatusPill from '../components/StatusPill.jsx'
 import { parseSignalStack } from '../lib/parseSignalStack.js'
+import { parsePromptFile } from '../lib/parsePrompts.js'
 import rawSignalStack from '../../../docs/signal-stack.md?raw'
+
+const quickSignalModules = import.meta.glob('../../../prompts/quick-signal/*.md', { eager: true, query: '?raw', import: 'default' })
+
+const QUICK_PROMPT_ORDER = ['resume-bullet-check', 'interview-answer-check']
+const quickPrompts = Object.entries(quickSignalModules)
+  .filter(([path]) => !path.endsWith('README.md'))
+  .map(([path, raw]) => parsePromptFile(path, raw))
+  .filter((p) => QUICK_PROMPT_ORDER.includes(p.id))
+  .sort((a, b) => QUICK_PROMPT_ORDER.indexOf(a.id) - QUICK_PROMPT_ORDER.indexOf(b.id))
 
 // Signal strength bars — CSS pulse animation, each bar at its own rhythm
 function BarChart() {
@@ -19,6 +31,25 @@ function BarChart() {
       <div className="flex-1 bg-is-primary/20 animate-[pulse_2.3s_infinite]" style={{ height: '40%' }} />
       <div className="flex-1 bg-is-primary/30 animate-[pulse_1.7s_infinite]" style={{ height: '80%' }} />
     </div>
+  )
+}
+
+function CopyButton({ text }) {
+  const [copied, setCopied] = useState(false)
+  function handleCopy() {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+  return (
+    <button
+      onClick={handleCopy}
+      className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-is-border text-is-dim hover:border-is-primary hover:text-is-primary transition-all"
+    >
+      {copied ? <Check size={12} /> : <Copy size={12} />}
+      {copied ? 'COPIED' : 'COPY'}
+    </button>
   )
 }
 
@@ -43,6 +74,17 @@ function RadarRing() {
 
 const { layers: signalLayers } = parseSignalStack(rawSignalStack)
 
+const LAYER_META = [
+  { freq: '440Hz',  barColor: 'bg-is-secondary',  textColor: 'text-is-secondary',  freqClass: 'border-is-secondary/50 text-is-secondary',  pct: 100 },
+  { freq: '880Hz',  barColor: 'bg-is-alert',       textColor: 'text-is-alert',       freqClass: 'border-is-alert/50 text-is-alert',           pct: 85  },
+  { freq: '1.2GHz', barColor: 'bg-is-warning',     textColor: 'text-is-warning',     freqClass: 'border-is-warning/50 text-is-warning',       pct: 70  },
+  { freq: '2.4GHz', barColor: 'bg-is-primary',     textColor: 'text-is-primary',     freqClass: 'border-is-primary/50 text-is-primary',       pct: 60  },
+  { freq: '4.8GHz', barColor: 'bg-is-secondary',   textColor: 'text-is-secondary',   freqClass: 'border-is-secondary/50 text-is-secondary',   pct: 55  },
+  { freq: '9.6GHz', barColor: 'bg-is-alert',       textColor: 'text-is-alert',       freqClass: 'border-is-alert/50 text-is-alert',           pct: 45  },
+  { freq: '19GHz',  barColor: 'bg-is-warning',     textColor: 'text-is-warning',     freqClass: 'border-is-warning/50 text-is-warning',       pct: 40  },
+  { freq: '38GHz',  barColor: 'bg-is-primary',     textColor: 'text-is-primary',     freqClass: 'border-is-primary/50 text-is-primary',       pct: 35  },
+]
+
 const modules = [
   {
     to: '/frameworks',
@@ -60,7 +102,7 @@ const modules = [
     title: 'Prompts',
     desc: 'System-level instructions to analyze career metadata and generate telemetry goals.',
     pill: 'SIGNAL_MAP',
-    pillColor: 'blue',
+    pillColor: 'coral',
   },
   {
     to: '/templates',
@@ -97,6 +139,7 @@ const principles = [
 ]
 
 export default function HomePage() {
+  const [showAllLayers, setShowAllLayers] = useState(false)
   return (
     <div className="w-full">
 
@@ -114,15 +157,21 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="font-mono text-5xl md:text-6xl lg:text-7xl font-semibold leading-none tracking-tight text-is-text uppercase mb-6">
-                CAREER SIGNAL<br />
-                <em className="not-italic text-is-primary">INTELLIGENCE.</em>
+                DETECT YOUR SIGNALS<br />
+                <em className="not-italic text-is-alert">IN SECONDS.</em>
               </h1>
-              <p className="font-body text-base text-is-dim leading-relaxed max-w-xl mb-10">
-                Open-source telemetry for engineers and leaders. Detect, refine, and transmit professional impact in the age of algorithmic hiring.
+              <p className="font-body text-base text-is-text leading-relaxed max-w-xl mb-10">
+                Run a quick check on your narrative. Surface what's invisible to algorithmic and human filters. Detect, refine, and transmit your professional impact.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link to="/signal-stack" className="is-btn-primary">
-                  START HERE →
+                <button
+                  onClick={() => document.getElementById('quick-prompts')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="is-btn-primary"
+                >
+                  RUN_QUICK_CHECK
+                </button>
+                <Link to="/signal-stack" className="is-btn-ghost">
+                  SIGNAL_STACK →
                 </Link>
               </div>
             </div>
@@ -134,10 +183,91 @@ export default function HomePage() {
               <BarChart />
               <div className="grid grid-cols-3 gap-px mt-1 border-t border-is-border pt-3">
                 {['TECHNICAL', 'OWNERSHIP', 'TRANSLATION'].map((l) => (
-                  <div key={l} className="font-mono text-xs text-is-dim">{l}</div>
+                  <div key={l} className="font-mono text-xs text-is-text">{l}</div>
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── QUICK SIGNAL PROMPTS ──────────────────────────── */}
+      <section id="quick-prompts" className="border-b border-is-border bg-is-bg-deep px-6 py-20 scroll-mt-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+              <div className="is-label mb-2">QUICK_START</div>
+              <h2 className="font-mono text-3xl md:text-4xl font-semibold uppercase text-is-text">
+                SIGNAL_PROMPTS
+              </h2>
+              <p className="font-body text-base text-is-text mt-3 max-w-xl">
+                Want fast feedback? Copy one focused prompt and run it in your preferred AI tool.
+              </p>
+            </div>
+            <div className="font-mono text-xs text-is-dim uppercase tracking-widest text-right shrink-0">
+              IMMEDIATE_UTILITY<br />READY_FOR_DEPLOYMENT
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {quickPrompts.map((prompt, i) => (
+              <div key={prompt.id} className="is-panel p-6 relative overflow-hidden">
+                {/* Card header */}
+                <div className="flex justify-between items-start mb-5">
+                  <div>
+                    <h3 className="font-mono text-sm font-semibold uppercase text-is-text mb-2">
+                      {String(i + 1).padStart(2, '0')} // {prompt.title.toUpperCase()}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {prompt.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="font-mono text-[10px] border border-is-border px-2 py-0.5 text-is-dim uppercase tracking-widest"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <CopyButton text={prompt.text} />
+                </div>
+
+                {/* 3-col inner: 2/3 prompt body, 1/3 purpose + telemetry */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                  <div className="lg:col-span-2">
+                    <div className="is-label mb-2">PROMPT_BODY</div>
+                    <div className="bg-is-bg border border-is-border p-4 font-mono text-xs text-is-text leading-relaxed h-48 overflow-y-auto whitespace-pre-wrap">
+                      {prompt.text}
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-between">
+                    <div>
+                      <div className="is-label mb-2">PURPOSE</div>
+                      <p className="font-body text-sm text-is-text leading-relaxed">
+                        {prompt.purpose}
+                      </p>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-is-border">
+                      <div className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-is-telemetry signal-pulse" />
+                        <span className="font-mono text-[10px] text-is-telemetry uppercase tracking-widest">
+                          TELEMETRY: READY
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex justify-end">
+            <Link
+              to="/prompts"
+              className="font-mono text-xs text-is-primary border border-is-primary/30 px-3 py-1.5 hover:bg-is-primary/10 transition-colors"
+            >
+              VIEW ALL PROMPTS →
+            </Link>
           </div>
         </div>
       </section>
@@ -151,7 +281,7 @@ export default function HomePage() {
               TECHNICAL SKILL<br />IS NOT THE{' '}
               <em className="not-italic text-is-alert">ISSUE.</em>
             </h2>
-            <p className="font-body text-base text-is-dim leading-relaxed mb-8 max-w-lg">
+            <p className="font-body text-base text-is-text leading-relaxed mb-8 max-w-lg">
               Amidst technical noise, the clarity of your signal—how well you communicate your capabilities—determines your career trajectory.
             </p>
 
@@ -160,7 +290,7 @@ export default function HomePage() {
               <div className="font-mono text-xs text-is-alert uppercase tracking-widest mb-2">
                 ⚠ CRITICAL_FAILURE_RETURN
               </div>
-              <p className="font-body text-sm text-is-dim leading-relaxed">
+              <p className="font-body text-sm text-is-text leading-relaxed">
                 Most engineers fail to communicate ownership, organizational judgment, and business impact to humans and in hires.
               </p>
             </div>
@@ -182,8 +312,8 @@ export default function HomePage() {
                 ].map(({ label, pct, color }) => (
                   <div key={label}>
                     <div className="flex justify-between mb-1">
-                      <span className="font-mono text-xs text-is-dim">{label}</span>
-                      <span className="font-mono text-xs text-is-dim">{pct}%</span>
+                      <span className="font-mono text-xs text-is-text">{label}</span>
+                      <span className="font-mono text-xs text-is-text">{pct}%</span>
                     </div>
                     <div className="h-1 bg-is-surface-high w-full">
                       <div className={`h-full ${color}`} style={{ width: `${pct}%` }} />
@@ -216,19 +346,39 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-is-border">
-            {signalLayers.map(({ num, slug, name, tagline }) => (
-              <Link
-                key={slug}
-                to={`/signal-stack/${slug}`}
-                className="group bg-is-bg p-5 flex flex-col gap-3 hover:bg-is-surface transition-colors"
+            {(showAllLayers ? signalLayers : signalLayers.slice(0, 3)).map(({ num, slug, name, tagline }, i) => {
+              const meta = LAYER_META[i] ?? LAYER_META[0]
+              return (
+                <Link
+                  key={slug}
+                  to={`/signal-stack/${slug}`}
+                  className="group bg-is-bg p-5 flex flex-col gap-3 hover:bg-is-surface transition-colors"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="font-mono text-xs text-is-dim">{String(num).padStart(2, '0')}_LAYER</span>
+                    <span className={`font-mono text-xs px-1.5 py-0.5 border ${meta.freqClass} shrink-0`}>FREQ: {meta.freq}</span>
+                  </div>
+                  <div className="font-mono text-sm font-semibold text-is-text uppercase tracking-wide">{name}</div>
+                  <p className="font-body text-xs text-is-dim leading-relaxed flex-1">{tagline}</p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <div className="h-0.5 bg-is-surface-high flex-1">
+                      <div className={`h-full ${meta.barColor}`} style={{ width: `${meta.pct}%` }} />
+                    </div>
+                    <span className={`font-mono text-xs shrink-0 ${meta.textColor}`}>{meta.pct}%</span>
+                  </div>
+                </Link>
+              )
+            })}
+            {!showAllLayers && (
+              <button
+                onClick={() => setShowAllLayers(true)}
+                className="group bg-is-bg p-5 flex flex-col items-center justify-center gap-3 hover:bg-is-surface transition-colors w-full"
               >
-                <span className="font-mono text-xs text-is-dim">L{num}</span>
-                <div className="font-mono text-sm font-semibold text-is-text uppercase tracking-wide">{name}</div>
-                <p className="font-body text-xs text-is-dim leading-relaxed flex-1">{tagline}</p>
-                <div className="h-px bg-is-border" />
-                <div className="font-mono text-xs text-is-primary group-hover:underline">LAYER_DETAIL →</div>
-              </Link>
-            ))}
+                <div className="font-mono text-2xl text-is-dim group-hover:text-is-text transition-colors">↓</div>
+                <div className="font-mono text-xs uppercase tracking-widest text-is-dim group-hover:text-is-text transition-colors">LOAD MORE LAYERS</div>
+                <div className="font-mono text-xs text-is-alert">04-08 HIDDEN</div>
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -255,6 +405,31 @@ export default function HomePage() {
                 <div className="font-mono text-xs text-is-primary opacity-0 group-hover:opacity-100 transition-opacity">EXPLORE →</div>
               </Link>
             ))}
+
+            {/* ── Static image placeholder ── */}
+            <div className="bg-is-bg-deep relative overflow-hidden flex flex-col justify-end p-4 min-h-[200px]">
+              {/* Scanline grid */}
+              <div className="absolute inset-0 opacity-10" style={{
+                backgroundImage: 'linear-gradient(#262626 1px, transparent 1px), linear-gradient(90deg, #262626 1px, transparent 1px)',
+                backgroundSize: '24px 24px',
+              }} />
+              {/* Faint horizontal scan lines */}
+              <div className="absolute inset-0 opacity-5" style={{
+                backgroundImage: 'linear-gradient(transparent 50%, rgba(0,0,0,0.4) 50%)',
+                backgroundSize: '100% 4px',
+              }} />
+              {/* Signal bars */}
+              <div className="absolute top-6 left-6 right-6 flex flex-col gap-1 opacity-20">
+                {[80, 60, 90, 45, 70, 55, 35].map((w, i) => (
+                  <div key={i} className="h-px bg-is-primary" style={{ width: `${w}%` }} />
+                ))}
+              </div>
+              {/* Corner brackets */}
+              <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-is-primary opacity-40" />
+              <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-is-primary opacity-40" />
+              <div className="absolute bottom-10 left-4 w-4 h-4 border-b border-l border-is-primary opacity-40" />
+              <div className="absolute bottom-10 right-4 w-4 h-4 border-b border-r border-is-primary opacity-40" />
+            </div>
           </div>
         </div>
       </section>
@@ -339,7 +514,7 @@ export default function HomePage() {
               NOT HACKING.<br />
               <em className="not-italic text-is-alert">RESOLUTION.</em>
             </h2>
-            <p className="font-body text-base text-is-dim leading-relaxed mt-6 max-w-2xl">
+            <p className="font-body text-base text-is-text leading-relaxed mt-6 max-w-2xl">
               The underlying philosophy of signal intelligence is that technical work is inherently ideas unless it is invisible until translated for the observer.
             </p>
           </div>
@@ -349,7 +524,7 @@ export default function HomePage() {
               <div key={num} className="bg-is-bg p-8">
                 <div className="font-mono text-xs text-is-primary mb-4">{num}</div>
                 <div className="font-mono text-sm font-semibold uppercase text-is-text mb-3 tracking-wide">{title}</div>
-                <p className="font-body text-sm text-is-dim leading-relaxed">{body}</p>
+                <p className="font-body text-sm text-is-text leading-relaxed">{body}</p>
               </div>
             ))}
           </div>

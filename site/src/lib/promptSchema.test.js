@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { parseFrontmatter } from '../pages/PromptsPage.jsx'
+import { parseFrontmatter } from './parsePrompts.js'
 
 const modules = import.meta.glob('../../../prompts/**/*.md', {
   eager: true,
