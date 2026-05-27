@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Copy, Check } from 'lucide-react'
+import { Copy, Check, AlertTriangle } from 'lucide-react'
 import StatusPill from '../components/StatusPill.jsx'
 
 const modules = import.meta.glob('../../../prompts/**/*.md', { eager: true, query: '?raw', import: 'default' })
@@ -111,7 +111,7 @@ export default function PromptsPage() {
                     <div className="flex flex-wrap gap-2">
                       {tags.map((t) => (
                         <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-[10px] uppercase text-is-dim">
-                          #{t.replace(/-/g, '_').toUpperCase()}
+                          {t.replace(/-/g, '_').toUpperCase()}
                         </span>
                       ))}
                     </div>
@@ -124,14 +124,14 @@ export default function PromptsPage() {
                 <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,4fr)_200px] gap-6">
                   <div>
                     <div className="is-label mb-3">PROMPT_BODY</div>
-                    <div className="is-panel p-6 font-mono text-xs text-is-dim leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-72 overflow-y-auto">
+                    <div className="is-panel p-6 font-mono text-xs text-is-text leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-72 overflow-y-auto">
                       {text}
                     </div>
                   </div>
                   <div className="flex flex-col justify-between gap-6">
                     <div>
                       <div className="is-label mb-3">PURPOSE</div>
-                      <p className="font-body text-sm text-is-dim leading-relaxed">{purpose}</p>
+                      <p className="font-body text-sm text-is-text leading-relaxed">{purpose}</p>
                     </div>
                     <div className="border-t border-is-border pt-5 text-[10px] uppercase tracking-widest text-is-dim flex items-center gap-3">
                       <span className="font-mono">TELEMETRY:</span>
@@ -175,7 +175,7 @@ export default function PromptsPage() {
               {/* Prompt text */}
               <div className="bg-is-bg p-6">
                 <div className="is-label mb-4">PROMPT_BODY</div>
-                <div className="is-panel p-6 font-mono text-xs text-is-dim leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-96 overflow-y-auto">
+                <div className="is-panel p-6 font-mono text-xs text-is-text leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-96 overflow-y-auto">
                   {text}
                 </div>
               </div>
@@ -184,7 +184,7 @@ export default function PromptsPage() {
               <div className="bg-is-bg p-6 flex flex-col gap-6">
                 <div>
                   <div className="is-label mb-3">PURPOSE</div>
-                  <p className="font-body text-sm text-is-dim leading-relaxed">{purpose}</p>
+                  <p className="font-body text-sm text-is-text leading-relaxed">{purpose}</p>
                 </div>
 
                 {tags.length > 0 && (
@@ -206,9 +206,13 @@ export default function PromptsPage() {
       </div>
 
       {/* Philosophy note */}
-      <div className="mt-10 pt-6 border-t border-is-border">
-        <p className="font-body text-sm text-is-dim leading-relaxed max-w-2xl">
-          <span className="font-mono text-is-primary">NOTE:</span> These prompts are not designed to help candidates game interviews. They are designed to help engineers and leaders communicate their actual value more clearly. AI should amplify clarity, not fabricate competence.
+      <div className="mt-10 border border-is-alert/30 bg-is-surface-container-lowest p-6 max-w-4xl">
+        <div className="flex items-start gap-3 mb-3">
+          <AlertTriangle size={14} className="text-is-alert shrink-0 mt-0.5" />
+          <span className="font-mono text-xs uppercase tracking-widest text-is-alert">SYSTEM_NOTE // DATA_INTEGRITY</span>
+        </div>
+        <p className="font-body text-sm text-is-text leading-relaxed">
+          These prompts are not designed to help candidates &quot;game&quot; interviews. They are engineered to help engineers and leaders communicate their actual value more clearly. AI should amplify clarity and surface latent technical signals, not fabricate competence. Use with high-fidelity intent.
         </p>
       </div>
     </div>

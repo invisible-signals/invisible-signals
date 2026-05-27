@@ -74,7 +74,7 @@ export default function SignalStackLayerPage() {
             {Icon && <Icon size={20} className="text-is-primary shrink-0" />}
           </h1>
           {(description || tagline) && (
-            <p className="font-body text-base text-is-dim max-w-2xl leading-relaxed">
+            <p className="font-body text-base text-is-text max-w-2xl leading-relaxed">
               {description || tagline}
             </p>
           )}
@@ -102,7 +102,7 @@ export default function SignalStackLayerPage() {
                       <span className="font-mono text-[10px] text-is-dim mt-0.5 shrink-0 group-hover/item:text-is-alert transition-colors">
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      <span className="font-body text-sm text-is-dim leading-relaxed">{s}</span>
+                      <span className="font-body text-sm text-is-text leading-relaxed">{s}</span>
                     </li>
                   ))}
                 </ul>
@@ -123,7 +123,7 @@ export default function SignalStackLayerPage() {
                       <span className="font-mono text-[10px] text-is-dim mt-0.5 shrink-0 group-hover/item:text-is-telemetry transition-colors">
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      <span className="font-body text-sm text-is-dim leading-relaxed">{s}</span>
+                      <span className="font-body text-sm text-is-text leading-relaxed">{s}</span>
                     </li>
                   ))}
                 </ul>
@@ -147,7 +147,7 @@ export default function SignalStackLayerPage() {
                   <div className="font-mono text-[10px] text-is-alert uppercase tracking-wider">
                     LOW_RESOLUTION_SIGNAL
                   </div>
-                  <blockquote className="font-body text-sm text-is-dim italic leading-relaxed border-t border-is-border pt-3">
+                  <blockquote className="font-body text-sm text-is-text italic leading-relaxed border-t border-is-border pt-3">
                     &ldquo;{exampleWeak}&rdquo;
                   </blockquote>
                 </div>
@@ -160,7 +160,7 @@ export default function SignalStackLayerPage() {
                   <div className="font-mono text-[10px] text-is-primary uppercase tracking-wider">
                     HIGH_FIDELITY_INTEL
                   </div>
-                  <blockquote className="font-body text-sm text-is-dim italic leading-relaxed border-t border-is-primary/20 pt-3">
+                  <blockquote className="font-body text-sm text-is-text italic leading-relaxed border-t border-is-primary/20 pt-3">
                     &ldquo;{exampleStrong}&rdquo;
                   </blockquote>
                 </div>
@@ -190,10 +190,10 @@ export default function SignalStackLayerPage() {
                 <tbody className="divide-y divide-is-border">
                   {levels.map(({ level, description: desc }, i) => (
                     <tr key={i} className="hover:bg-is-surface-low transition-colors group">
-                      <td className="px-6 py-4 font-mono text-xs text-is-dim group-hover:text-is-primary transition-colors font-medium whitespace-nowrap align-top">
+                      <td className="px-6 py-4 font-mono text-xs text-is-text group-hover:text-is-primary transition-colors font-medium whitespace-nowrap align-top">
                         {level}
                       </td>
-                      <td className="px-6 py-4 font-body text-sm text-is-dim leading-relaxed">
+                      <td className="px-6 py-4 font-body text-sm text-is-text leading-relaxed">
                         {desc}
                       </td>
                     </tr>
@@ -209,7 +209,7 @@ export default function SignalStackLayerPage() {
           {prevLayer ? (
             <Link
               to={`/signal-stack/${prevLayer.slug}`}
-              className="flex items-center gap-2 font-mono text-[11px] text-is-dim hover:text-is-primary transition-colors uppercase tracking-wider"
+              className="flex items-center gap-2 font-mono text-[11px] text-is-text hover:text-is-primary transition-colors uppercase tracking-wider"
             >
               <ChevronLeft size={12} />
               L{prevLayer.num} · {prevLayer.name}
@@ -217,7 +217,7 @@ export default function SignalStackLayerPage() {
           ) : (
             <Link
               to="/signal-stack"
-              className="flex items-center gap-2 font-mono text-[11px] text-is-dim hover:text-is-primary transition-colors uppercase tracking-wider"
+              className="flex items-center gap-2 font-mono text-[11px] text-is-text hover:text-is-primary transition-colors uppercase tracking-wider"
             >
               <ChevronLeft size={12} />
               Overview
@@ -226,7 +226,7 @@ export default function SignalStackLayerPage() {
           {nextLayer && (
             <Link
               to={`/signal-stack/${nextLayer.slug}`}
-              className="flex items-center gap-2 font-mono text-[11px] text-is-dim hover:text-is-primary transition-colors uppercase tracking-wider"
+              className="flex items-center gap-2 font-mono text-[11px] text-is-text hover:text-is-primary transition-colors uppercase tracking-wider"
             >
               L{nextLayer.num} · {nextLayer.name}
               <ChevronRight size={12} />

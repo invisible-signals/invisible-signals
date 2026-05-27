@@ -111,7 +111,7 @@ export default function TemplatesPage() {
                       <span className="font-mono text-xs text-is-primary w-5 shrink-0">
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      <span className="font-mono text-xs text-is-dim uppercase tracking-wide">
+                      <span className="font-mono text-xs text-is-text uppercase tracking-wide">
                         {section.replace(/^\d+\. /, '').replace(/\s*&\s*/g, ' AND ').replace(/ /g, '_')}
                       </span>
                     </div>

@@ -340,7 +340,7 @@ export default function FrameworksPage() {
                       {s.signals.map((sig) => (
                         <li key={sig} className="flex gap-3">
                           <span className="font-mono text-xs text-is-primary mt-0.5 shrink-0">→</span>
-                          <span className="font-body text-sm text-is-dim leading-relaxed">{sig}</span>
+                          <span className="font-body text-sm text-is-text leading-relaxed">{sig}</span>
                         </li>
                       ))}
                     </ul>
@@ -353,7 +353,7 @@ export default function FrameworksPage() {
                       {s.pitfalls.map((p) => (
                         <li key={p} className="flex gap-3">
                           <span className="font-mono text-xs text-is-alert mt-0.5 shrink-0">⚠</span>
-                          <span className="font-body text-sm text-is-dim leading-relaxed">{p}</span>
+                          <span className="font-body text-sm text-is-text leading-relaxed">{p}</span>
                         </li>
                       ))}
                     </ul>
@@ -383,13 +383,13 @@ export default function FrameworksPage() {
                                 <div className="font-mono text-xs text-is-alert mb-2 flex items-center gap-2">
                                   <span>⚠</span> WEAK
                                 </div>
-                                <p className="font-mono text-xs text-is-dim leading-relaxed">{ex.weak}</p>
+                                <p className="font-mono text-xs text-is-text leading-relaxed">{ex.weak}</p>
                               </div>
                               <div className="bg-is-bg px-4 py-4">
                                 <div className="font-mono text-xs text-is-primary mb-2 flex items-center gap-2">
                                   <span>→</span> STRONG
                                 </div>
-                                <p className="font-mono text-xs text-is-dim leading-relaxed">{ex.strong}</p>
+                                <p className="font-mono text-xs text-is-text leading-relaxed">{ex.strong}</p>
                               </div>
                             </div>
                           </div>
@@ -452,7 +452,7 @@ export default function FrameworksPage() {
                       {p.signals.map((sig) => (
                         <li key={sig} className="flex gap-3">
                           <span className="font-mono text-xs text-is-primary mt-0.5 shrink-0">→</span>
-                          <span className="font-body text-sm text-is-dim leading-relaxed">{sig}</span>
+                          <span className="font-body text-sm text-is-text leading-relaxed">{sig}</span>
                         </li>
                       ))}
                     </ul>
@@ -464,7 +464,7 @@ export default function FrameworksPage() {
                       {p.pitfalls.map((pit) => (
                         <li key={pit} className="flex gap-3">
                           <span className="font-mono text-xs text-is-alert mt-0.5 shrink-0">⚠</span>
-                          <span className="font-body text-sm text-is-dim leading-relaxed">{pit}</span>
+                          <span className="font-body text-sm text-is-text leading-relaxed">{pit}</span>
                         </li>
                       ))}
                     </ul>
@@ -488,7 +488,7 @@ export default function FrameworksPage() {
                         {p.dropIn.map((q) => (
                           <li key={q} className="flex gap-3">
                             <span className="font-mono text-xs text-is-primary mt-0.5 shrink-0">?</span>
-                            <span className="font-body text-sm text-is-dim leading-relaxed">{q}</span>
+                            <span className="font-body text-sm text-is-text leading-relaxed">{q}</span>
                           </li>
                         ))}
                       </ul>

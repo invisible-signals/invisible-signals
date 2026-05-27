@@ -8,6 +8,7 @@ export default {
           'bg-deep':  '#05070a',
           'bg':       '#0b0e14',
           'surface':  '#121212',
+          'surface-container-lowest': '#0e0e0e',
           'surface-low': '#1c1b1b',
           'surface-mid': '#201f1f',
           'surface-high': '#2a2a2a',

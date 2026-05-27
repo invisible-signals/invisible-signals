@@ -48,7 +48,7 @@ export default function SignalStackLayout() {
               `flex items-center gap-3 px-6 py-3 font-mono text-[11px] uppercase tracking-wider transition-all ${
                 isActive
                   ? 'text-is-primary border-r-2 border-is-primary bg-is-surface-low'
-                  : 'text-is-dim hover:bg-is-surface-high hover:text-is-text'
+                  : 'text-is-text hover:bg-is-surface-high hover:text-is-primary'
               }`
             }
           >
@@ -67,7 +67,7 @@ export default function SignalStackLayout() {
                   `flex items-center gap-3 px-6 py-3 font-mono text-[11px] uppercase tracking-wider transition-all ${
                     isActive
                       ? 'text-is-primary border-r-2 border-is-primary bg-is-surface-low'
-                      : 'text-is-dim hover:bg-is-surface-high hover:text-is-text'
+                      : 'text-is-text hover:bg-is-surface-high hover:text-is-primary'
                   }`
                 }
               >
