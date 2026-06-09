@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Copy, Check } from 'lucide-react'
+import { Copy, Check, FileText, Linkedin, Github, MessageSquare, TrendingUp, Users } from 'lucide-react'
 import StatusPill from '../components/StatusPill.jsx'
 import { parseSignalStack } from '../lib/parseSignalStack.js'
 import { parsePromptFile } from '../lib/parsePrompts.js'
@@ -15,21 +15,34 @@ const quickPrompts = Object.entries(quickSignalModules)
   .filter((p) => QUICK_PROMPT_ORDER.includes(p.id))
   .sort((a, b) => QUICK_PROMPT_ORDER.indexOf(a.id) - QUICK_PROMPT_ORDER.indexOf(b.id))
 
-// Signal strength bars — CSS pulse animation, each bar at its own rhythm
-function BarChart() {
+// Signal analysis panel — realistic diagnostic output
+function SignalAnalysisPanel() {
+  const signals = [
+    { label: 'TECHNICAL_DEPTH', pct: 91, color: 'bg-is-secondary' },
+    { label: 'OWNERSHIP',       pct: 78, color: 'bg-is-primary'   },
+    { label: 'EXECUTION',       pct: 84, color: 'bg-is-warning'   },
+    { label: 'BUSINESS_IMPACT', pct: 42, color: 'bg-is-alert'     },
+    { label: 'LEADERSHIP',      pct: 61, color: 'bg-is-primary'   },
+  ]
   return (
-    <div className="h-32 flex items-end gap-1 overflow-hidden opacity-40">
-      <div className="flex-1 bg-is-primary/20 animate-[pulse_2s_infinite]"   style={{ height: '20%' }} />
-      <div className="flex-1 bg-is-primary/30 animate-[pulse_2.2s_infinite]" style={{ height: '45%' }} />
-      <div className="flex-1 bg-is-primary/20 animate-[pulse_1.8s_infinite]" style={{ height: '70%' }} />
-      <div className="flex-1 bg-is-primary/25 animate-[pulse_2.5s_infinite]" style={{ height: '30%' }} />
-      <div className="flex-1 bg-is-primary/40 animate-[pulse_1.5s_infinite]" style={{ height: '90%' }} />
-      <div className="flex-1 bg-is-primary/20 animate-[pulse_2.1s_infinite]" style={{ height: '50%' }} />
-      <div className="flex-1 bg-is-primary/35 animate-[pulse_2.4s_infinite]" style={{ height: '65%' }} />
-      <div className="flex-1 bg-is-primary/20 animate-[pulse_1.9s_infinite]" style={{ height: '25%' }} />
-      <div className="flex-1 bg-is-primary/50 animate-[pulse_1.2s_infinite]" style={{ height: '100%' }} />
-      <div className="flex-1 bg-is-primary/20 animate-[pulse_2.3s_infinite]" style={{ height: '40%' }} />
-      <div className="flex-1 bg-is-primary/30 animate-[pulse_1.7s_infinite]" style={{ height: '80%' }} />
+    <div className="space-y-3">
+      {signals.map(({ label, pct, color }) => (
+        <div key={label}>
+          <div className="flex justify-between mb-1">
+            <span className="font-mono text-xs text-is-text">{label}</span>
+            <span className="font-mono text-xs text-is-text">{pct}%</span>
+          </div>
+          <div className="h-1 bg-is-surface-high w-full">
+            <div className={`h-full ${color}`} style={{ width: `${pct}%` }} />
+          </div>
+        </div>
+      ))}
+      <div className="mt-4 pt-4 border-t border-is-border">
+        <div className="font-mono text-xs text-is-alert uppercase tracking-widest mb-1">▶ PRIMARY_SIGNAL_GAP</div>
+        <p className="font-body text-xs text-is-dim leading-relaxed">
+          Business impact is implied but not explicitly stated.
+        </p>
+      </div>
     </div>
   )
 }
@@ -138,6 +151,15 @@ const principles = [
   },
 ]
 
+const ANALYZE_TARGETS = [
+  { id: 'RESUME',     label: 'Resume',                  desc: 'Analyze ownership, impact, technical depth, and clarity.',      Icon: FileText },
+  { id: 'LINKEDIN',   label: 'LinkedIn Profile',         desc: 'Surface the signals your headline and summary transmit.',        Icon: Linkedin },
+  { id: 'GITHUB',     label: 'GitHub Profile',           desc: 'Evaluate technical depth and contribution patterns.',            Icon: Github },
+  { id: 'INTERVIEW',  label: 'Interview Answer',         desc: 'Detect ownership, specificity, and leadership signal.',          Icon: MessageSquare },
+  { id: 'PROMOTION',  label: 'Promotion Packet',         desc: 'Identify gaps in scope, impact, and cross-functional influence.', Icon: TrendingUp },
+  { id: 'LEADERSHIP', label: 'Leadership Communication', desc: 'Assess clarity, strategic framing, and credibility signals.',    Icon: Users },
+]
+
 export default function HomePage() {
   const [showAllLayers, setShowAllLayers] = useState(false)
   return (
@@ -161,7 +183,8 @@ export default function HomePage() {
                 <em className="not-italic text-is-alert">IN SECONDS.</em>
               </h1>
               <p className="font-body text-base text-is-text leading-relaxed max-w-xl mb-10">
-                Run a quick check on your narrative. Surface what's invisible to algorithmic and human filters. Detect, refine, and transmit your professional impact.
+                Analyze resumes, interview answers, GitHub profiles, and leadership communication.
+                Surface the signals recruiters, hiring managers, and leadership teams actually see.
               </p>
               <div className="flex flex-wrap gap-3">
                 <button
@@ -176,23 +199,43 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Bar chart visualization */}
+            {/* Signal analysis diagnostic */}
             <div className="is-panel p-4 relative">
               <div className="absolute -top-3 -left-1 px-2 bg-is-bg-deep font-mono text-[10px] text-is-primary">SIG_TRACE_01</div>
-              <div className="is-label mb-3">SIGNAL_STRENGTH_READOUT</div>
-              <BarChart />
-              <div className="grid grid-cols-3 gap-px mt-1 border-t border-is-border pt-3">
-                {['TECHNICAL', 'OWNERSHIP', 'TRANSLATION'].map((l) => (
-                  <div key={l} className="font-mono text-xs text-is-text">{l}</div>
-                ))}
-              </div>
+              <div className="is-label mb-3">SIGNAL_ANALYSIS</div>
+              <SignalAnalysisPanel />
             </div>
           </div>
         </div>
       </section>
 
+      {/* ── WHAT CAN YOU ANALYZE? ─────────────────────────── */}
+      <section className="border-b border-is-border bg-is-bg-deep px-6 py-16 md:py-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-10">
+            <div className="is-label mb-2">ANALYZE_TARGETS</div>
+            <h2 className="font-mono text-3xl md:text-4xl font-semibold uppercase text-is-text">
+              WHAT CAN YOU ANALYZE?
+            </h2>
+            <p className="font-body text-base text-is-text mt-3">
+              Paste content. Detect signals. Improve clarity.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-is-border">
+            {ANALYZE_TARGETS.map(({ id, label, desc, Icon }) => (
+              <div key={id} className="bg-is-bg p-5 flex flex-col gap-2 hover:bg-is-surface transition-colors">
+                <Icon size={20} className="text-is-primary mb-1" />
+                <div className="is-label">{id}</div>
+                <div className="font-mono text-sm font-semibold uppercase text-is-text">{label}</div>
+                <p className="font-body text-xs text-is-dim leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── QUICK SIGNAL PROMPTS ──────────────────────────── */}
-      <section id="quick-prompts" className="border-b border-is-border bg-is-bg-deep px-6 py-20 scroll-mt-16">
+      <section id="quick-prompts" className="border-b border-is-border bg-is-bg px-6 py-20 scroll-mt-16">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
@@ -272,60 +315,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── TECHNICAL SKILL IS NOT THE ISSUE ─────────────── */}
-      <section className="border-b border-is-border px-6 py-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div>
-            <div className="is-label mb-6">DIAGNOSTIC: CLARITY_GAP</div>
-            <h2 className="font-mono text-4xl md:text-5xl font-semibold leading-tight uppercase text-is-text mb-8">
-              TECHNICAL SKILL<br />IS NOT THE{' '}
-              <em className="not-italic text-is-alert">ISSUE.</em>
-            </h2>
-            <p className="font-body text-base text-is-text leading-relaxed mb-8 max-w-lg">
-              Amidst technical noise, the clarity of your signal—how well you communicate your capabilities—determines your career trajectory.
-            </p>
-
-            {/* Alert callout */}
-            <div className="is-panel border-l-2 border-l-is-alert p-4">
-              <div className="font-mono text-xs text-is-alert uppercase tracking-widest mb-2">
-                ⚠ CRITICAL_FAILURE_RETURN
-              </div>
-              <p className="font-body text-sm text-is-text leading-relaxed">
-                Most engineers fail to communicate ownership, organizational judgment, and business impact to humans and in hires.
-              </p>
-            </div>
-          </div>
-
-          {/* Radar + signal bars */}
-          <div className="flex flex-col items-center gap-8">
-            <div className="is-panel p-6 w-full flex flex-col items-center">
-              <div className="is-label mb-4">SEARCHING_FOR_SIGNAL...</div>
-              <RadarRing />
-            </div>
-            <div className="is-panel p-4 w-full">
-              <div className="is-label mb-3">SIGNAL_ANALYSIS</div>
-              <div className="space-y-2">
-                {[
-                  { label: 'TECHNICAL NOISE', pct: 88, color: 'bg-is-dim' },
-                  { label: 'OWNERSHIP SIGNAL', pct: 34, color: 'bg-is-primary' },
-                  { label: 'IMPACT CLARITY', pct: 21, color: 'bg-is-alert' },
-                ].map(({ label, pct, color }) => (
-                  <div key={label}>
-                    <div className="flex justify-between mb-1">
-                      <span className="font-mono text-xs text-is-text">{label}</span>
-                      <span className="font-mono text-xs text-is-text">{pct}%</span>
-                    </div>
-                    <div className="h-1 bg-is-surface-high w-full">
-                      <div className={`h-full ${color}`} style={{ width: `${pct}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── SIGNAL STACK ──────────────────────────────────── */}
       <section className="border-b border-is-border bg-is-bg px-6 py-20">
         <div className="max-w-7xl mx-auto">
@@ -379,57 +368,6 @@ export default function HomePage() {
                 <div className="font-mono text-xs text-is-alert">04-08 HIDDEN</div>
               </button>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PRODUCT MODULES ───────────────────────────────── */}
-      <section className="border-b border-is-border px-6 py-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-is-border">
-            {modules.map(({ to, tag, icon, title, desc, pill, pillColor }) => (
-              <Link
-                key={to}
-                to={to}
-                className="group bg-is-bg p-6 flex flex-col gap-4 hover:bg-is-surface transition-colors"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="font-mono text-xl text-is-dim">{icon}</div>
-                  <StatusPill color={pillColor}>{pill}</StatusPill>
-                </div>
-                <div>
-                  <div className="is-label mb-1">{tag}</div>
-                  <div className="font-mono text-base font-semibold uppercase text-is-text group-hover:text-is-primary transition-colors">{title}</div>
-                </div>
-                <p className="font-body text-xs text-is-dim leading-relaxed flex-1">{desc}</p>
-                <div className="font-mono text-xs text-is-primary opacity-0 group-hover:opacity-100 transition-opacity">EXPLORE →</div>
-              </Link>
-            ))}
-
-            {/* ── Static image placeholder ── */}
-            <div className="bg-is-bg-deep relative overflow-hidden flex flex-col justify-end p-4 min-h-[200px]">
-              {/* Scanline grid */}
-              <div className="absolute inset-0 opacity-10" style={{
-                backgroundImage: 'linear-gradient(#262626 1px, transparent 1px), linear-gradient(90deg, #262626 1px, transparent 1px)',
-                backgroundSize: '24px 24px',
-              }} />
-              {/* Faint horizontal scan lines */}
-              <div className="absolute inset-0 opacity-5" style={{
-                backgroundImage: 'linear-gradient(transparent 50%, rgba(0,0,0,0.4) 50%)',
-                backgroundSize: '100% 4px',
-              }} />
-              {/* Signal bars */}
-              <div className="absolute top-6 left-6 right-6 flex flex-col gap-1 opacity-20">
-                {[80, 60, 90, 45, 70, 55, 35].map((w, i) => (
-                  <div key={i} className="h-px bg-is-primary" style={{ width: `${w}%` }} />
-                ))}
-              </div>
-              {/* Corner brackets */}
-              <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-is-primary opacity-40" />
-              <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-is-primary opacity-40" />
-              <div className="absolute bottom-10 left-4 w-4 h-4 border-b border-l border-is-primary opacity-40" />
-              <div className="absolute bottom-10 right-4 w-4 h-4 border-b border-r border-is-primary opacity-40" />
-            </div>
           </div>
         </div>
       </section>
@@ -502,6 +440,86 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── WHY THIS EXISTS ───────────────────────────────── */}
+      <section className="border-b border-is-border bg-is-bg-deep px-6 py-16 md:py-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-10">
+            <div className="is-label mb-2">PROVENANCE</div>
+            <h2 className="font-mono text-3xl md:text-4xl font-semibold uppercase text-is-text">
+              WHY THIS EXISTS
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <p className="font-body text-base text-is-text leading-relaxed mb-6">
+                Built from years of hiring, coaching, promoting, and leading software engineers and technical leaders.
+              </p>
+              <p className="font-body text-base text-is-text leading-relaxed">
+                Invisible Signals&#x2122; is designed to help people communicate real experience more clearly—not manufacture experience they do not have.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2 content-start">
+              {['ENGINEERING_LEADERSHIP', 'HIRING_&_PROMOTION', 'CAREER_GROWTH', 'TECHNICAL_COMMUNICATION'].map((tag) => (
+                <span key={tag} className="font-mono text-xs border border-is-border px-3 py-1.5 text-is-dim uppercase tracking-widest">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PRODUCT MODULES ───────────────────────────────── */}
+      <section className="border-b border-is-border px-6 py-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-is-border">
+            {modules.map(({ to, tag, icon, title, desc, pill, pillColor }) => (
+              <Link
+                key={to}
+                to={to}
+                className="group bg-is-bg p-6 flex flex-col gap-4 hover:bg-is-surface transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="font-mono text-xl text-is-dim">{icon}</div>
+                  <StatusPill color={pillColor}>{pill}</StatusPill>
+                </div>
+                <div>
+                  <div className="is-label mb-1">{tag}</div>
+                  <div className="font-mono text-base font-semibold uppercase text-is-text group-hover:text-is-primary transition-colors">{title}</div>
+                </div>
+                <p className="font-body text-xs text-is-dim leading-relaxed flex-1">{desc}</p>
+                <div className="font-mono text-xs text-is-primary opacity-0 group-hover:opacity-100 transition-opacity">EXPLORE →</div>
+              </Link>
+            ))}
+
+            {/* ── Static image placeholder ── */}
+            <div className="bg-is-bg-deep relative overflow-hidden flex flex-col justify-end p-4 min-h-[200px]">
+              {/* Scanline grid */}
+              <div className="absolute inset-0 opacity-10" style={{
+                backgroundImage: 'linear-gradient(#262626 1px, transparent 1px), linear-gradient(90deg, #262626 1px, transparent 1px)',
+                backgroundSize: '24px 24px',
+              }} />
+              {/* Faint horizontal scan lines */}
+              <div className="absolute inset-0 opacity-5" style={{
+                backgroundImage: 'linear-gradient(transparent 50%, rgba(0,0,0,0.4) 50%)',
+                backgroundSize: '100% 4px',
+              }} />
+              {/* Signal bars */}
+              <div className="absolute top-6 left-6 right-6 flex flex-col gap-1 opacity-20">
+                {[80, 60, 90, 45, 70, 55, 35].map((w, i) => (
+                  <div key={i} className="h-px bg-is-primary" style={{ width: `${w}%` }} />
+                ))}
+              </div>
+              {/* Corner brackets */}
+              <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-is-primary opacity-40" />
+              <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-is-primary opacity-40" />
+              <div className="absolute bottom-10 left-4 w-4 h-4 border-b border-l border-is-primary opacity-40" />
+              <div className="absolute bottom-10 right-4 w-4 h-4 border-b border-r border-is-primary opacity-40" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── PRINCIPLES ────────────────────────────────────── */}
       <section className="border-b border-is-border px-6 py-20">
         <div className="max-w-7xl mx-auto">
@@ -531,8 +549,62 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── TECHNICAL SKILL IS NOT THE ISSUE ─────────────── */}
+      <section className="border-b border-is-border px-6 py-20">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div>
+            <div className="is-label mb-6">DIAGNOSTIC: CLARITY_GAP</div>
+            <h2 className="font-mono text-4xl md:text-5xl font-semibold leading-tight uppercase text-is-text mb-8">
+              TECHNICAL SKILL<br />IS NOT THE{' '}
+              <em className="not-italic text-is-alert">ISSUE.</em>
+            </h2>
+            <p className="font-body text-base text-is-text leading-relaxed mb-8 max-w-lg">
+              Amidst technical noise, the clarity of your signal—how well you communicate your capabilities—determines your career trajectory.
+            </p>
+
+            {/* Alert callout */}
+            <div className="is-panel border-l-2 border-l-is-alert p-4">
+              <div className="font-mono text-xs text-is-alert uppercase tracking-widest mb-2">
+                ⚠ CRITICAL_FAILURE_RETURN
+              </div>
+              <p className="font-body text-sm text-is-text leading-relaxed">
+                Most engineers fail to communicate ownership, organizational judgment, and business impact to humans and in hires.
+              </p>
+            </div>
+          </div>
+
+          {/* Radar + signal bars */}
+          <div className="flex flex-col items-center gap-8">
+            <div className="is-panel p-6 w-full flex flex-col items-center">
+              <div className="is-label mb-4">SEARCHING_FOR_SIGNAL...</div>
+              <RadarRing />
+            </div>
+            <div className="is-panel p-4 w-full">
+              <div className="is-label mb-3">SIGNAL_ANALYSIS</div>
+              <div className="space-y-2">
+                {[
+                  { label: 'TECHNICAL NOISE', pct: 88, color: 'bg-is-dim' },
+                  { label: 'OWNERSHIP SIGNAL', pct: 34, color: 'bg-is-primary' },
+                  { label: 'IMPACT CLARITY', pct: 21, color: 'bg-is-alert' },
+                ].map(({ label, pct, color }) => (
+                  <div key={label}>
+                    <div className="flex justify-between mb-1">
+                      <span className="font-mono text-xs text-is-text">{label}</span>
+                      <span className="font-mono text-xs text-is-text">{pct}%</span>
+                    </div>
+                    <div className="h-1 bg-is-surface-high w-full">
+                      <div className={`h-full ${color}`} style={{ width: `${pct}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ───────────────────────────────────────────── */}
-      <section className="px-6 py-32 bg-is-bg">
+      <section className="px-6 py-16 md:py-28 bg-is-bg">
         <div className="max-w-3xl mx-auto text-center">
           <div className="flex justify-center mb-4">
             <div className="w-8 h-px bg-is-primary" />
@@ -542,15 +614,15 @@ export default function HomePage() {
             <em className="not-italic text-is-primary">YOUR SIGNAL.</em>
           </h2>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-            <a
-              href="https://github.com/invisible-signals/invisible-signals"
-              target="_blank"
-              rel="noreferrer"
+            <button
+              onClick={() => document.getElementById('quick-prompts')?.scrollIntoView({ behavior: 'smooth' })}
               className="is-btn-primary"
             >
-              ↗ SIGNAL REPOSITORY
-            </a>
-            <span className="font-mono text-xs text-is-dim">FRAMEWORK: V0.1</span>
+              RUN_A_SIGNAL_CHECK
+            </button>
+            <Link to="/prompts" className="is-btn-ghost">
+              BROWSE_PROMPTS
+            </Link>
           </div>
         </div>
       </section>
