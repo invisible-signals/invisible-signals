@@ -43,7 +43,7 @@ function CopyButton({ text }) {
   return (
     <button
       onClick={handleCopy}
-      className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-is-border text-is-dim hover:border-is-primary hover:text-is-primary transition-all"
+      className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-is-border text-is-secondary hover:border-is-primary hover:text-is-primary transition-all"
     >
       {copied ? <Check size={12} /> : <Copy size={12} />}
       {copied ? 'COPIED' : 'COPY_PROMPT'}
@@ -63,7 +63,7 @@ export default function PromptsPage() {
         <h2 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
           QUICK SIGNAL PROMPTS
         </h2>
-        <p className="font-body text-base text-is-dim leading-relaxed max-w-2xl">
+        <p className="font-body text-base text-is-secondary leading-relaxed max-w-2xl">
           Want fast feedback? Copy one focused prompt and run it in your preferred AI tool. System-level instructions to analyze career metadata and generate telemetry goals.
         </p>
       </div>
@@ -82,7 +82,7 @@ export default function PromptsPage() {
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {tags.map((t) => (
-                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-[10px] uppercase text-is-dim">
+                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-[10px] uppercase text-is-secondary">
                           {t.replace(/-/g, '_').toUpperCase()}
                         </span>
                       ))}
@@ -105,7 +105,7 @@ export default function PromptsPage() {
                       <div className="is-label mb-3">PURPOSE</div>
                       <p className="font-body text-sm text-is-text leading-relaxed">{purpose}</p>
                     </div>
-                    <div className="border-t border-is-border pt-5 text-[10px] uppercase tracking-widest text-is-dim flex items-center gap-3">
+                    <div className="border-t border-is-border pt-5 text-[10px] uppercase tracking-widest text-is-secondary flex items-center gap-3">
                       <span className="font-mono">TELEMETRY:</span>
                       <span className="text-is-primary">{tags.includes('quick-check') ? 'READY' : 'ACTIVE'}</span>
                     </div>
@@ -125,7 +125,7 @@ export default function PromptsPage() {
         <h2 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
           SIGNAL PROMPTS
         </h2>
-        <p className="font-body text-base text-is-dim leading-relaxed max-w-2xl">
+        <p className="font-body text-base text-is-secondary leading-relaxed max-w-2xl">
           System-level instructions to analyze career metadata and generate telemetry goals. Paste these prompts into any AI tool and replace the bracketed placeholders with your actual content.
         </p>
       </div>
@@ -164,7 +164,7 @@ export default function PromptsPage() {
                     <div className="is-label mb-3">TAGS</div>
                     <div className="flex flex-wrap gap-2">
                       {tags.map((t) => (
-                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-xs text-is-dim">
+                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-xs text-is-secondary">
                           {t.toUpperCase().replace(/-/g, '_')}
                         </span>
                       ))}

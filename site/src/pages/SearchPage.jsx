@@ -55,7 +55,7 @@ export default function SearchPage() {
       <div className="border-b border-is-border pb-6 mb-8">
         <span className="is-label">SIGNAL_QUERY</span>
         {q ? (
-          <p className="font-mono text-xs text-is-dim mt-1 tracking-widest">
+          <p className="font-mono text-xs text-is-secondary mt-1 tracking-widest">
             QUERY: <span className="text-is-text">{q.toUpperCase()}</span>
           </p>
         ) : null}
@@ -83,11 +83,11 @@ export default function SearchPage() {
                         onChange={() => toggleType(type)}
                         className="appearance-none w-3 h-3 border border-is-border bg-is-surface checked:bg-is-primary checked:border-is-primary transition-colors cursor-pointer"
                       />
-                      <span className={`font-mono text-xs tracking-widest uppercase transition-colors ${active ? cfg.color : 'text-is-dim'}`}>
+                      <span className={`font-mono text-xs tracking-widest uppercase transition-colors ${active ? cfg.color : 'text-is-secondary'}`}>
                         {cfg.label}
                       </span>
                     </div>
-                    <span className="font-mono text-xs text-is-dim tabular-nums">{count}</span>
+                    <span className="font-mono text-xs text-is-secondary tabular-nums">{count}</span>
                   </label>
                 )
               })}
@@ -106,7 +106,7 @@ export default function SearchPage() {
                 NO_SIGNAL_FOUND // QUERY: {q.toUpperCase()}
               </span>
             ) : (
-              <span className="font-mono text-xs text-is-dim tracking-widest">
+              <span className="font-mono text-xs text-is-secondary tracking-widest">
                 Showing{' '}
                 <span className="text-is-text">{filtered.length}</span>
                 {' '}signal{filtered.length !== 1 ? 's' : ''} found // PROTOCOL:{' '}
@@ -114,7 +114,7 @@ export default function SearchPage() {
               </span>
             )}
             {filtered.length > 0 && (
-              <span className="font-mono text-xs text-is-dim tracking-widest">SORT: RELEVANCE</span>
+              <span className="font-mono text-xs text-is-secondary tracking-widest">SORT: RELEVANCE</span>
             )}
           </div>
 
@@ -123,7 +123,7 @@ export default function SearchPage() {
             <div className="is-panel p-12 flex flex-col items-center justify-center gap-3">
               <span className="font-mono text-2xl text-is-border">···</span>
               <span className="is-label">ENTER_QUERY_TO_SCAN</span>
-              <p className="font-mono text-xs text-is-dim text-center max-w-xs">
+              <p className="font-mono text-xs text-is-secondary text-center max-w-xs">
                 Search across prompts, templates, and frameworks. Use the input in the nav to begin.
               </p>
             </div>
@@ -145,7 +145,7 @@ export default function SearchPage() {
                       </span>
                       <Link
                         to={item.route}
-                        className="font-mono text-xs uppercase tracking-widest text-is-dim hover:text-is-primary transition-colors whitespace-nowrap shrink-0"
+                        className="font-mono text-xs uppercase tracking-widest text-is-secondary hover:text-is-primary transition-colors whitespace-nowrap shrink-0"
                       >
                         VIEW_SIGNAL →
                       </Link>
@@ -154,7 +154,7 @@ export default function SearchPage() {
                       {item.title}
                     </h2>
                     {excerpt && (
-                      <p className="font-mono text-xs text-is-dim leading-relaxed mb-3">
+                      <p className="font-mono text-xs text-is-secondary leading-relaxed mb-3">
                         {excerpt}
                       </p>
                     )}
@@ -163,7 +163,7 @@ export default function SearchPage() {
                         {item.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="font-mono text-xs px-2 py-0.5 bg-is-surface-low border border-is-border text-is-dim uppercase tracking-widest"
+                            className="font-mono text-xs px-2 py-0.5 bg-is-surface-low border border-is-border text-is-secondary uppercase tracking-widest"
                           >
                             {tag}
                           </span>
@@ -180,7 +180,7 @@ export default function SearchPage() {
           {q && filtered.length === 0 && matches.length > 0 && (
             <div className="is-panel p-8 text-center">
               <span className="is-label block mb-2">FILTER_MISMATCH</span>
-              <p className="font-mono text-xs text-is-dim">
+              <p className="font-mono text-xs text-is-secondary">
                 {matches.length} result{matches.length !== 1 ? 's' : ''} found but hidden by active filters.
               </p>
             </div>

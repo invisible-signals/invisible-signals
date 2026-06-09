@@ -88,7 +88,7 @@
   }
 
   .is-label {
-    @apply font-mono text-xs uppercase tracking-widest text-is-dim;
+    @apply font-mono text-xs uppercase tracking-widest text-is-secondary;
   }
 
   .is-btn-primary {

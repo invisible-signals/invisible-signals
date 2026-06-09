@@ -268,7 +268,7 @@ export default function FrameworksPage() {
         <h1 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
           {activeFramework === 'HIRING_FUNNEL' ? 'HIRING FUNNEL' : 'COACHING'}
         </h1>
-        <p className="font-body text-base text-is-dim leading-relaxed max-w-2xl mb-6">
+        <p className="font-body text-base text-is-secondary leading-relaxed max-w-2xl mb-6">
           {activeFramework === 'HIRING_FUNNEL'
             ? 'The hiring funnel is a sequence of increasingly selective conversations. Each stage filters for different signals. Candidates who understand what is actually being evaluated at each stage can communicate their value more clearly.'
             : 'Career coaching through signal clarity. Helping engineers and technical leaders own something real, solve something hard, clarify boundaries, and leave behind visible evidence of impact.'}
@@ -284,7 +284,7 @@ export default function FrameworksPage() {
               className={`font-mono text-xs px-3 py-1.5 border uppercase tracking-widest transition-all ${
                 activeFramework === f.id
                   ? 'border-is-primary text-is-primary bg-is-primary/10'
-                  : 'border-is-border text-is-dim hover:border-is-primary/40 hover:text-is-text'
+                  : 'border-is-border text-is-secondary hover:border-is-primary/40 hover:text-is-text'
               }`}
             >
               {f.label}
@@ -303,9 +303,9 @@ export default function FrameworksPage() {
             <table className="w-full text-sm">
               <thead className="border-b border-is-border">
                 <tr>
-                  <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest">STAGE</th>
-                  <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest">PRIMARY_SIGNAL_QUESTION</th>
-                  <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest hidden md:table-cell">STATUS</th>
+                  <th className="text-left px-5 py-3 font-mono text-xs text-is-secondary uppercase tracking-widest">STAGE</th>
+                  <th className="text-left px-5 py-3 font-mono text-xs text-is-secondary uppercase tracking-widest">PRIMARY_SIGNAL_QUESTION</th>
+                  <th className="text-left px-5 py-3 font-mono text-xs text-is-secondary uppercase tracking-widest hidden md:table-cell">STATUS</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-is-border">
@@ -329,7 +329,7 @@ export default function FrameworksPage() {
                 {/* Stage header */}
                 <div className="border-b border-is-border px-6 py-4 bg-is-surface flex flex-wrap items-center gap-4">
                   <span className="font-mono text-sm font-semibold uppercase text-is-text">{s.label}</span>
-                  <span className="font-mono text-xs text-is-dim flex-1">{s.question}</span>
+                  <span className="font-mono text-xs text-is-secondary flex-1">{s.question}</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-is-border">
@@ -368,7 +368,7 @@ export default function FrameworksPage() {
                       className="w-full flex items-center justify-between px-6 py-3 bg-is-surface hover:bg-is-border transition-colors text-left"
                     >
                       <span className="is-label">EXAMPLES // SIGNAL_CALIBRATION</span>
-                      <span className="font-mono text-xs text-is-dim">
+                      <span className="font-mono text-xs text-is-secondary">
                         {openExamples === s.id ? '[−]' : '[+]'}
                       </span>
                     </button>
@@ -377,7 +377,7 @@ export default function FrameworksPage() {
                       <div className="px-6 py-5 space-y-6">
                         {s.examples.map((ex) => (
                           <div key={ex.id}>
-                            <div className="is-label text-is-dim mb-3">{ex.label}</div>
+                            <div className="is-label text-is-secondary mb-3">{ex.label}</div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-is-border">
                               <div className="bg-is-bg px-4 py-4">
                                 <div className="font-mono text-xs text-is-alert mb-2 flex items-center gap-2">
@@ -404,7 +404,7 @@ export default function FrameworksPage() {
 
           {/* Source */}
           <div className="mt-10 pt-6 border-t border-is-border">
-            <p className="font-mono text-xs text-is-dim">
+            <p className="font-mono text-xs text-is-secondary">
               SOURCE: Derived from Annyce Davis, <em>Landing Your Next Gig in Tech</em> (2020) · SIGNAL_REF: HIRING_FUNNEL_FRAMEWORK
             </p>
           </div>
@@ -421,8 +421,8 @@ export default function FrameworksPage() {
             <table className="w-full text-sm">
               <thead className="border-b border-is-border">
                 <tr>
-                  <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest">LENS</th>
-                  <th className="text-left px-5 py-3 font-mono text-xs text-is-dim uppercase tracking-widest">CORE_QUESTION</th>
+                  <th className="text-left px-5 py-3 font-mono text-xs text-is-secondary uppercase tracking-widest">LENS</th>
+                  <th className="text-left px-5 py-3 font-mono text-xs text-is-secondary uppercase tracking-widest">CORE_QUESTION</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-is-border">
@@ -442,7 +442,7 @@ export default function FrameworksPage() {
               <div key={p.id} className="bg-is-bg">
                 <div className="border-b border-is-border px-6 py-4 bg-is-surface flex flex-wrap items-center gap-4">
                   <span className="font-mono text-sm font-semibold uppercase text-is-text">{p.label}</span>
-                  <span className="font-mono text-xs text-is-dim flex-1">{p.question}</span>
+                  <span className="font-mono text-xs text-is-secondary flex-1">{p.question}</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-is-border">
@@ -477,7 +477,7 @@ export default function FrameworksPage() {
                     className="w-full flex items-center justify-between px-6 py-3 bg-is-surface hover:bg-is-border transition-colors text-left"
                   >
                     <span className="is-label">DROP-IN_QUESTIONS // 1:1_USE</span>
-                    <span className="font-mono text-xs text-is-dim">
+                    <span className="font-mono text-xs text-is-secondary">
                       {openDropIn === p.id ? '[−]' : '[+]'}
                     </span>
                   </button>
@@ -501,7 +501,7 @@ export default function FrameworksPage() {
 
           {/* Source */}
           <div className="mt-10 pt-6 border-t border-is-border">
-            <p className="font-mono text-xs text-is-dim">
+            <p className="font-mono text-xs text-is-secondary">
               SOURCE: Annyce Davis · SIGNAL_REF: COACHING_FRAMEWORK
             </p>
           </div>

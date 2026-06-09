@@ -26,7 +26,7 @@ export default function SignalStackLayerPage() {
   if (!data) {
     return (
       <div className="p-12 space-y-4">
-        <div className="font-mono text-xs text-is-dim">LAYER_NOT_FOUND // {layer}</div>
+        <div className="font-mono text-xs text-is-secondary">LAYER_NOT_FOUND // {layer}</div>
         <Link
           to="/signal-stack"
           className="flex items-center gap-1 font-mono text-xs text-is-primary hover:text-is-primary/80 transition-colors uppercase tracking-wider"
@@ -65,7 +65,7 @@ export default function SignalStackLayerPage() {
             <span className="bg-is-primary/10 text-is-primary border border-is-primary/30 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest">
               {categoryLabel}
             </span>
-            <span className="font-mono text-[10px] text-is-dim tracking-widest uppercase">
+            <span className="font-mono text-[10px] text-is-secondary tracking-widest uppercase">
               {versionLabel}
             </span>
           </div>
@@ -83,7 +83,7 @@ export default function SignalStackLayerPage() {
         {/* ── Signals Grid ───────────────────────────────────── */}
         {(weakSignals.length > 0 || strongSignals.length > 0) && (
           <section>
-            <h2 className="font-mono text-[10px] uppercase tracking-widest border-l-2 border-is-primary pl-4 mb-6 text-is-dim">
+            <h2 className="font-mono text-[10px] uppercase tracking-widest border-l-2 border-is-primary pl-4 mb-6 text-is-secondary">
               SIGNAL_DIAGNOSTIC // WEAK_VS_STRONG
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-is-border border border-is-border">
@@ -99,7 +99,7 @@ export default function SignalStackLayerPage() {
                 <ul className="divide-y divide-is-border">
                   {weakSignals.map((s, i) => (
                     <li key={i} className="flex items-start gap-4 py-3 group/item">
-                      <span className="font-mono text-[10px] text-is-dim mt-0.5 shrink-0 group-hover/item:text-is-alert transition-colors">
+                      <span className="font-mono text-[10px] text-is-secondary mt-0.5 shrink-0 group-hover/item:text-is-alert transition-colors">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <span className="font-body text-sm text-is-text leading-relaxed">{s}</span>
@@ -120,7 +120,7 @@ export default function SignalStackLayerPage() {
                 <ul className="divide-y divide-is-border">
                   {strongSignals.map((s, i) => (
                     <li key={i} className="flex items-start gap-4 py-3 group/item">
-                      <span className="font-mono text-[10px] text-is-dim mt-0.5 shrink-0 group-hover/item:text-is-telemetry transition-colors">
+                      <span className="font-mono text-[10px] text-is-secondary mt-0.5 shrink-0 group-hover/item:text-is-telemetry transition-colors">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <span className="font-body text-sm text-is-text leading-relaxed">{s}</span>
@@ -135,13 +135,13 @@ export default function SignalStackLayerPage() {
         {/* ── Evidence ───────────────────────────────────────── */}
         {(exampleWeak || exampleStrong) && (
           <section>
-            <h2 className="font-mono text-[10px] uppercase tracking-widest border-l-2 border-is-primary pl-4 mb-6 text-is-dim">
+            <h2 className="font-mono text-[10px] uppercase tracking-widest border-l-2 border-is-primary pl-4 mb-6 text-is-secondary">
               EVIDENCE_TAXONOMY // SEMANTIC_UPGRADING
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {exampleWeak && (
                 <div className="border border-is-border border-l-2 border-l-is-alert p-6 bg-is-surface space-y-3">
-                  <div className="font-mono text-[10px] text-is-dim uppercase tracking-widest">
+                  <div className="font-mono text-[10px] text-is-secondary uppercase tracking-widest">
                     PASSIVE_EXECUTION
                   </div>
                   <div className="font-mono text-[10px] text-is-alert uppercase tracking-wider">
@@ -154,7 +154,7 @@ export default function SignalStackLayerPage() {
               )}
               {exampleStrong && (
                 <div className="border border-is-primary/20 border-l-2 border-l-is-primary p-6 bg-is-primary/5 space-y-3">
-                  <div className="font-mono text-[10px] text-is-dim uppercase tracking-widest">
+                  <div className="font-mono text-[10px] text-is-secondary uppercase tracking-widest">
                     ACTIVE_MASTERY
                   </div>
                   <div className="font-mono text-[10px] text-is-primary uppercase tracking-wider">
@@ -172,17 +172,17 @@ export default function SignalStackLayerPage() {
         {/* ── Level Differentiation ──────────────────────────── */}
         {levels.length > 0 && (
           <section>
-            <h2 className="font-mono text-[10px] uppercase tracking-widest border-l-2 border-is-primary pl-4 mb-6 text-is-dim">
+            <h2 className="font-mono text-[10px] uppercase tracking-widest border-l-2 border-is-primary pl-4 mb-6 text-is-secondary">
               LEVEL_DIFFERENTIATION_MATRIX
             </h2>
             <div className="border border-is-border overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="bg-is-surface border-b border-is-border">
-                    <th className="px-6 py-4 text-left font-mono text-[10px] text-is-dim font-normal uppercase tracking-widest w-32">
+                    <th className="px-6 py-4 text-left font-mono text-[10px] text-is-secondary font-normal uppercase tracking-widest w-32">
                       LEVEL
                     </th>
-                    <th className="px-6 py-4 text-left font-mono text-[10px] text-is-dim font-normal uppercase tracking-widest">
+                    <th className="px-6 py-4 text-left font-mono text-[10px] text-is-secondary font-normal uppercase tracking-widest">
                       WHAT_STRONG_LOOKS_LIKE
                     </th>
                   </tr>

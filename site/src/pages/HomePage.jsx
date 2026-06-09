@@ -39,7 +39,7 @@ function SignalAnalysisPanel() {
       ))}
       <div className="mt-4 pt-4 border-t border-is-border">
         <div className="font-mono text-xs text-is-alert uppercase tracking-widest mb-1">▶ PRIMARY_SIGNAL_GAP</div>
-        <p className="font-body text-xs text-is-dim leading-relaxed">
+        <p className="font-body text-xs text-is-text leading-relaxed">
           Business impact is implied but not explicitly stated.
         </p>
       </div>
@@ -58,7 +58,7 @@ function CopyButton({ text }) {
   return (
     <button
       onClick={handleCopy}
-      className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-is-border text-is-dim hover:border-is-primary hover:text-is-primary transition-all"
+      className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-is-border text-is-secondary hover:border-is-primary hover:text-is-primary transition-all"
     >
       {copied ? <Check size={12} /> : <Copy size={12} />}
       {copied ? 'COPIED' : 'COPY'}
@@ -171,7 +171,7 @@ export default function HomePage() {
           {/* Status row */}
           <div className="flex flex-wrap items-center gap-3 mb-10">
             <StatusPill color="blue">● SYSTEM STATUS: ONLINE // ESTABLISHED</StatusPill>
-            <span className="font-mono text-xs text-is-dim tracking-widest hidden sm:block">
+            <span className="font-mono text-xs text-is-secondary tracking-widest hidden sm:block">
               SIGNAL_DISPATCH · ER_MH · PROCESS: INPUT_TRANSMISSION · V1.0
             </span>
           </div>
@@ -227,9 +227,66 @@ export default function HomePage() {
                 <Icon size={20} className="text-is-primary mb-1" />
                 <div className="is-label">{id}</div>
                 <div className="font-mono text-sm font-semibold uppercase text-is-text">{label}</div>
-                <p className="font-body text-xs text-is-dim leading-relaxed">{desc}</p>
+                <p className="font-body text-xs text-is-text leading-relaxed">{desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SIGNAL STACK ──────────────────────────────────── */}
+      <section className="border-b border-is-border bg-is-bg px-6 py-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+            <div>
+              <div className="is-label mb-2">BUILT_ON</div>
+              <h2 className="font-mono text-3xl md:text-4xl font-semibold uppercase text-is-text">
+                SIGNAL_STACK
+              </h2>
+              <div className="font-mono text-xs text-is-secondary mt-2">L1–L8 ANALYSIS FRAMEWORK</div>
+            </div>
+            <Link
+              to="/signal-stack"
+              className="font-mono text-xs text-is-primary border border-is-primary/30 px-3 py-1.5 hover:bg-is-primary/10 transition-colors"
+            >
+              ENTER SIGNAL_STACK →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-is-border">
+            {(showAllLayers ? signalLayers : signalLayers.slice(0, 3)).map(({ num, slug, name, tagline }, i) => {
+              const meta = LAYER_META[i] ?? LAYER_META[0]
+              return (
+                <Link
+                  key={slug}
+                  to={`/signal-stack/${slug}`}
+                  className="group bg-is-bg p-5 flex flex-col gap-3 hover:bg-is-surface transition-colors"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="font-mono text-xs text-is-secondary">{String(num).padStart(2, '0')}_LAYER</span>
+                    <span className={`font-mono text-xs px-1.5 py-0.5 border ${meta.freqClass} shrink-0`}>FREQ: {meta.freq}</span>
+                  </div>
+                  <div className="font-mono text-sm font-semibold text-is-text uppercase tracking-wide">{name}</div>
+                  <p className="font-body text-xs text-is-text leading-relaxed flex-1">{tagline}</p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <div className="h-0.5 bg-is-surface-high flex-1">
+                      <div className={`h-full ${meta.barColor}`} style={{ width: `${meta.pct}%` }} />
+                    </div>
+                    <span className={`font-mono text-xs shrink-0 ${meta.textColor}`}>{meta.pct}%</span>
+                  </div>
+                </Link>
+              )
+            })}
+            {!showAllLayers && (
+              <button
+                onClick={() => setShowAllLayers(true)}
+                className="group bg-is-bg p-5 flex flex-col items-center justify-center gap-3 hover:bg-is-surface transition-colors w-full"
+              >
+                <div className="font-mono text-2xl text-is-dim group-hover:text-is-text transition-colors">↓</div>
+                <div className="font-mono text-xs uppercase tracking-widest text-is-dim group-hover:text-is-text transition-colors">LOAD MORE LAYERS</div>
+                <div className="font-mono text-xs text-is-alert">04-08 HIDDEN</div>
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -247,7 +304,7 @@ export default function HomePage() {
                 Want fast feedback? Copy one focused prompt and run it in your preferred AI tool.
               </p>
             </div>
-            <div className="font-mono text-xs text-is-dim uppercase tracking-widest text-right shrink-0">
+            <div className="font-mono text-xs text-is-secondary uppercase tracking-widest text-right shrink-0">
               IMMEDIATE_UTILITY<br />READY_FOR_DEPLOYMENT
             </div>
           </div>
@@ -265,7 +322,7 @@ export default function HomePage() {
                       {prompt.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="font-mono text-[10px] border border-is-border px-2 py-0.5 text-is-dim uppercase tracking-widest"
+                          className="font-mono text-[10px] border border-is-border px-2 py-0.5 text-is-secondary uppercase tracking-widest"
                         >
                           #{tag}
                         </span>
@@ -315,63 +372,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── SIGNAL STACK ──────────────────────────────────── */}
-      <section className="border-b border-is-border bg-is-bg px-6 py-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
-            <div>
-              <div className="is-label mb-2">BUILT_ON</div>
-              <h2 className="font-mono text-3xl md:text-4xl font-semibold uppercase text-is-text">
-                SIGNAL_STACK
-              </h2>
-              <div className="font-mono text-xs text-is-dim mt-2">L1–L8 ANALYSIS FRAMEWORK</div>
-            </div>
-            <Link
-              to="/signal-stack"
-              className="font-mono text-xs text-is-primary border border-is-primary/30 px-3 py-1.5 hover:bg-is-primary/10 transition-colors"
-            >
-              ENTER SIGNAL_STACK →
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-is-border">
-            {(showAllLayers ? signalLayers : signalLayers.slice(0, 3)).map(({ num, slug, name, tagline }, i) => {
-              const meta = LAYER_META[i] ?? LAYER_META[0]
-              return (
-                <Link
-                  key={slug}
-                  to={`/signal-stack/${slug}`}
-                  className="group bg-is-bg p-5 flex flex-col gap-3 hover:bg-is-surface transition-colors"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="font-mono text-xs text-is-dim">{String(num).padStart(2, '0')}_LAYER</span>
-                    <span className={`font-mono text-xs px-1.5 py-0.5 border ${meta.freqClass} shrink-0`}>FREQ: {meta.freq}</span>
-                  </div>
-                  <div className="font-mono text-sm font-semibold text-is-text uppercase tracking-wide">{name}</div>
-                  <p className="font-body text-xs text-is-dim leading-relaxed flex-1">{tagline}</p>
-                  <div className="flex items-center gap-2 mt-1">
-                    <div className="h-0.5 bg-is-surface-high flex-1">
-                      <div className={`h-full ${meta.barColor}`} style={{ width: `${meta.pct}%` }} />
-                    </div>
-                    <span className={`font-mono text-xs shrink-0 ${meta.textColor}`}>{meta.pct}%</span>
-                  </div>
-                </Link>
-              )
-            })}
-            {!showAllLayers && (
-              <button
-                onClick={() => setShowAllLayers(true)}
-                className="group bg-is-bg p-5 flex flex-col items-center justify-center gap-3 hover:bg-is-surface transition-colors w-full"
-              >
-                <div className="font-mono text-2xl text-is-dim group-hover:text-is-text transition-colors">↓</div>
-                <div className="font-mono text-xs uppercase tracking-widest text-is-dim group-hover:text-is-text transition-colors">LOAD MORE LAYERS</div>
-                <div className="font-mono text-xs text-is-alert">04-08 HIDDEN</div>
-              </button>
-            )}
-          </div>
-        </div>
-      </section>
-
       {/* ── SIGNAL CALIBRATION ────────────────────────────── */}
       <section className="border-b border-is-border bg-is-bg px-6 py-20">
         <div className="max-w-7xl mx-auto">
@@ -389,7 +389,7 @@ export default function HomePage() {
                 <span className="is-label">PROCESS_ID: SIGNAL_PARALLAX</span>
               </div>
               <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-start">
-                <span className="font-mono text-xs text-is-dim">STEP: 1 / 3</span>
+                <span className="font-mono text-xs text-is-secondary">STEP: 1 / 3</span>
                 <StatusPill color="gold">CALIBRATING</StatusPill>
                 <StatusPill color="blue">SIGNAL_BLANKET</StatusPill>
               </div>
@@ -399,7 +399,7 @@ export default function HomePage() {
               {/* Raw input */}
               <div className="bg-is-bg p-6">
                 <div className="is-label mb-4">RAW_INPUT_SIGNAL</div>
-                <div className="is-panel p-4 font-mono text-xs text-is-dim leading-relaxed italic">
+                <div className="is-panel p-4 font-mono text-xs text-is-text leading-relaxed italic">
                   {`"I helped build a signup feature for a new user flow. It was a difficult project but we finished it on time."`}
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
@@ -409,7 +409,7 @@ export default function HomePage() {
                     { label: 'COMPLEXITY_INDEX', val: 'GHOST_RUN', color: 'text-is-warning' },
                   ].map(({ label, val, color }) => (
                     <div key={label} className="border border-is-border p-3 sm:p-2">
-                      <div className="font-mono text-xs text-is-dim mb-1">{label}</div>
+                      <div className="font-mono text-xs text-is-secondary mb-1">{label}</div>
                       <div className={`font-mono text-xs font-semibold ${color}`}>{val}</div>
                     </div>
                   ))}
@@ -429,7 +429,7 @@ export default function HomePage() {
                     { label: 'COMPLEXITY_INDEX', val: 'HYPERLINK_HIGH', color: 'text-is-primary' },
                   ].map(({ label, val, color }) => (
                     <div key={label} className="border border-is-border p-3 sm:p-2">
-                      <div className="font-mono text-xs text-is-dim mb-1">{label}</div>
+                      <div className="font-mono text-xs text-is-secondary mb-1">{label}</div>
                       <div className={`font-mono text-xs font-semibold ${color}`}>{val}</div>
                     </div>
                   ))}
@@ -455,12 +455,12 @@ export default function HomePage() {
                 Built from years of hiring, coaching, promoting, and leading software engineers and technical leaders.
               </p>
               <p className="font-body text-base text-is-text leading-relaxed">
-                Invisible Signals&#x2122; is designed to help people communicate real experience more clearly—not manufacture experience they do not have.
+                Invisible Signals&#x2122; distills recurring patterns observed across resumes, interviews, promotion reviews, and leadership assessments.
               </p>
             </div>
             <div className="flex flex-wrap gap-2 content-start">
               {['ENGINEERING_LEADERSHIP', 'HIRING_&_PROMOTION', 'CAREER_GROWTH', 'TECHNICAL_COMMUNICATION'].map((tag) => (
-                <span key={tag} className="font-mono text-xs border border-is-border px-3 py-1.5 text-is-dim uppercase tracking-widest">
+                <span key={tag} className="font-mono text-xs border border-is-border px-3 py-1.5 text-is-secondary uppercase tracking-widest">
                   {tag}
                 </span>
               ))}
@@ -480,14 +480,14 @@ export default function HomePage() {
                 className="group bg-is-bg p-6 flex flex-col gap-4 hover:bg-is-surface transition-colors"
               >
                 <div className="flex items-center justify-between">
-                  <div className="font-mono text-xl text-is-dim">{icon}</div>
+                  <div className="font-mono text-xl text-is-secondary">{icon}</div>
                   <StatusPill color={pillColor}>{pill}</StatusPill>
                 </div>
                 <div>
                   <div className="is-label mb-1">{tag}</div>
                   <div className="font-mono text-base font-semibold uppercase text-is-text group-hover:text-is-primary transition-colors">{title}</div>
                 </div>
-                <p className="font-body text-xs text-is-dim leading-relaxed flex-1">{desc}</p>
+                <p className="font-body text-xs text-is-text leading-relaxed flex-1">{desc}</p>
                 <div className="font-mono text-xs text-is-primary opacity-0 group-hover:opacity-100 transition-opacity">EXPLORE →</div>
               </Link>
             ))}
@@ -618,7 +618,7 @@ export default function HomePage() {
               onClick={() => document.getElementById('quick-prompts')?.scrollIntoView({ behavior: 'smooth' })}
               className="is-btn-primary"
             >
-              RUN_A_SIGNAL_CHECK
+              ANALYZE_YOUR_SIGNALS
             </button>
             <Link to="/prompts" className="is-btn-ghost">
               BROWSE_PROMPTS

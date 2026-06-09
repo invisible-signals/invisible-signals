@@ -36,11 +36,11 @@ export default function App() {
           </Routes>
         </main>
         <footer className="border-t border-is-border px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-          <span className="font-mono text-xs text-is-dim">© 2026 INVISIBLE_SIGNALS™ · IS_RIGHTS_RESERVED</span>
+          <span className="font-mono text-xs text-is-secondary">© 2026 INVISIBLE_SIGNALS™ · IS_RIGHTS_RESERVED</span>
           <div className="flex items-center gap-6">
-            <a href="https://github.com/invisible-signals/invisible-signals" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-dim hover:text-is-text transition-colors">GITHUB</a>
-            <a href="https://github.com/invisible-signals/invisible-signals/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-dim hover:text-is-text transition-colors">CODE_OF_CONDUCT</a>
-            <span className="font-mono text-xs text-is-dim">SECURITY: APACHE-2.0 // OPEN_SOURCE_LICENSED</span>
+            <a href="https://github.com/invisible-signals/invisible-signals" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-secondary hover:text-is-text transition-colors">GITHUB</a>
+            <a href="https://github.com/invisible-signals/invisible-signals/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-secondary hover:text-is-text transition-colors">CODE_OF_CONDUCT</a>
+            <span className="font-mono text-xs text-is-secondary">SECURITY: APACHE-2.0 // OPEN_SOURCE_LICENSED</span>
           </div>
         </footer>
       </div>

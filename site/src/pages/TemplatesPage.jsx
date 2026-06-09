@@ -53,7 +53,7 @@ function CopyButton({ text }) {
   return (
     <button
       onClick={handleCopy}
-      className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-is-border text-is-dim hover:border-is-primary hover:text-is-primary transition-all"
+      className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-is-border text-is-secondary hover:border-is-primary hover:text-is-primary transition-all"
     >
       {copied ? <Check size={12} /> : <Copy size={12} />}
       {copied ? 'COPIED' : 'COPY_TEMPLATE'}
@@ -73,7 +73,7 @@ export default function TemplatesPage() {
         <h1 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
           SIGNAL TEMPLATES
         </h1>
-        <p className="font-body text-base text-is-dim leading-relaxed max-w-2xl">
+        <p className="font-body text-base text-is-secondary leading-relaxed max-w-2xl">
           Structured documents for auditing, scoring, and improving your career signals. Copy a template into your own editor and work through it at your own pace.
         </p>
       </div>
@@ -89,7 +89,7 @@ export default function TemplatesPage() {
                   {String(index + 1).padStart(2, '0')} // {title.toUpperCase()}
                 </span>
                 {version && (
-                  <span className="font-mono text-xs text-is-dim border border-is-border px-2 py-0.5">
+                  <span className="font-mono text-xs text-is-secondary border border-is-border px-2 py-0.5">
                     V{version}
                   </span>
                 )}
@@ -133,7 +133,7 @@ export default function TemplatesPage() {
                     <div className="is-label mb-3">TAGS</div>
                     <div className="flex flex-wrap gap-2">
                       {tags.map((t) => (
-                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-xs text-is-dim">
+                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-xs text-is-secondary">
                           {t.toUpperCase().replace(/-/g, '_')}
                         </span>
                       ))}
@@ -148,7 +148,7 @@ export default function TemplatesPage() {
 
       {/* Footer note */}
       <div className="mt-10 pt-6 border-t border-is-border">
-        <p className="font-body text-sm text-is-dim leading-relaxed max-w-2xl">
+        <p className="font-body text-sm text-is-secondary leading-relaxed max-w-2xl">
           <span className="font-mono text-is-primary">NOTE:</span> Templates are fill-in-the-blank markdown documents. Copy the full template and open it in your own text editor or note-taking tool. Do not invent evidence — use the recovery questions inside each section to surface real experience.
         </p>
       </div>

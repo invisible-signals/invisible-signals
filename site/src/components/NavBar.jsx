@@ -84,7 +84,7 @@ export default function NavBar() {
               to={link.to}
               className={({ isActive }) =>
                 `px-3 py-1.5 font-mono text-xs uppercase tracking-widest whitespace-nowrap transition-colors ${
-                  isActive ? 'text-is-text' : 'text-is-dim hover:text-is-text'
+                  isActive ? 'text-is-text' : 'text-is-secondary hover:text-is-text'
                 }`
               }
             >
@@ -95,7 +95,7 @@ export default function NavBar() {
 
         {/* Search */}
         <form onSubmit={handleSearch} className="flex items-center gap-0 border border-is-border bg-is-surface min-w-0">
-          <span className="pl-2 sm:pl-3 pr-2 flex items-center text-is-dim">
+          <span className="pl-2 sm:pl-3 pr-2 flex items-center text-is-secondary">
             <Search size={12} />
           </span>
           <input
@@ -142,10 +142,10 @@ export default function NavBar() {
             </NavLink>
 
             <div className="flex flex-col">
-              <NavLink to="/frameworks" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-dim hover:text-is-text">
+              <NavLink to="/frameworks" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-secondary hover:text-is-text">
                 _01_FRAMEWORKS
               </NavLink>
-              <NavLink to="/prompts" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-dim hover:text-is-text">
+              <NavLink to="/prompts" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-secondary hover:text-is-text">
                 _02_PROMPTS
               </NavLink>
             </div>

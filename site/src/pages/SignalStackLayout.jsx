@@ -35,7 +35,7 @@ export default function SignalStackLayout() {
           <div className="font-mono text-xs font-semibold uppercase tracking-widest text-is-text">
             SIGNAL STACK
           </div>
-          <div className="font-mono text-[10px] text-is-dim mt-0.5 tracking-widest">
+          <div className="font-mono text-[10px] text-is-secondary mt-0.5 tracking-widest">
             L1–L8 ANALYSIS
           </div>
         </div>

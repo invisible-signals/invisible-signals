@@ -48,7 +48,7 @@ export default function SignalStackOverviewPage() {
         <h1 className="font-mono text-3xl md:text-4xl font-semibold uppercase text-is-text mb-4">
           Signal Stack Overview
         </h1>
-        <p className="font-body text-base text-is-dim max-w-2xl leading-relaxed">
+        <p className="font-body text-base text-is-secondary max-w-2xl leading-relaxed">
           A diagnostic framework for mapping evidence across eight critical layers of career signal
           intelligence. A weak layer does not disqualify — an invisible layer does.
         </p>
@@ -66,18 +66,18 @@ export default function SignalStackOverviewPage() {
                 className="group border border-is-border p-5 bg-is-surface flex items-center justify-between glow-border transition-all"
               >
                 <div className="flex items-center gap-6">
-                  <span className="font-mono text-xs text-is-dim w-6 shrink-0">L{num}</span>
+                  <span className="font-mono text-xs text-is-secondary w-6 shrink-0">L{num}</span>
                   <div>
                     <div className="font-mono text-sm font-medium uppercase tracking-wider text-is-text group-hover:text-is-primary transition-colors">
                       {name}
                     </div>
-                    <div className="font-mono text-[10px] text-is-dim mt-0.5">{tagline}</div>
+                    <div className="font-mono text-[10px] text-is-secondary mt-0.5">{tagline}</div>
                   </div>
                 </div>
                 {Icon && (
                   <Icon
                     size={14}
-                    className="text-is-dim group-hover:text-is-primary group-hover:translate-x-0.5 transition-all shrink-0"
+                    className="text-is-secondary group-hover:text-is-primary group-hover:translate-x-0.5 transition-all shrink-0"
                   />
                 )}
               </Link>
@@ -95,7 +95,7 @@ export default function SignalStackOverviewPage() {
             <div className="p-4">
               <table className="w-full font-mono text-xs">
                 <thead>
-                  <tr className="text-is-dim border-b border-is-border">
+                  <tr className="text-is-secondary border-b border-is-border">
                     <th className="text-left py-2 font-normal">SCORE</th>
                     <th className="text-left py-2 font-normal">RATING</th>
                     <th className="text-right py-2 font-normal">STATUS</th>
@@ -104,9 +104,9 @@ export default function SignalStackOverviewPage() {
                 <tbody>
                   {scoringRows.map(({ score, rating }) => (
                     <tr key={score} className="border-b border-is-border/40 last:border-0">
-                      <td className="py-2.5 text-is-dim">{score}</td>
+                      <td className="py-2.5 text-is-secondary">{score}</td>
                       <td className={`py-2.5 ${SCORE_COLORS[score] ?? 'text-is-dim'}`}>{rating}</td>
-                      <td className="py-2.5 text-right text-is-dim">
+                      <td className="py-2.5 text-right text-is-secondary">
                         {SCORE_STATUS[score] ?? '—'}
                       </td>
                     </tr>
@@ -130,7 +130,7 @@ export default function SignalStackOverviewPage() {
                 <div key={label}>
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="font-mono text-xs text-is-text">{label}</span>
-                    <span className="font-mono text-[10px] text-is-dim">{desc}</span>
+                    <span className="font-mono text-[10px] text-is-secondary">{desc}</span>
                   </div>
                   <div className="h-px w-full bg-is-border">
                     <div className={`h-full ${color}`} style={{ width: `${pct}%` }} />
