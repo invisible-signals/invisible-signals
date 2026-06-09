@@ -29,7 +29,12 @@ Invisible Signals™ exists to help people better understand the implicit system
 
 ## What This Repository Contains
 
-This repository includes frameworks, prompts, templates, workflows, and reference material related to:
+This repository includes two distinct artifacts:
+
+- **React web app** (`site/`) — interactive signal analysis tools available at [invisiblesignals.dev](https://invisiblesignals.dev/)
+- **Markdown knowledge base** — frameworks, prompts, templates, workflows, and reference material under `docs/`, `frameworks/`, `prompts/`, `examples/`, and `templates/`
+
+The knowledge base covers:
 
 - Engineering career growth
 - Technical leadership communication
@@ -38,11 +43,24 @@ This repository includes frameworks, prompts, templates, workflows, and referenc
 - Organizational signal interpretation
 - Career operating systems
 
+You can analyze:
+
+- Résumé
+- LinkedIn Profile
+- GitHub Profile
+- Interview Answer
+- Promotion Packet
+- Leadership Communication
+
 ---
 
 ## Start Here
 
-New to Invisible Signals™?
+New to Invisible Signals™? Start at **[invisiblesignals.dev](https://invisiblesignals.dev/)** — the interactive site surfaces the full toolkit with ready-to-copy prompts, the Signal Stack, and live signal calibration examples.
+
+### Explore the Source Material
+
+Prefer the raw docs?
 
 1. Read the [Signal Stack™](docs/signal-stack.md)
 2. Use the [Signal Scorecard](templates/signal-scorecard.md)
