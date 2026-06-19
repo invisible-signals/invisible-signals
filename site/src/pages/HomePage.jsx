@@ -152,12 +152,12 @@ const principles = [
 ]
 
 const ANALYZE_TARGETS = [
-  { id: 'RESUME',     label: 'Resume',                  desc: 'Analyze ownership, impact, technical depth, and clarity.',      Icon: FileText },
-  { id: 'LINKEDIN',   label: 'LinkedIn Profile',         desc: 'Surface the signals your headline and summary transmit.',        Icon: Linkedin },
-  { id: 'GITHUB',     label: 'GitHub Profile',           desc: 'Evaluate technical depth and contribution patterns.',            Icon: Github },
-  { id: 'INTERVIEW',  label: 'Interview Answer',         desc: 'Detect ownership, specificity, and leadership signal.',          Icon: MessageSquare },
-  { id: 'PROMOTION',  label: 'Promotion Packet',         desc: 'Identify gaps in scope, impact, and cross-functional influence.', Icon: TrendingUp },
-  { id: 'LEADERSHIP', label: 'Leadership Communication', desc: 'Assess clarity, strategic framing, and credibility signals.',    Icon: Users },
+  { id: 'RESUME',     label: 'Resume',                  desc: 'Analyze ownership, impact, technical depth, and clarity.',       Icon: FileText,       to: '/prompts?category=resume' },
+  { id: 'LINKEDIN',   label: 'LinkedIn Profile',         desc: 'Surface the signals your headline and summary transmit.',         Icon: Linkedin,       to: '/prompts?category=quick-signal' },
+  { id: 'GITHUB',     label: 'GitHub Profile',           desc: 'Evaluate technical depth and contribution patterns.',             Icon: Github,         to: '/prompts?category=quick-signal' },
+  { id: 'INTERVIEW',  label: 'Interview Answer',         desc: 'Detect ownership, specificity, and leadership signal.',           Icon: MessageSquare,  to: '/prompts?category=interview' },
+  { id: 'PROMOTION',  label: 'Promotion Packet',         desc: 'Identify gaps in scope, impact, and cross-functional influence.', Icon: TrendingUp,     to: null },
+  { id: 'LEADERSHIP', label: 'Leadership Communication', desc: 'Assess clarity, strategic framing, and credibility signals.',     Icon: Users,          to: null },
 ]
 
 export default function HomePage() {
@@ -222,14 +222,28 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-is-border">
-            {ANALYZE_TARGETS.map(({ id, label, desc, Icon }) => (
-              <div key={id} className="bg-is-bg p-5 flex flex-col gap-2 hover:bg-is-surface transition-colors">
-                <Icon size={20} className="text-is-primary mb-1" />
-                <div className="is-label">{id}</div>
-                <div className="font-mono text-sm font-semibold uppercase text-is-text">{label}</div>
-                <p className="font-body text-xs text-is-text leading-relaxed">{desc}</p>
-              </div>
-            ))}
+            {ANALYZE_TARGETS.map(({ id, label, desc, Icon, to }) => {
+              if (to) {
+                return (
+                  <Link key={id} to={to} className="bg-is-bg p-5 flex flex-col gap-2 hover:bg-is-surface transition-colors group">
+                    <Icon size={20} className="text-is-primary mb-1" />
+                    <div className="is-label">{id}</div>
+                    <div className="font-mono text-sm font-semibold uppercase text-is-text">{label}</div>
+                    <p className="font-body text-xs text-is-text leading-relaxed">{desc}</p>
+                    <div className="font-mono text-[10px] text-is-primary opacity-0 group-hover:opacity-100 transition-opacity mt-auto">VIEW_PROMPTS →</div>
+                  </Link>
+                )
+              }
+              return (
+                <div key={id} className="bg-is-bg p-5 flex flex-col gap-2 opacity-60 cursor-default">
+                  <Icon size={20} className="text-is-dim mb-1" />
+                  <div className="is-label">{id}</div>
+                  <div className="font-mono text-sm font-semibold uppercase text-is-text">{label}</div>
+                  <p className="font-body text-xs text-is-text leading-relaxed">{desc}</p>
+                  <div className="font-mono text-[10px] text-is-dim uppercase tracking-widest mt-auto">COMING_SOON</div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>

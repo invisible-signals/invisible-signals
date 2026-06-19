@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Copy, Check, AlertTriangle } from 'lucide-react'
 import StatusPill from '../components/StatusPill.jsx'
 import { parseFrontmatter, parsePromptFile } from '../lib/parsePrompts.js'
@@ -52,6 +53,23 @@ function CopyButton({ text }) {
 }
 
 export default function PromptsPage() {
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => {
+    const category = searchParams.get('category')
+    if (!category) return
+    let targetId
+    if (category === 'quick-signal') {
+      targetId = quickPrompts[0]?.id
+    } else {
+      const match = otherPrompts.find((p) => p.category === category)
+      targetId = match?.id
+    }
+    if (!targetId) return
+    const el = document.getElementById(`prompt-card-${targetId}`)
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, [searchParams])
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
       {/* Header */}
@@ -74,7 +92,7 @@ export default function PromptsPage() {
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             {quickPrompts.map(({ id, title, purpose, tags, text }, index) => (
-              <section key={id} className="border border-is-border bg-is-surface-container-lowest p-6 relative group overflow-hidden glow-border transition-all">
+              <section key={id} id={`prompt-card-${id}`} className="border border-is-border bg-is-surface-container-lowest p-6 relative group overflow-hidden glow-border transition-all scroll-mt-8">
                 <div className="flex items-start justify-between gap-4 mb-6">
                   <div>
                     <h3 className="text-sm font-mono uppercase tracking-widest text-is-text mb-3">
@@ -131,7 +149,7 @@ export default function PromptsPage() {
       </div>
       <div className="space-y-px bg-is-border">
         {otherPrompts.map(({ id, title, purpose, tags, text }, index) => (
-          <div key={id} className="bg-is-bg border border-is-border glow-border transition-all">
+          <div key={id} id={`prompt-card-${id}`} className="bg-is-bg border border-is-border glow-border transition-all scroll-mt-8">
             {/* Header */}
             <div className="border-b border-is-border px-6 py-4 bg-is-surface flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-4">
