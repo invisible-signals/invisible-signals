@@ -77,7 +77,8 @@ export default function NavBar() {
         <div className="hidden md:flex items-center">
           {[
             { to: '/frameworks', label: '_01_FRAMEWORKS' },
-            { to: '/prompts', label: '_02_PROMPTS' },
+            { to: '/analyzer', label: '_02_ANALYZER' },
+            { to: '/prompts', label: '_03_PROMPTS' },
           ].map((link) => (
             <NavLink
               key={link.to}
@@ -145,8 +146,14 @@ export default function NavBar() {
               <NavLink to="/frameworks" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-secondary hover:text-is-text">
                 _01_FRAMEWORKS
               </NavLink>
+              <NavLink to="/analyzer" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-secondary hover:text-is-text">
+                _02_ANALYZER
+              </NavLink>
               <NavLink to="/prompts" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-secondary hover:text-is-text">
-                _02_PROMPTS
+                _03_PROMPTS
+              </NavLink>
+              <NavLink to="/analyzer" onClick={() => setMobileOpen(false)} className="px-3 py-2 font-mono text-sm uppercase tracking-widest text-is-secondary hover:text-is-text">
+                _03_ANALYZER
               </NavLink>
             </div>
 

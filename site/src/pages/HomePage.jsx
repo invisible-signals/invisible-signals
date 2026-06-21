@@ -109,6 +109,15 @@ const modules = [
     pillColor: 'blue',
   },
   {
+    to: '/analyzer',
+    tag: 'ANALYZER',
+    icon: '◈',
+    title: 'Analyzer',
+    desc: 'Paste resume bullets, interview answers, or LinkedIn summaries. Get an instant signal score and gap analysis — no external AI tool needed.',
+    pill: 'SIGNAL_ACTIVE',
+    pillColor: 'gold',
+  },
+  {
     to: '/prompts',
     tag: 'PROMPTS',
     icon: '···',
@@ -152,10 +161,10 @@ const principles = [
 ]
 
 const ANALYZE_TARGETS = [
-  { id: 'RESUME',     label: 'Resume',                  desc: 'Analyze ownership, impact, technical depth, and clarity.',       Icon: FileText,       to: '/prompts?category=resume' },
-  { id: 'LINKEDIN',   label: 'LinkedIn Profile',         desc: 'Surface the signals your headline and summary transmit.',         Icon: Linkedin,       to: '/prompts?category=quick-signal' },
-  { id: 'GITHUB',     label: 'GitHub Profile',           desc: 'Evaluate technical depth and contribution patterns.',             Icon: Github,         to: '/prompts?category=quick-signal' },
-  { id: 'INTERVIEW',  label: 'Interview Answer',         desc: 'Detect ownership, specificity, and leadership signal.',           Icon: MessageSquare,  to: '/prompts?category=interview' },
+  { id: 'RESUME',     label: 'Resume',                  desc: 'Analyze ownership, impact, technical depth, and clarity.',       Icon: FileText,       to: '/analyzer?type=resume' },
+  { id: 'LINKEDIN',   label: 'LinkedIn Profile',         desc: 'Surface the signals your headline and summary transmit.',         Icon: Linkedin,       to: '/analyzer?type=linkedin' },
+  { id: 'GITHUB',     label: 'GitHub Profile',           desc: 'Evaluate technical depth and contribution patterns.',             Icon: Github,         to: '/analyzer?type=github' },
+  { id: 'INTERVIEW',  label: 'Interview Answer',         desc: 'Detect ownership, specificity, and leadership signal.',           Icon: MessageSquare,  to: '/analyzer?type=interview' },
   { id: 'PROMOTION',  label: 'Promotion Packet',         desc: 'Identify gaps in scope, impact, and cross-functional influence.', Icon: TrendingUp,     to: null },
   { id: 'LEADERSHIP', label: 'Leadership Communication', desc: 'Assess clarity, strategic framing, and credibility signals.',     Icon: Users,          to: null },
 ]
@@ -187,12 +196,9 @@ export default function HomePage() {
                 Surface the signals recruiters, hiring managers, and leadership teams actually see.
               </p>
               <div className="flex flex-wrap gap-3">
-                <button
-                  onClick={() => document.getElementById('quick-prompts')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="is-btn-primary"
-                >
-                  RUN_QUICK_CHECK
-                </button>
+                <Link to="/analyzer" className="is-btn-primary">
+                  ANALYZE_SIGNAL
+                </Link>
                 <Link to="/signal-stack" className="is-btn-ghost">
                   SIGNAL_STACK →
                 </Link>
@@ -230,7 +236,7 @@ export default function HomePage() {
                     <div className="is-label">{id}</div>
                     <div className="font-mono text-sm font-semibold uppercase text-is-text">{label}</div>
                     <p className="font-body text-xs text-is-text leading-relaxed">{desc}</p>
-                    <div className="font-mono text-[10px] text-is-primary opacity-0 group-hover:opacity-100 transition-opacity mt-auto">VIEW_PROMPTS →</div>
+                    <div className="font-mono text-[10px] text-is-primary opacity-0 group-hover:opacity-100 transition-opacity mt-auto">ANALYZE_NOW →</div>
                   </Link>
                 )
               }
@@ -305,87 +311,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── QUICK SIGNAL PROMPTS ──────────────────────────── */}
-      <section id="quick-prompts" className="border-b border-is-border bg-is-bg px-6 py-20 scroll-mt-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <div>
-              <div className="is-label mb-2">QUICK_START</div>
-              <h2 className="font-mono text-3xl md:text-4xl font-semibold uppercase text-is-text">
-                SIGNAL_PROMPTS
-              </h2>
-              <p className="font-body text-base text-is-text mt-3 max-w-xl">
-                Want fast feedback? Copy one focused prompt and run it in your preferred AI tool.
-              </p>
-            </div>
-            <div className="font-mono text-xs text-is-secondary uppercase tracking-widest text-right shrink-0">
-              IMMEDIATE_UTILITY<br />READY_FOR_DEPLOYMENT
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {quickPrompts.map((prompt, i) => (
-              <div key={prompt.id} className="is-panel p-6 relative overflow-hidden">
-                {/* Card header */}
-                <div className="flex justify-between items-start mb-5">
-                  <div>
-                    <h3 className="font-mono text-sm font-semibold uppercase text-is-text mb-2">
-                      {String(i + 1).padStart(2, '0')} // {prompt.title.toUpperCase()}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {prompt.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="font-mono text-[10px] border border-is-border px-2 py-0.5 text-is-secondary uppercase tracking-widest"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <CopyButton text={prompt.text} />
-                </div>
-
-                {/* 3-col inner: 2/3 prompt body, 1/3 purpose + telemetry */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                  <div className="lg:col-span-2">
-                    <div className="is-label mb-2">PROMPT_BODY</div>
-                    <div className="bg-is-bg border border-is-border p-4 font-mono text-xs text-is-text leading-relaxed h-48 overflow-y-auto whitespace-pre-wrap">
-                      {prompt.text}
-                    </div>
-                  </div>
-                  <div className="flex flex-col justify-between">
-                    <div>
-                      <div className="is-label mb-2">PURPOSE</div>
-                      <p className="font-body text-sm text-is-text leading-relaxed">
-                        {prompt.purpose}
-                      </p>
-                    </div>
-                    <div className="mt-4 pt-4 border-t border-is-border">
-                      <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-is-telemetry signal-pulse" />
-                        <span className="font-mono text-[10px] text-is-telemetry uppercase tracking-widest">
-                          TELEMETRY: READY
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 flex justify-end">
-            <Link
-              to="/prompts"
-              className="font-mono text-xs text-is-primary border border-is-primary/30 px-3 py-1.5 hover:bg-is-primary/10 transition-colors"
-            >
-              VIEW ALL PROMPTS →
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* ── SIGNAL CALIBRATION ────────────────────────────── */}
       <section className="border-b border-is-border bg-is-bg px-6 py-20">
         <div className="max-w-7xl mx-auto">
@@ -454,6 +379,87 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── QUICK SIGNAL PROMPTS ──────────────────────────── */}
+      <section id="quick-prompts" className="border-b border-is-border bg-is-bg px-6 py-20 scroll-mt-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+              <div className="is-label mb-2">MANUAL_PROMPTS // FOR_EXTERNAL_AI</div>
+              <h2 className="font-mono text-3xl md:text-4xl font-semibold uppercase text-is-text">
+                SIGNAL_PROMPTS
+              </h2>
+              <p className="font-body text-base text-is-text mt-3 max-w-xl">
+                Prefer to use ChatGPT, Claude, or another AI tool? Copy a focused prompt and run it yourself.
+              </p>
+            </div>
+            <div className="font-mono text-xs text-is-secondary uppercase tracking-widest text-right shrink-0">
+              EXTERNAL_AI_COMPATIBLE<br />COPY_AND_PASTE
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {quickPrompts.map((prompt, i) => (
+              <div key={prompt.id} className="is-panel p-6 relative overflow-hidden">
+                {/* Card header */}
+                <div className="flex justify-between items-start mb-5">
+                  <div>
+                    <h3 className="font-mono text-sm font-semibold uppercase text-is-text mb-2">
+                      {String(i + 1).padStart(2, '0')} // {prompt.title.toUpperCase()}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {prompt.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="font-mono text-[10px] border border-is-border px-2 py-0.5 text-is-secondary uppercase tracking-widest"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <CopyButton text={prompt.text} />
+                </div>
+
+                {/* 3-col inner: 2/3 prompt body, 1/3 purpose + telemetry */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                  <div className="lg:col-span-2">
+                    <div className="is-label mb-2">PROMPT_BODY</div>
+                    <div className="bg-is-bg border border-is-border p-4 font-mono text-xs text-is-text leading-relaxed h-48 overflow-y-auto whitespace-pre-wrap">
+                      {prompt.text}
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-between">
+                    <div>
+                      <div className="is-label mb-2">PURPOSE</div>
+                      <p className="font-body text-sm text-is-text leading-relaxed">
+                        {prompt.purpose}
+                      </p>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-is-border">
+                      <div className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-is-telemetry signal-pulse" />
+                        <span className="font-mono text-[10px] text-is-telemetry uppercase tracking-widest">
+                          TELEMETRY: READY
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex justify-end">
+            <Link
+              to="/prompts"
+              className="font-mono text-xs text-is-primary border border-is-primary/30 px-3 py-1.5 hover:bg-is-primary/10 transition-colors"
+            >
+              VIEW ALL PROMPTS →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── WHY THIS EXISTS ───────────────────────────────── */}
       <section className="border-b border-is-border bg-is-bg-deep px-6 py-16 md:py-20">
         <div className="max-w-7xl mx-auto">
@@ -506,30 +512,7 @@ export default function HomePage() {
               </Link>
             ))}
 
-            {/* ── Static image placeholder ── */}
-            <div className="bg-is-bg-deep relative overflow-hidden flex flex-col justify-end p-4 min-h-[200px]">
-              {/* Scanline grid */}
-              <div className="absolute inset-0 opacity-10" style={{
-                backgroundImage: 'linear-gradient(#262626 1px, transparent 1px), linear-gradient(90deg, #262626 1px, transparent 1px)',
-                backgroundSize: '24px 24px',
-              }} />
-              {/* Faint horizontal scan lines */}
-              <div className="absolute inset-0 opacity-5" style={{
-                backgroundImage: 'linear-gradient(transparent 50%, rgba(0,0,0,0.4) 50%)',
-                backgroundSize: '100% 4px',
-              }} />
-              {/* Signal bars */}
-              <div className="absolute top-6 left-6 right-6 flex flex-col gap-1 opacity-20">
-                {[80, 60, 90, 45, 70, 55, 35].map((w, i) => (
-                  <div key={i} className="h-px bg-is-primary" style={{ width: `${w}%` }} />
-                ))}
-              </div>
-              {/* Corner brackets */}
-              <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-is-primary opacity-40" />
-              <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-is-primary opacity-40" />
-              <div className="absolute bottom-10 left-4 w-4 h-4 border-b border-l border-is-primary opacity-40" />
-              <div className="absolute bottom-10 right-4 w-4 h-4 border-b border-r border-is-primary opacity-40" />
-            </div>
+
           </div>
         </div>
       </section>
@@ -628,12 +611,9 @@ export default function HomePage() {
             <em className="not-italic text-is-primary">YOUR SIGNAL.</em>
           </h2>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-            <button
-              onClick={() => document.getElementById('quick-prompts')?.scrollIntoView({ behavior: 'smooth' })}
-              className="is-btn-primary"
-            >
+            <Link to="/analyzer" className="is-btn-primary">
               ANALYZE_YOUR_SIGNALS
-            </button>
+            </Link>
             <Link to="/prompts" className="is-btn-ghost">
               BROWSE_PROMPTS
             </Link>
