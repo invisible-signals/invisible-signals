@@ -47,6 +47,7 @@ function CopyButton({ text }) {
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
+      window.clarity?.('event', 'template_copied')
     })
   }
 

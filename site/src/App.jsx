@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { HashRouter, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 
 function ScrollToTop() {
@@ -16,6 +16,7 @@ import SignalStackOverviewPage from './pages/SignalStackOverviewPage.jsx'
 import SignalStackLayerPage from './pages/SignalStackLayerPage.jsx'
 import SearchPage from './pages/SearchPage.jsx'
 import SignalAnalyzerPage from './pages/SignalAnalyzerPage.jsx'
+import PrivacyPage from './pages/PrivacyPage.jsx'
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
               <Route index element={<SignalStackOverviewPage />} />
               <Route path=":layer" element={<SignalStackLayerPage />} />
             </Route>
+            <Route path="/privacy" element={<PrivacyPage />} />
           </Routes>
         </main>
         <footer className="border-t border-is-border px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
@@ -42,6 +44,7 @@ export default function App() {
           <div className="flex items-center gap-6">
             <a href="https://github.com/invisible-signals/invisible-signals" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-secondary hover:text-is-text transition-colors">GITHUB</a>
             <a href="https://github.com/invisible-signals/invisible-signals/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noreferrer" className="font-mono text-xs text-is-secondary hover:text-is-text transition-colors">CODE_OF_CONDUCT</a>
+            <Link to="/privacy" className="font-mono text-xs text-is-secondary hover:text-is-text transition-colors">PRIVACY_POLICY</Link>
             <span className="font-mono text-xs text-is-secondary">SECURITY: APACHE-2.0 // OPEN_SOURCE_LICENSED</span>
           </div>
         </footer>

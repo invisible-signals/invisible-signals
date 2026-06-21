@@ -347,11 +347,13 @@ export default function SignalAnalyzerPage() {
     )
     setView('results')
     window.scrollTo(0, 0)
+    window.clarity?.('event', 'analyzer_run')
   }
 
   function handleReAnalyze() {
     setView('input')
     window.scrollTo(0, 0)
+    window.clarity?.('event', 'analyzer_rerun')
   }
 
   // ── INPUT VIEW ──────────────────────────────────────────────────────────────
