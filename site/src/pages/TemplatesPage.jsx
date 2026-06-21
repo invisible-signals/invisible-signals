@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { Copy, Check } from 'lucide-react'
 import StatusPill from '../components/StatusPill.jsx'
+import CopyButton from '../components/CopyButton.jsx'
+import PageHeader from '../components/PageHeader.jsx'
+import TagChip from '../components/TagChip.jsx'
 
 const modules = import.meta.glob('../../../templates/**/*.md', { eager: true, query: '?raw', import: 'default' })
 
@@ -40,44 +41,17 @@ const templates = Object.entries(modules)
   .filter(([path]) => !path.split('/').pop().toLowerCase().startsWith('readme'))
   .map(([path, raw]) => parseTemplateFile(path, raw))
 
-function CopyButton({ text }) {
-  const [copied, setCopied] = useState(false)
-
-  function handleCopy() {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-      window.clarity?.('event', 'template_copied')
-    })
-  }
-
-  return (
-    <button
-      onClick={handleCopy}
-      className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-is-border text-is-secondary hover:border-is-primary hover:text-is-primary transition-all"
-    >
-      {copied ? <Check size={12} /> : <Copy size={12} />}
-      {copied ? 'COPIED' : 'COPY_TEMPLATE'}
-    </button>
-  )
-}
-
 export default function TemplatesPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
       {/* Header */}
-      <div className="border-b border-is-border pb-10 mb-12">
-        <div className="flex flex-wrap items-center gap-3 mb-6">
-          <span className="is-label">_05_TEMPLATES</span>
-          <StatusPill color="gold">TEMPLATE_ACTIVE</StatusPill>
-        </div>
-        <h1 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
-          SIGNAL TEMPLATES
-        </h1>
-        <p className="font-body text-base text-is-secondary leading-relaxed max-w-2xl">
-          Structured documents for auditing, scoring, and improving your career signals. Copy a template into your own editor and work through it at your own pace.
-        </p>
-      </div>
+      <PageHeader
+        navLabel="_05_TEMPLATES"
+        pillColor="gold"
+        pillText="TEMPLATE_ACTIVE"
+        title="SIGNAL TEMPLATES"
+        description="Structured documents for auditing, scoring, and improving your career signals. Copy a template into your own editor and work through it at your own pace."
+      />
 
       {/* Template cards */}
       <div className="space-y-px bg-is-border">
@@ -134,9 +108,7 @@ export default function TemplatesPage() {
                     <div className="is-label mb-3">TAGS</div>
                     <div className="flex flex-wrap gap-2">
                       {tags.map((t) => (
-                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-xs text-is-secondary">
-                          {t.toUpperCase().replace(/-/g, '_')}
-                        </span>
+                        <TagChip key={t} tag={t} />
                       ))}
                     </div>
                   </div>

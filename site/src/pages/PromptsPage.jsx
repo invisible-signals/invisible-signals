@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Copy, Check, AlertTriangle } from 'lucide-react'
+import { AlertTriangle } from 'lucide-react'
 import StatusPill from '../components/StatusPill.jsx'
+import CopyButton from '../components/CopyButton.jsx'
+import PageHeader from '../components/PageHeader.jsx'
+import TagChip from '../components/TagChip.jsx'
 import { parseFrontmatter, parsePromptFile } from '../lib/parsePrompts.js'
 
 export { parseFrontmatter, parsePromptFile }
@@ -31,28 +34,6 @@ const quickPrompts = prompts
   .sort((a, b) => QUICK_PROMPT_ORDER.indexOf(a.id) - QUICK_PROMPT_ORDER.indexOf(b.id))
 const otherPrompts = prompts.filter((prompt) => prompt.category !== 'quick-signal')
 
-function CopyButton({ text }) {
-  const [copied, setCopied] = useState(false)
-
-  function handleCopy() {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-      window.clarity?.('event', 'prompt_copied')
-    })
-  }
-
-  return (
-    <button
-      onClick={handleCopy}
-      className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-is-border text-is-secondary hover:border-is-primary hover:text-is-primary transition-all"
-    >
-      {copied ? <Check size={12} /> : <Copy size={12} />}
-      {copied ? 'COPIED' : 'COPY_PROMPT'}
-    </button>
-  )
-}
-
 export default function PromptsPage() {
   const [searchParams] = useSearchParams()
 
@@ -74,18 +55,13 @@ export default function PromptsPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
       {/* Header */}
-      <div className="border-b border-is-border pb-10 mb-12">
-        <div className="flex flex-wrap items-center gap-3 mb-6">
-          <span className="is-label">_02_PROMPTS</span>
-          <StatusPill color="coral">SIGNAL_ACTIVE</StatusPill>
-        </div>
-        <h2 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
-          QUICK SIGNAL PROMPTS
-        </h2>
-        <p className="font-body text-base text-is-secondary leading-relaxed max-w-2xl">
-          Want fast feedback? Copy one focused prompt and run it in your preferred AI tool. System-level instructions to analyze career metadata and generate telemetry goals.
-        </p>
-      </div>
+      <PageHeader
+        navLabel="_02_PROMPTS"
+        pillColor="coral"
+        pillText="SIGNAL_ACTIVE"
+        title="QUICK SIGNAL PROMPTS"
+        description="Want fast feedback? Copy one focused prompt and run it in your preferred AI tool. System-level instructions to analyze career metadata and generate telemetry goals."
+      />
 
       {/* Quick signal prompts */}
       {quickPrompts.length > 0 && (
@@ -101,9 +77,7 @@ export default function PromptsPage() {
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {tags.map((t) => (
-                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-[10px] uppercase text-is-secondary">
-                          {t.replace(/-/g, '_').toUpperCase()}
-                        </span>
+                        <TagChip key={t} tag={t} />
                       ))}
                     </div>
                   </div>
@@ -183,9 +157,7 @@ export default function PromptsPage() {
                     <div className="is-label mb-3">TAGS</div>
                     <div className="flex flex-wrap gap-2">
                       {tags.map((t) => (
-                        <span key={t} className="border border-is-border px-2 py-0.5 font-mono text-xs text-is-secondary">
-                          {t.toUpperCase().replace(/-/g, '_')}
-                        </span>
+                        <TagChip key={t} tag={t} />
                       ))}
                     </div>
                   </div>

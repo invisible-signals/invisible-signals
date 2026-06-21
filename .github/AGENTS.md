@@ -113,7 +113,7 @@ npm run preview
 ## Definition of Done
 
 - [ ] `npm run build` passes with no errors or warnings
-- [ ] `npm test` passes (48 tests across 4 files)
+- [ ] `npm test` passes (106 tests across 5 files)
 - [ ] No hardcoded hex values in JSX
 - [ ] No `rounded-*` classes added
 - [ ] New prompts auto-appear on `/prompts` page
@@ -139,7 +139,7 @@ npm run preview
 - Changing `vite.config.js` `base` or `server.fs.allow`
 - Reordering or renaming routes in `App.jsx`
 - Changing `tailwind.config.js` font families
-- Modifying shared component props (`StatusPill`, `NavBar`)
+- Modifying shared component props (`StatusPill`, `NavBar`, `CopyButton`, `PageHeader`, `TagChip`)
 
 **Do not do autonomously:**
 

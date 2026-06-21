@@ -2,14 +2,15 @@
 
 ## Current Status
 
-> **48 tests passing across 4 files.** Run `npm test` from `site/` to run in watch mode, or `npx vitest run` for a single pass.
+> **101 tests passing across 5 files.** Run `npm test` from `site/` to run in watch mode, or `npx vitest run` for a single pass.
 
 | File | Tests |
 |---|---|
 | `src/pages/PromptsPage.test.js` | 12 — `parseFrontmatter`, `parsePromptFile` |
 | `src/components/StatusPill.test.jsx` | 9 — all color variants, dot indicator, defaults |
-| `src/components/NavBar.test.jsx` | 5 — link rendering, active/inactive route classes |
-| `src/lib/promptSchema.test.js` | 22 — frontmatter schema validation across all prompt files |
+| `src/components/NavBar.test.jsx` | 2 — brand logo render, active link classes |
+| `src/lib/promptSchema.test.js` | 57 — 7 assertions × 8 prompt files + 1 inventory check |
+| `src/lib/signalAnalyzer.test.js` | 21 — `analyzeSignal()` scoring, dimensions, output shape |
 
 ---
 
@@ -71,13 +72,13 @@ Prioritize unit tests for pure functions. Integration tests for page rendering. 
 
 ## High-Value Test Targets
 
-### `parseFrontmatter()` — `site/src/pages/PromptsPage.test.js` ✓
+### `parseFrontmatter()` — `site/src/lib/parsePrompts.js` ✓
 
-Exported from `PromptsPage.jsx`. Pure function — takes a raw markdown string, returns a key-value object from YAML frontmatter. Covered cases: missing block, title/category parsing, block-style tag arrays, empty block, value whitespace trimming.
+Exported from `parsePrompts.js` (shared lib). Pure function — takes a raw markdown string, returns a key-value object from YAML frontmatter. Covered cases: missing block, title/category parsing, block-style tag arrays, empty block, value whitespace trimming.
 
-### `parsePromptFile()` — `site/src/pages/PromptsPage.test.js` ✓
+### `parsePromptFile()` — `site/src/lib/parsePrompts.js` ✓
 
-Exported from `PromptsPage.jsx`. Pure function — extracts id, title, category, tags, purpose, and the fenced code block under `## Prompt`. Covered cases: id from path, frontmatter extraction, prompt text extraction, missing `## Prompt` section, missing frontmatter fallbacks, purpose paragraph.
+Exported from `parsePrompts.js` (shared lib). Pure function — extracts id, title, category, tags, purpose, and the fenced code block under `## Prompt`. Covered cases: id from path, frontmatter extraction, prompt text extraction, missing `## Prompt` section, missing frontmatter fallbacks, purpose paragraph.
 
 ### `StatusPill` — `site/src/components/StatusPill.test.jsx` ✓
 
@@ -85,11 +86,15 @@ All four color variants (`blue`, `coral`, `gold`, `dim`), dot indicator presence
 
 ### `NavBar` — `site/src/components/NavBar.test.jsx` ✓
 
-Link rendering, active route classes (`border-is-primary/40 text-is-primary bg-is-primary/10`), inactive route classes. Wrapped in `MemoryRouter` with `initialEntries`.
+Brand logo render, active link classes (`text-is-primary`) for the Signal Stack route. Wrapped in `MemoryRouter` with `initialEntries`.
 
 ### Prompt Schema — `site/src/lib/promptSchema.test.js` ✓
 
-Validates every `prompts/**/*.md` file against the required frontmatter schema at build time via `import.meta.glob`. Covered cases: at least one prompt exists, all required keys present (`title`, `version`, `status`, `category`, `tags`), valid `status` values, valid `category` values, non-empty `tags` array, `## Purpose` section present, `## Prompt` section with fenced code block present, no empty `[]` placeholder brackets in the prompt body.
+Validates every `prompts/**/*.md` file against the required frontmatter schema at build time via `import.meta.glob`. Generates 7 assertions per prompt file (currently 8 files = 56 tests) plus 1 inventory check. Covered cases: at least one prompt exists, all required keys present (`title`, `version`, `status`, `category`, `tags`), valid `status` values, valid `category` values, non-empty `tags` array, `## Purpose` section present, `## Prompt` section with fenced code block present, no empty `[]` placeholder brackets in the prompt body.
+
+### `analyzeSignal()` — `site/src/lib/signalAnalyzer.test.js` ✓
+
+Exported from `signalAnalyzer.js`. Tests the client-side analysis engine across all supported input types. Covered cases: strong/weak/mixed resume bullets, ownership and quantification dimension scoring, interview `starCompleteness` dimension, leadership dimension presence, positive/negative phrase detection, improvement suggestion count and shape, required output fields (`dimensions`, `overall`, `narrativeParts`, `miniStats`, `improvements`), score bounds (0–100).
 
 ---
 

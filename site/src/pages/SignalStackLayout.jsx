@@ -1,23 +1,10 @@
 import { Outlet, NavLink } from 'react-router-dom'
-import {
-  Cpu, GitCommit, UserCheck, MessageSquare,
-  TrendingUp, Users, Compass, Award, LayoutGrid,
-} from 'lucide-react'
+import { LayoutGrid } from 'lucide-react'
+import { LAYER_ICONS } from '../lib/layerIcons.js'
 import { parseSignalStack } from '../lib/parseSignalStack.js'
 import rawSignalStack from '../../../docs/signal-stack.md?raw'
 
 const { frontmatter, scoringRows, layers } = parseSignalStack(rawSignalStack)
-
-const LAYER_ICONS = {
-  1: Cpu,
-  2: GitCommit,
-  3: UserCheck,
-  4: MessageSquare,
-  5: TrendingUp,
-  6: Users,
-  7: Compass,
-  8: Award,
-}
 
 export default function SignalStackLayout() {
   return (

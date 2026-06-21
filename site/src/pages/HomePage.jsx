@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Copy, Check, FileText, Linkedin, Github, MessageSquare, TrendingUp, Users } from 'lucide-react'
+import { FileText, Linkedin, Github, MessageSquare, TrendingUp, Users } from 'lucide-react'
 import StatusPill from '../components/StatusPill.jsx'
+import CopyButton from '../components/CopyButton.jsx'
 import { parseSignalStack } from '../lib/parseSignalStack.js'
 import { parsePromptFile } from '../lib/parsePrompts.js'
 import rawSignalStack from '../../../docs/signal-stack.md?raw'
@@ -44,25 +45,6 @@ function SignalAnalysisPanel() {
         </p>
       </div>
     </div>
-  )
-}
-
-function CopyButton({ text }) {
-  const [copied, setCopied] = useState(false)
-  function handleCopy() {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    })
-  }
-  return (
-    <button
-      onClick={handleCopy}
-      className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-is-border text-is-secondary hover:border-is-primary hover:text-is-primary transition-all"
-    >
-      {copied ? <Check size={12} /> : <Copy size={12} />}
-      {copied ? 'COPIED' : 'COPY'}
-    </button>
   )
 }
 

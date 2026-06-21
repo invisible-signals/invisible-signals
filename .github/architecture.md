@@ -11,12 +11,14 @@ Invisible Signals™ is a **static single-page application** backed by a **flat 
 │  ┌──────────────────────────────────────────────┐   │
 │  │           React SPA (HashRouter)             │   │
 │  │                                              │   │
-│  │  NavBar ──► Route /           ► HomePage     │   │
-│  │             Route /frameworks   ► FrameworksPage        │   │
-│  │             Route /prompts     ► PromptsPage           │   │
-│  │             Route /templates   ► TemplatesPage         │   │
-│  │             Route /search      ► SearchPage            │   │
-│  │             Route /signal-stack► SignalStackLayout      │   │
+│  │  NavBar ──► Route /           ► HomePage           │   │
+│  │             Route /frameworks ► FrameworksPage      │   │
+│  │             Route /prompts    ► PromptsPage         │   │
+│  │             Route /templates  ► TemplatesPage       │   │
+│  │             Route /search     ► SearchPage          │   │
+│  │             Route /analyzer   ► SignalAnalyzerPage  │   │
+│  │             Route /signal-stack► SignalStackLayout  │   │
+│  │             Route /privacy    ► PrivacyPage         │   │
 │  └──────────────────────────────────────────────┘   │
 │                         │                           │
 │          Prompts bundled at build time via           │
@@ -67,19 +69,31 @@ Invisible Signals™ is a **static single-page application** backed by a **flat 
         ├── main.jsx         # React 18 mount
         ├── index.css        # Tailwind directives, global styles, component classes
         ├── components/
-        │   ├── NavBar.jsx   # Global navigation
-        │   └── StatusPill.jsx # Colored status badge
+        │   ├── NavBar.jsx       # Global navigation
+        │   ├── StatusPill.jsx   # Colored status badge
+        │   ├── CopyButton.jsx   # Clipboard copy button (text, clarityEvent?)
+        │   ├── PageHeader.jsx   # Standard page banner (navLabel, pillColor, pillText, title, description, children?)
+        │   └── TagChip.jsx      # Metadata tag badge (tag)
         ├── lib/
-        │   └── promptSchema.test.js  # Validates all prompt frontmatter at build time
+        │   ├── parsePrompts.js        # Frontmatter + prompt body parser (shared)
+        │   ├── parseSignalStack.js    # Signal stack markdown parser
+        │   ├── signalAnalyzer.js      # Client-side 5-dimension analysis engine
+        │   ├── signalAnalyzer.test.js # Unit tests for analyzer
+        │   ├── buildSearchIndex.js    # Builds search index from all content
+        │   ├── signalDictionaries.js  # Signal keyword + scoring dictionaries
+        │   ├── layerIcons.js          # LAYER_ICONS map (layer num → Lucide icon component)
+        │   └── promptSchema.test.js   # Validates all prompt frontmatter at build time
         └── pages/
             ├── HomePage.jsx               # Landing, hero, signal stack overview
             ├── FrameworksPage.jsx         # Hiring funnel stage breakdown
             ├── PromptsPage.jsx            # Dynamic prompt loader + copy UI
             ├── TemplatesPage.jsx          # Signal scorecard + self-assessment templates
             ├── SearchPage.jsx             # Full-text search across prompts and frameworks
+            ├── SignalAnalyzerPage.jsx      # Interactive signal analyzer (text → 5-dim scores)
             ├── SignalStackLayout.jsx      # Nested layout shell for signal stack routes
             ├── SignalStackOverviewPage.jsx# Signal Stack™ 8-layer overview
-            └── SignalStackLayerPage.jsx   # Individual layer deep-dive (/:layer)
+            ├── SignalStackLayerPage.jsx   # Individual layer deep-dive (/:layer)
+            └── PrivacyPage.jsx            # Privacy policy (Clarity analytics disclosure)
 ```
 
 ---
@@ -94,9 +108,11 @@ flowchart TD
     B -->|/#/prompts| E[PromptsPage]
     B -->|/#/templates| F[TemplatesPage]
     B -->|/#/search| G[SearchPage]
+    B -->|/#/analyzer| I2[SignalAnalyzerPage]
     B -->|/#/signal-stack| H[SignalStackLayout]
     H --> H1[SignalStackOverviewPage]
     H --> H2[SignalStackLayerPage]
+    B -->|/#/privacy| P[PrivacyPage]
 
     E --> I[import.meta.glob\nprompts/**/*.md]
     I --> J[parseFrontmatter\nparsePromptFile]
@@ -125,11 +141,15 @@ graph TD
     Pages --> PromptsPage
     Pages --> TemplatesPage
     Pages --> SearchPage
+    Pages --> SignalAnalyzerPage
     Pages --> SignalStackLayout
+    Pages --> PrivacyPage
     SignalStackLayout --> SignalStackOverviewPage
     SignalStackLayout --> SignalStackLayerPage
 
-    PromptsPage --> CopyButton["CopyButton (local)"]
+    PromptsPage --> CopyButton["CopyButton (shared component)"]
+    TemplatesPage --> CopyButton
+    HomePage --> CopyButton
     HomePage --> BarChart["BarChart() (inline)"]
     HomePage --> RadarRing["RadarRing() (inline)"]
     HomePage --> StatusPill

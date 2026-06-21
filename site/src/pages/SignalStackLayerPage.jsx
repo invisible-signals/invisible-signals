@@ -1,20 +1,6 @@
 import { useParams, useOutletContext, Link } from 'react-router-dom'
-import {
-  Cpu, GitCommit, UserCheck, MessageSquare,
-  TrendingUp, Users, Compass, Award,
-  Waves, Activity, ChevronLeft, ChevronRight,
-} from 'lucide-react'
-
-const LAYER_ICONS = {
-  1: Cpu,
-  2: GitCommit,
-  3: UserCheck,
-  4: MessageSquare,
-  5: TrendingUp,
-  6: Users,
-  7: Compass,
-  8: Award,
-}
+import { Waves, Activity, ChevronLeft, ChevronRight } from 'lucide-react'
+import { LAYER_ICONS } from '../lib/layerIcons.js'
 
 export default function SignalStackLayerPage() {
   const { layer } = useParams()

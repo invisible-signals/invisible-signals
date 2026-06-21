@@ -54,7 +54,7 @@ Two distinct artifacts live in this repo:
 | Tailwind color tokens | `is-{name}` | `is-primary`, `is-alert`, `is-bg-deep` |
 | CSS custom properties | `--is-{name}` | `--is-primary`, `--is-background` |
 | Page components | PascalCase + "Page" | `HomePage.jsx`, `PromptsPage.jsx` |
-| Shared components | PascalCase | `NavBar.jsx`, `StatusPill.jsx` |
+| Shared components | PascalCase | `NavBar.jsx`, `StatusPill.jsx`, `CopyButton.jsx`, `PageHeader.jsx`, `TagChip.jsx` |
 | Nav label strings | `_NN_SCREAMING_SNAKE` | `_01_FRAMEWORKS` |
 | Status/ID strings | SCREAMING_SNAKE_CASE | `SIGNAL_ACTIVE`, `RESUME_REVIEW` |
 | Routes | lowercase kebab | `/frameworks`, `/prompts` |
@@ -93,7 +93,7 @@ Two distinct artifacts live in this repo:
 
 - Test runner: Vitest with `jsdom` environment
 - Setup file: `site/src/test-setup.js` (mocks clipboard API)
-- High-value targets: `parseFrontmatter()`, `parsePromptFile()`, `StatusPill` variants
+- High-value targets: `parseFrontmatter()`, `parsePromptFile()`, `StatusPill` variants, `CopyButton` (clipboard behavior)
 - Scripts: `npm test`, `npm run test:ui`, `npm run test:coverage`
 
 ---

@@ -32,18 +32,30 @@ site/
     ├── index.css                   ← Tailwind directives; global styles; component classes
     ├── components/
     │   ├── NavBar.jsx              ← Global nav; NavLink active states; version badge
-    │   └── StatusPill.jsx          ← Colored status badge (blue/coral/gold/dim)
+    │   ├── StatusPill.jsx          ← Colored status badge (blue/coral/gold/dim)
+    │   ├── CopyButton.jsx          ← Clipboard copy button; props: text, clarityEvent?
+    │   ├── PageHeader.jsx          ← Standard page banner; props: navLabel, pillColor, pillText, title, description, children?
+    │   └── TagChip.jsx             ← Metadata tag badge; prop: tag (normalized to UPPER_SNAKE_CASE)
     ├── lib/
+    │   ├── parsePrompts.js         ← Frontmatter + prompt body parser (used by PromptsPage + schema tests)
+    │   ├── parseSignalStack.js     ← Parses signal-stack.md into layer objects
+    │   ├── signalAnalyzer.js       ← Client-side 5-dimension analysis engine
+    │   ├── signalAnalyzer.test.js  ← Unit tests for analyzeSignal()
+    │   ├── buildSearchIndex.js     ← Aggregates prompts + frameworks + templates into search index
+    │   ├── signalDictionaries.js   ← Keyword lists and scoring weights for signal analysis
+    │   ├── layerIcons.js           ← LAYER_ICONS map (1–8 → Lucide icon component); shared by SignalStack* pages
     │   └── promptSchema.test.js    ← Validates all prompts/**/*.md frontmatter at build time
     └── pages/
         ├── HomePage.jsx                ← Hero; Signal Stack™; Product modules; Principles
         ├── FrameworksPage.jsx          ← Hiring funnel 5-stage accordion
-        ├── PromptsPage.jsx             ← import.meta.glob loader; frontmatter parser; CopyButton
+    │   ├── PromptsPage.jsx             ← import.meta.glob loader; frontmatter parser; copy UI
         ├── TemplatesPage.jsx           ← Signal scorecard + self-assessment templates
         ├── SearchPage.jsx              ← Full-text search across prompts and frameworks
+        ├── SignalAnalyzerPage.jsx      ← Interactive signal analyzer; text input → 5-dim radar scores
         ├── SignalStackLayout.jsx       ← Nested layout shell for /#/signal-stack routes
         ├── SignalStackOverviewPage.jsx ← Signal Stack™ 8-layer overview
-        └── SignalStackLayerPage.jsx    ← Individual layer deep-dive (/:layer)
+        ├── SignalStackLayerPage.jsx    ← Individual layer deep-dive (/:layer)
+        └── PrivacyPage.jsx             ← Privacy policy; Clarity analytics disclosure
 ```
 
 ---
@@ -86,7 +98,8 @@ eval/
 | `site/src/components/NavBar.jsx` | Global nav; active link styling | Medium — test all routes after changes |
 | `site/tailwind.config.js` | Entire color/font system | High — breaking a token breaks visual output |
 | `site/src/index.css` | Global radius override (`0 !important`); keyframes | Medium — affects all pages |
-| `site/src/pages/PromptsPage.jsx` | `import.meta.glob` + frontmatter parser + CopyButton | Medium — parser is fragile regex |
+| `site/src/pages/PromptsPage.jsx` | `import.meta.glob` + frontmatter parser | Medium — parser is fragile regex |
+| `site/src/lib/signalAnalyzer.js` | Powers SignalAnalyzerPage; score/narrative output | Medium — changing scoring breaks analyzer page |
 | `site/vite.config.js` | `fs.allow: ['..']` enables prompt imports | High — removing breaks prompt loading |
 
 ---
@@ -95,13 +108,16 @@ eval/
 
 | Component | Props | Used In |
 |---|---|---|
-| `StatusPill` | `color` (blue/coral/gold/dim), `children` | HomePage, SignalStackOverviewPage, NavBar |
+| `StatusPill` | `color` (blue/coral/gold/dim), `children` | HomePage, SignalStackOverviewPage, NavBar, PromptsPage, TemplatesPage, FrameworksPage |
 | `NavBar` | none (self-contained) | App.jsx (global layout) |
+| `CopyButton` | `text` (required), `clarityEvent`? | HomePage, PromptsPage, TemplatesPage |
+| `PageHeader` | `navLabel`, `pillColor`, `pillText`, `title`, `description`, `children`? | FrameworksPage, PromptsPage, TemplatesPage |
+| `TagChip` | `tag` | PromptsPage, TemplatesPage |
 
 **Inline-only sub-components** (not in `components/`, not shared):
+- `SignalAnalysisPanel()` — defined inside `HomePage.jsx`
 - `BarChart()` — defined inside `HomePage.jsx`
 - `RadarRing()` — defined inside `HomePage.jsx`
-- `CopyButton` — defined inside `PromptsPage.jsx`
 
 ---
 

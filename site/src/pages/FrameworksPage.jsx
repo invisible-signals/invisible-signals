@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import StatusPill from '../components/StatusPill.jsx'
+import PageHeader from '../components/PageHeader.jsx'
 
 export const stages = [
   {
@@ -260,19 +261,17 @@ export default function FrameworksPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
       {/* Header */}
-      <div className="border-b border-is-border pb-10 mb-12">
-        <div className="flex flex-wrap items-center gap-3 mb-6">
-          <span className="is-label">_01_FRAMEWORKS</span>
-          <StatusPill color="blue">SIGNAL_ACTIVE</StatusPill>
-        </div>
-        <h1 className="font-mono text-4xl md:text-5xl font-semibold uppercase text-is-text mb-4">
-          {activeFramework === 'HIRING_FUNNEL' ? 'HIRING FUNNEL' : 'COACHING'}
-        </h1>
-        <p className="font-body text-base text-is-secondary leading-relaxed max-w-2xl mb-6">
-          {activeFramework === 'HIRING_FUNNEL'
+      <PageHeader
+        navLabel="_01_FRAMEWORKS"
+        pillColor="blue"
+        pillText="SIGNAL_ACTIVE"
+        title={activeFramework === 'HIRING_FUNNEL' ? 'HIRING FUNNEL' : 'COACHING'}
+        description={
+          activeFramework === 'HIRING_FUNNEL'
             ? 'The hiring funnel is a sequence of increasingly selective conversations. Each stage filters for different signals. Candidates who understand what is actually being evaluated at each stage can communicate their value more clearly.'
-            : 'Career coaching through signal clarity. Helping engineers and technical leaders own something real, solve something hard, clarify boundaries, and leave behind visible evidence of impact.'}
-        </p>
+            : 'Career coaching through signal clarity. Helping engineers and technical leaders own something real, solve something hard, clarify boundaries, and leave behind visible evidence of impact.'
+        }
+      >
         <div className="flex gap-1">
           {[
             { id: 'HIRING_FUNNEL', label: 'HIRING_FUNNEL' },
@@ -291,7 +290,7 @@ export default function FrameworksPage() {
             </button>
           ))}
         </div>
-      </div>
+      </PageHeader>
 
       {activeFramework === 'HIRING_FUNNEL' && (
         <>
