@@ -399,7 +399,7 @@ export default function HomePage() {
                       ))}
                     </div>
                   </div>
-                  <CopyButton text={prompt.text} />
+                  <CopyButton text={prompt.text} clarityEvent="home_prompt_copied" />
                 </div>
 
                 {/* 3-col inner: 2/3 prompt body, 1/3 purpose + telemetry */}

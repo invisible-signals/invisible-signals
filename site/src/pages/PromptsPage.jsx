@@ -82,7 +82,7 @@ export default function PromptsPage() {
                     </div>
                   </div>
                   <div className="shrink-0">
-                    <CopyButton text={text} />
+                    <CopyButton text={text} clarityEvent="prompt_copied" />
                   </div>
                 </div>
 
@@ -133,7 +133,7 @@ export default function PromptsPage() {
                 </span>
                 <StatusPill color="blue">SIGNAL_ACTIVE</StatusPill>
               </div>
-              <CopyButton text={text} />
+              <CopyButton text={text} clarityEvent="prompt_copied" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_280px] gap-px bg-is-border">

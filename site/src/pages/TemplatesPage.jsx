@@ -70,7 +70,7 @@ export default function TemplatesPage() {
                 )}
                 <StatusPill color="gold">TEMPLATE_ACTIVE</StatusPill>
               </div>
-              <CopyButton text={text} />
+              <CopyButton text={text} clarityEvent="template_copied" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-is-border">
