@@ -1,6 +1,6 @@
 ---
 title: Senior → Staff Career Diagnostic
-version: 1.0
+version: 1.1
 status: approved
 category: docs
 tags:
@@ -67,7 +67,7 @@ Use the canonical Invisible Signals™ evidence scale:
 | 3 | Strong | Evidence is clear, specific, relevant, and defensible |
 | 4 | Excellent | Evidence is role-aligned, differentiated, credible, and memorable |
 
-For the paid diagnostic, each layer score is the average of its four assessment statements.
+For the paid diagnostic, each layer score is the average of its four assessment statements. A layer score should not be displayed until all four statements for that layer have been answered.
 
 ### Customer-facing diagnostic bands
 
@@ -80,6 +80,8 @@ For the paid diagnostic, each layer score is the average of its four assessment 
 | 3.7–4.0 | SIGNAL DISTINCTIVE |
 
 `SIGNAL EMERGING` is used in the customer-facing experience instead of `Moderate` to communicate that real evidence exists but is not yet consistently legible or compelling.
+
+Career priorities should remain `PENDING` until all 32 assessment statements are complete.
 
 ---
 
@@ -129,7 +131,7 @@ If both foundation layers score `>= 2.0`:
 FOUNDATION STATUS: STABLE
 ```
 
-Foundation gaps take precedence over Staff-differentiator recommendations. The diagnostic should not prioritize strategic influence while baseline evidence of technical capability or execution remains weak.
+Foundation gaps take precedence over Staff-differentiator recommendations in the action plan. The diagnostic should not ask the user to spend both 90-day focus areas on advanced Staff behaviors while baseline evidence of technical capability or execution remains weak.
 
 ---
 
@@ -170,7 +172,7 @@ If all eight layers are already Strong or Distinctive, select the lowest Staff-r
 
 After selecting the Primary Growth Signal, choose the next-highest-priority gap using the same ordering rules.
 
-The purpose is to focus the user's development plan on no more than two active growth areas at a time.
+The purpose is to keep the diagnostic focused rather than presenting all eight dimensions as simultaneous development work.
 
 Example:
 
@@ -239,6 +241,30 @@ The result should feel like a diagnosis, not a leaderboard of weaknesses.
 
 ---
 
+# 90-Day Plan Focus Logic
+
+The 90-day plan should contain exactly two active focus areas.
+
+### When Foundation is Stable
+
+```text
+FOCUS AREA 1 = Primary Growth Signal
+FOCUS AREA 2 = Secondary Growth Signal
+```
+
+### When a Foundation Gap exists
+
+```text
+FOCUS AREA 1 = Foundation Gap
+FOCUS AREA 2 = Primary Growth Signal
+```
+
+This preserves the Staff-growth direction while honoring the rule that baseline evidence must be credible first.
+
+The Leverage Signal is not a remediation focus. It should be amplified and captured as part of the user's Staff-level narrative.
+
+---
+
 # Important Design Decisions
 
 ## No single career score
@@ -262,7 +288,7 @@ The user should be prompted to ask:
 
 Trust affects confidence in a signal; it does not become an additional career dimension.
 
-## Two growth areas maximum
+## Two active focus areas maximum
 
 The diagnostic should produce at most:
 
@@ -271,7 +297,7 @@ The diagnostic should produce at most:
 - one Secondary Growth Signal,
 - one Leverage Signal.
 
-The resulting 90-day plan should focus on the two growth signals rather than attempting to improve all eight layers simultaneously.
+The 90-day plan uses only two active focus areas according to the precedence rules above rather than attempting to improve all eight layers simultaneously.
 
 ---
 
